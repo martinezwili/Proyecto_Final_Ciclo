@@ -18,6 +18,8 @@ import javax.swing.JComboBox;
  *
  * @author MAWIL
  */
+
+//bebecita
 public class SQLMetodos {
     
     Conexionbd conexion = new Conexionbd();
