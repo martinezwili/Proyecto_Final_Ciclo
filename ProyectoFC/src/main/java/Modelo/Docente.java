@@ -12,11 +12,10 @@ import java.sql.Date;
  *
  * @author MAWIL
  */
-public class Docente extends Persona {
-    private String doc_cedula,for_codigo,ran_codigo,as1_codigo,as2_codigo,as3_codigo,jor_codigo;
+public class Docente   {
+    private String doc_cedula,for_codigo,ran_codigo,as1_codigo,as2_codigo,as3_codigo,jor_codigo,per_cedula;
 
-    public Docente(String doc_cedula, String for_codigo, String ran_codigo, String as1_codigo, String as2_codigo, String as3_codigo, String jor_codigo, String per_cedula, String per_nombre, String per_apellido, String per_telefono, String per_contraseña, String rel_cedula, Date per_nacimiento) {
-        super(per_cedula, per_nombre, per_apellido, per_telefono, per_contraseña, rel_cedula, per_nacimiento);
+    public Docente(String doc_cedula, String for_codigo, String ran_codigo, String as1_codigo, String as2_codigo, String as3_codigo, String jor_codigo, String per_cedula) {
         this.doc_cedula = doc_cedula;
         this.for_codigo = for_codigo;
         this.ran_codigo = ran_codigo;
@@ -24,6 +23,7 @@ public class Docente extends Persona {
         this.as2_codigo = as2_codigo;
         this.as3_codigo = as3_codigo;
         this.jor_codigo = jor_codigo;
+        this.per_cedula = per_cedula;
     }
 
     public String getDoc_cedula() {
@@ -97,7 +97,7 @@ public class Docente extends Persona {
     
     public boolean eliminar(){
         Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM administrador WHERE adm_cedula = '" + getDoc_cedula()+ "'";
+        String nsql = "DELETE FROM docente WHERE doc_cedula = '" + getDoc_cedula()+ "'";
         
         if(conexion.noQuery(nsql) == null){
             return true;
@@ -107,5 +107,15 @@ public class Docente extends Persona {
             return false;
         }
     }
+
+    public String getPer_cedula() {
+        return per_cedula;
+    }
+
+    public void setPer_cedula(String per_cedula) {
+        this.per_cedula = per_cedula;
+    }
+    
+    
     
 }
