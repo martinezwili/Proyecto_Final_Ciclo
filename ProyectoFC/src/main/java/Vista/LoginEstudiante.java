@@ -156,7 +156,7 @@ public class LoginEstudiante extends javax.swing.JFrame {
             if(Alumno.loginE(jTextCedula.getText(), jTextContraseña.getText()) == true){
                 JOptionPane.showMessageDialog(rootPane, "BIENVENIDO");
                 this.dispose();
-                MENUESTUDIANTE me = new MENUESTUDIANTE();
+                MenuDocente me = new MenuDocente();
                 me.setVisible(true);
             }
             else
