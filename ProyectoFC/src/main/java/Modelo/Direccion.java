@@ -6,6 +6,8 @@
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -44,8 +46,9 @@ public class Direccion {
         this.dir_comuna = dir_comuna;
     }
     
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
         String nsql = "INSERT INTO direccion (dir_codigo, dic_calle, dir_comuna) VALUES ('" + getDir_codigo()+ "','" + getDic_calle()+ "','" + getDir_comuna() + "');";
         
         if(conexion.noQuery(nsql) == null){
@@ -58,7 +61,6 @@ public class Direccion {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
         String nsql = "DELETE FROM direccion WHERE dir_codigo = " + getDir_codigo() + "');";
         
         if(conexion.noQuery(nsql) == null){
