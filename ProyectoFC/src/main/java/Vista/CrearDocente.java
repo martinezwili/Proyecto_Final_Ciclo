@@ -713,18 +713,18 @@ public class CrearDocente extends javax.swing.JFrame {
                 {
                     per.eliminar();
                     per.eliminar();
-                    JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
+                    JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
                 }
             }
             else
             {
                 per.eliminar();
-                JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
+                JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
+            JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
