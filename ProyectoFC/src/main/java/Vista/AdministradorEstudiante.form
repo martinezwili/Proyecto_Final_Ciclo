@@ -591,7 +591,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ESTUDIANTE"/>
+                <Property name="text" type="java.lang.String" value="ESTUDIANTES"/>
               </Properties>
             </Component>
           </SubComponents>

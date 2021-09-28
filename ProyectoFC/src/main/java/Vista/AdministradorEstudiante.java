@@ -293,7 +293,7 @@ public class AdministradorEstudiante extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel11.setText("ESTUDIANTE");
+        jLabel11.setText("ESTUDIANTES");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
