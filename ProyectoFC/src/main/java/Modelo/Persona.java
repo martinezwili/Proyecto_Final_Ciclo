@@ -7,6 +7,8 @@ package Modelo;
 
 import java.sql.Date;
 import Conexion.Conexionbd;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -100,6 +102,19 @@ public class Persona {
         String nsql = "DELETE FROM persona WHERE per_cedula = '" + getPer_cedula() +"'";
         
         if(conexion.noQuery(nsql) == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean comp() throws SQLException{
+        Conexionbd conexion = new Conexionbd();
+        String sql2 = "SELECT per_cedula FROM persona WHERE per_cedula = '" + getPer_cedula()+ "'";
+        ResultSet rs2 = conexion.query(sql2);
+        if(rs2.next()){
             return true;
         }
         else
