@@ -23,6 +23,10 @@ public class CrearRango extends javax.swing.JFrame {
      */
     public CrearRango() throws SQLException {
         initComponents();
+        mostrar();
+    }
+    
+    public void mostrar() throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
         String sql = ("SELECT * FROM rango");
         modelo.setColumnIdentifiers(new Object[]{"CODIGO", "RANGO"});
@@ -274,9 +278,14 @@ public class CrearRango extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Rango rango = new Rango(txtCodigo.getText(), txtRango.getText());
-        if(rango.insertar()){
+        Rango ran = new Rango(txtCodigo.getText(), txtRango.getText());
+        if(ran.insertar()){
             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar();
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {

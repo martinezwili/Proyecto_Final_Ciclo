@@ -5,17 +5,42 @@
  */
 package Vista;
 
+import Conexion.Conexionbd;
+import Modelo.Asignatura;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author byron
  */
 public class CrearAsignatura extends javax.swing.JFrame {
-
+    Conexionbd conexion = new Conexionbd();
     /**
      * Creates new form CrearAsignatura
      */
-    public CrearAsignatura() {
+    public CrearAsignatura() throws SQLException {
         initComponents();
+        mostrar();
+    }
+    
+    public void todo() throws SQLException{
+        mostrar();
+    }
+    
+    public void mostrar() throws SQLException{
+        DefaultTableModel modelo = new DefaultTableModel();
+        String sql = ("SELECT * FROM asignatura");
+        modelo.setColumnIdentifiers(new Object[]{"CODIGO", "NOMBRE","DESCRIPCION"});
+        ResultSet rs = conexion.query(sql);
+        while(rs.next()){
+            modelo.addRow(new Object[]{rs.getString("asig_codigo"), rs.getString("asig_nombre"), rs.getString("asig_descripcion")});
+        }
+        tablaAsignaturas.setModel(modelo);
     }
 
     /**
@@ -34,8 +59,6 @@ public class CrearAsignatura extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        lblCurso = new javax.swing.JLabel();
-        txtCurso = new javax.swing.JTextField();
         lblDescripcion = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -69,11 +92,6 @@ public class CrearAsignatura extends javax.swing.JFrame {
         });
         jPanel2.add(txtNombre);
 
-        lblCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCurso.setText("Curso");
-        jPanel2.add(lblCurso);
-        jPanel2.add(txtCurso);
-
         lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDescripcion.setText("Descripción");
         jPanel2.add(lblDescripcion);
@@ -97,8 +115,13 @@ public class CrearAsignatura extends javax.swing.JFrame {
         jPanel4.add(jLabel6);
 
         btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Actualizar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -190,7 +213,30 @@ public class CrearAsignatura extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+        try {
+            // recargar informacion de las tablas
+            todo();
+        } catch (SQLException ex) {
+            Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        // TODO add your handling code here:
+        Asignatura asig = new Asignatura(txtCodigo.getText(), txtNombre.getText(), txtDescripcion.getText());
+        if(asig.insertar()){
+            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar();
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
+        }
+    }//GEN-LAST:event_btnCrearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,7 +268,11 @@ public class CrearAsignatura extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearAsignatura().setVisible(true);
+                try {
+                    new CrearAsignatura().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -238,12 +288,10 @@ public class CrearAsignatura extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCodigo;
-    private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTable tablaAsignaturas;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCurso;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
