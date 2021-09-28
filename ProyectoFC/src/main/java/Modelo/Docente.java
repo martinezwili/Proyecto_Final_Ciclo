@@ -82,9 +82,18 @@ public class Docente   {
         this.jor_codigo = jor_codigo;
     }
 
+    public String getPer_cedula() {
+        return per_cedula;
+    }
+
+    public void setPer_cedula(String per_cedula) {
+        this.per_cedula = per_cedula;
+    }
+
+    
     public boolean insertar(){
         Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO administrador (adm_cedula, adm_correo, for_codigo, per_cedula) VALUES ('" + getDoc_cedula()+ "','" + getFor_codigo()+ "','" + getRan_codigo()+ "','" + getAs1_codigo()+ "','" +getAs2_codigo()+ "','" +getAs3_codigo()+ "','" +getJor_codigo()+ "','" +getPer_cedula() + "');";
+        String nsql = "INSERT INTO docente (doc_cedula, for_codigo, ran_codigo, as1_codigo, as2_codigo, as3_codigo, jor_codigo, per_cedula) VALUES ('" + getDoc_cedula()+ "','" + getFor_codigo()+ "','" + getRan_codigo()+ "','" + getAs1_codigo()+ "','" +getAs2_codigo()+ "','" +getAs3_codigo()+ "','" +getJor_codigo()+ "','" +getPer_cedula() + "');";
         
         if(conexion.noQuery(nsql) == null){
             return true;
@@ -107,15 +116,4 @@ public class Docente   {
             return false;
         }
     }
-
-    public String getPer_cedula() {
-        return per_cedula;
-    }
-
-    public void setPer_cedula(String per_cedula) {
-        this.per_cedula = per_cedula;
-    }
-    
-    
-    
 }

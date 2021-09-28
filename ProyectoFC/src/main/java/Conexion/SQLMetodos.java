@@ -47,7 +47,7 @@ public class SQLMetodos {
         ResultSet rs = conexion.query(sql);
         return rs;
     }
-    
+        
     public  ResultSet mjtableadministrador(){
         String sql = ("SELECT adm_cedula, per_nombre, per_apellido, adm_correo FROM persona INNER JOIN administrador ON persona.per_cedula = administrador.per_cedula");
         ResultSet rs = conexion.query(sql);
@@ -92,5 +92,63 @@ public class SQLMetodos {
             formacion = rs.getString("for_codigo");
         }
         return formacion;
+    }
+    
+    
+    
+    
+    
+    public  ResultSet mcbboxrango(){
+        String sql = ("SELECT ran_rango FROM rango");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
+    public  ResultSet mcbboxjornada(){
+        String sql = ("SELECT jor_jornada FROM jornada");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
+    public  ResultSet mcbboxasignatura(){
+        String sql = ("SELECT asig_nombre FROM asignatura");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
+    public  ResultSet mjtabledocente(){
+        String sql = ("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.per_cedula RIGHT JOIN rango ON rango.ran_codigo = docente.ran_codigo");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
+    public  String obtenerrango(String a) throws SQLException{
+        String sql = ("SELECT ran_codigo FROM rango WHERE ran_rango = '" + a + "'");
+        ResultSet rs = conexion.query(sql);
+        String rango = null;
+        while(rs.next()){
+            rango = rs.getString("ran_codigo");
+        }
+        return rango;
+    }
+    
+    public  String obtenerjornada(String a) throws SQLException{
+        String sql = ("SELECT jor_codigo FROM jornada WHERE jor_jornada = '" + a + "'");
+        ResultSet rs = conexion.query(sql);
+        String jornada = null;
+        while(rs.next()){
+             jornada = rs.getString("jor_codigo");
+        }
+        return jornada;
+    }
+    
+    public  String obtenerasignatura(String a) throws SQLException{
+        String sql = ("SELECT asig_codigo FROM asignatura WHERE asig_nombre = '" + a + "'");
+        ResultSet rs = conexion.query(sql);
+        String asignatura = null;
+        while(rs.next()){
+            asignatura = rs.getString("asig_codigo");
+        }
+        return asignatura;
     }
 }
