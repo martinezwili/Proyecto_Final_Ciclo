@@ -23,10 +23,12 @@ public class CrearRango extends javax.swing.JFrame {
      */
     public CrearRango() throws SQLException {
         initComponents();
+        setLocationRelativeTo(null);
         mostrar();
     }
     
     public void mostrar() throws SQLException{
+        //metodo para mostar los datos en la tabla
         DefaultTableModel modelo = new DefaultTableModel();
         String sql = ("SELECT * FROM rango");
         modelo.setColumnIdentifiers(new Object[]{"CODIGO", "RANGO"});
@@ -62,9 +64,9 @@ public class CrearRango extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         txtRango = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaRango = new javax.swing.JTable();
@@ -176,21 +178,26 @@ public class CrearRango extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jButton1.setText("CREAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCrear.setText("CREAR");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCrearActionPerformed(evt);
             }
         });
 
-        jButton2.setText("ELIMINAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("SALIR");
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 153));
 
@@ -251,11 +258,11 @@ public class CrearRango extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -274,12 +281,12 @@ public class CrearRango extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(btnCrear)
+                            .addComponent(btnEliminar))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnActualizar)
-                            .addComponent(jButton3)))
+                            .addComponent(btnSalir)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -304,13 +311,14 @@ public class CrearRango extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
+        //instanciamos un objeto de la clase rango
         Rango ran = new Rango(txtCodigo.getText(), txtRango.getText());
-        if(ran.insertar()){
+        if(ran.insertar()){ //utilizamos la sentencia sql para crear un obejto
             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
             try {
-                mostrar();
+                mostrar(); //mostramos los datos en la tabla
             } catch (SQLException ex) {
                 Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -319,10 +327,11 @@ public class CrearRango extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCrearActionPerformed
 
     private void tablaRangoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaRangoMouseClicked
         // TODO add your handling code here:
+        //obtener los datos de la tabla al darle click
         int filaa = tablaRango.getSelectedRow();
         String codigo = tablaRango.getValueAt(filaa, 0).toString();
         txtCodigo.setText(codigo);
@@ -330,17 +339,9 @@ public class CrearRango extends javax.swing.JFrame {
         txtRango.setText(rango);
     }//GEN-LAST:event_tablaRangoMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        /*Rango ran = new Rango(txtCodigo.getText(), null);
-        if(ran.eliminar()){
-           JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
-       }
-       else
-       {
-           JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente");
-       }*/
-        
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+        //instanciamos un objeto para obtenerlo por la cedula y eliminarlo
         Rango ran = new Rango(txtCodigo.getText(),null);
         if(ran.eliminar()){
             JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
@@ -354,11 +355,15 @@ public class CrearRango extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,9 +406,9 @@ public class CrearRango extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

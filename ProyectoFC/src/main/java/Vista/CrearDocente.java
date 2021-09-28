@@ -125,7 +125,7 @@ public class CrearDocente extends javax.swing.JFrame {
         while(rs.next()){
             modelo.addRow(new Object[]{rs.getString("DOC_cedula"), rs.getString("per_nombre"), rs.getString("per_apellido"), rs.getString("ran_rango")});
         }
-        jtabledocente.setModel(modelo);
+        tablaDocentes.setModel(modelo);
     }
 
     @SuppressWarnings("unchecked")
@@ -143,17 +143,17 @@ public class CrearDocente extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtabledocente = new javax.swing.JTable();
+        tablaDocentes = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jbtncrear = new javax.swing.JButton();
         jbtnsalir = new javax.swing.JButton();
         jbtnmodificar = new javax.swing.JButton();
         jbtneliminar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jtfcedula = new javax.swing.JTextField();
-        jtfnombre = new javax.swing.JTextField();
-        jtfapellido = new javax.swing.JTextField();
-        jtftelefono = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jtfcontras = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -247,7 +247,7 @@ public class CrearDocente extends javax.swing.JFrame {
 
         jPanel12.setBackground(new java.awt.Color(0, 153, 153));
 
-        jtabledocente.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDocentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -258,7 +258,12 @@ public class CrearDocente extends javax.swing.JFrame {
                 "CEDULA", "NOMBRE", "APELLIDO", "RANGO"
             }
         ));
-        jScrollPane1.setViewportView(jtabledocente);
+        tablaDocentes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaDocentesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaDocentes);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -330,27 +335,27 @@ public class CrearDocente extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
-        jtfcedula.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtfcedulaFocusLost(evt);
+                txtCedulaFocusLost(evt);
             }
         });
 
-        jtfnombre.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtfnombreFocusLost(evt);
+                txtNombreFocusLost(evt);
             }
         });
 
-        jtfapellido.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtfapellidoFocusLost(evt);
+                txtApellidoFocusLost(evt);
             }
         });
 
-        jtftelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtftelefonoFocusLost(evt);
+                txtTelefonoFocusLost(evt);
             }
         });
 
@@ -394,10 +399,10 @@ public class CrearDocente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtfcontras)
-                    .addComponent(jtfcedula, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jtfnombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jtftelefono)
-                    .addComponent(jtfapellido)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTelefono)
+                    .addComponent(txtApellido)
                     .addComponent(jcanacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -406,19 +411,19 @@ public class CrearDocente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfcedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtftelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -650,9 +655,9 @@ public class CrearDocente extends javax.swing.JFrame {
             String rs1 = sqlm.obtenerpoliglota(cbpoliglota.getSelectedItem().toString()),rs2 = sqlm.obtenernacionalidad(cbnacionalidad.getSelectedItem().toString()), rs3 = sqlm.obtenersexo(cbsexo.getSelectedItem().toString()), rs4 = sqlm.obtenerformacion(cbformacion.getSelectedItem().toString()), rs5 = sqlm.obtenerrango(cbrango.getSelectedItem().toString()), rs6 = sqlm.obtenerjornada(cbjornada.getSelectedItem().toString()), rs7 = sqlm.obtenerasignatura(cbasignatura1.getSelectedItem().toString()), rs8 = sqlm.obtenerasignatura(cbasignatura2.getSelectedItem().toString()), rs9  = sqlm.obtenerasignatura(cbasignatura3.getSelectedItem().toString());
             //instanciar clases direccion, relacion, persona, administrador se almacena la informacion en este orden por que las tablas estan relacionadas
             Direccion dir = new Direccion(jtfcodigo.getText(), jtfcalle.getText(), jtfcomuna.getText());
-            Relacion rel = new Relacion(jtfcedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);
-            Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
-            Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs7, rs8, rs9, rs6, jtfcedula.getText());
+            Relacion rel = new Relacion(txtCedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);
+            Persona per = new Persona(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), jtfcontras.getText(), txtCedula.getText(), Date.valueOf(nacimiento));
+            Docente doc = new Docente(txtCedula.getText(), rs4, rs5, rs7, rs8, rs9, rs6, txtCedula.getText());
             if(dir.insertar()){
                 if(rel.insertar()){
                     if(per.insertar()){
@@ -707,33 +712,33 @@ public class CrearDocente extends javax.swing.JFrame {
         lg.setVisible(true);
     }//GEN-LAST:event_jbtnsalirActionPerformed
 
-    private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
         // validacion cedula
-        if(vali.validaCedulaoTelefono(jtfcedula.getText()) == false){
+        if(vali.validaCedulaoTelefono(txtCedula.getText()) == false){
             JOptionPane.showMessageDialog(rootPane, "Verifique la cedula");
         }
-    }//GEN-LAST:event_jtfcedulaFocusLost
+    }//GEN-LAST:event_txtCedulaFocusLost
 
-    private void jtfnombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfnombreFocusLost
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         // validacion nombre
-        if(vali.validaNombreoApellido(jtfnombre.getText()) == false){
+        if(vali.validaNombreoApellido(txtNombre.getText()) == false){
             JOptionPane.showMessageDialog(rootPane, "Verifique el nombre");
         }
-    }//GEN-LAST:event_jtfnombreFocusLost
+    }//GEN-LAST:event_txtNombreFocusLost
 
-    private void jtfapellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfapellidoFocusLost
+    private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
         // validacion apellido
-        if(vali.validaNombreoApellido(jtfapellido.getText()) == false){
+        if(vali.validaNombreoApellido(txtApellido.getText()) == false){
             JOptionPane.showMessageDialog(rootPane, "Verifique el apellido");
         }
-    }//GEN-LAST:event_jtfapellidoFocusLost
+    }//GEN-LAST:event_txtApellidoFocusLost
 
-    private void jtftelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtftelefonoFocusLost
+    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
         // validacion telefono
-        if(vali.validaCedulaoTelefono(jtftelefono.getText()) == false){
+        if(vali.validaCedulaoTelefono(txtTelefono.getText()) == false){
             JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico");
         }
-    }//GEN-LAST:event_jtftelefonoFocusLost
+    }//GEN-LAST:event_txtTelefonoFocusLost
 
     private void jtfcontrasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcontrasFocusLost
         // validar contrase;a
@@ -742,6 +747,25 @@ public class CrearDocente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtfcontrasFocusLost
 
+    private void tablaDocentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDocentesMouseClicked
+        // TODO add your handling code here:
+        int filaa  = tablaDocentes.getSelectedRow();
+        String cedula = tablaDocentes.getValueAt(filaa, 0).toString();
+        txtCedula.setText(cedula);
+        String nombre = tablaDocentes.getValueAt(filaa,1).toString();
+        txtNombre.setText(nombre);
+        String apellido = tablaDocentes.getValueAt(filaa,2).toString();
+        txtApellido.setText(apellido);
+        String fechaNac = tablaDocentes.getValueAt(filaa,2).toString();
+        //jcanacimiento.setDate(tablaDocentes.get(fechaNac));
+        //String apellido = tablaDocentes.getValueAt(filaa,2).toString();
+        txtApellido.setText(apellido);
+        //String rango = tablaDocentes.getValueAt(filaa,1).toString();
+        //cbrango.setSelectedItem(rango);
+        
+    }//GEN-LAST:event_tablaDocentesMouseClicked
+
+    
     /**
      * @param args the command line arguments
      */
@@ -785,14 +809,14 @@ public class CrearDocente extends javax.swing.JFrame {
     }
 
     public void limpiar(){
-        jtfapellido.setText("");
-        jtfcedula.setText("");
+        txtApellido.setText("");
+        txtCedula.setText("");
         jtfcalle.setText("");
         jtfcodigo.setText("");
         jtfcomuna.setText("");
         jtfcontras.setText("");
-        jtfnombre.setText("");
-        jtftelefono.setText("");
+        txtNombre.setText("");
+        txtTelefono.setText("");
         jcanacimiento.setDate(null);
     }
     
@@ -840,14 +864,14 @@ public class CrearDocente extends javax.swing.JFrame {
     private javax.swing.JButton jbtnmodificar;
     private javax.swing.JButton jbtnsalir;
     private com.toedter.calendar.JDateChooser jcanacimiento;
-    private javax.swing.JTable jtabledocente;
-    private javax.swing.JTextField jtfapellido;
     private javax.swing.JTextField jtfcalle;
-    private javax.swing.JTextField jtfcedula;
     private javax.swing.JTextField jtfcodigo;
     private javax.swing.JTextField jtfcomuna;
     private javax.swing.JPasswordField jtfcontras;
-    private javax.swing.JTextField jtfnombre;
-    private javax.swing.JTextField jtftelefono;
+    private javax.swing.JTable tablaDocentes;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
