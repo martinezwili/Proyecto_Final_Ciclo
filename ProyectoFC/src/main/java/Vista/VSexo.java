@@ -29,7 +29,9 @@ public class VSexo extends javax.swing.JFrame {
     public VSexo() throws SQLException {
         initComponents();
         
-        setLocationRelativeTo(null);
+    }
+    public void mostrar() throws SQLException{
+        //metodo para mostar los datos en la tabla
         DefaultTableModel modelo = new DefaultTableModel();
         String sql = ("SELECT * FROM sexo");
         modelo.setColumnIdentifiers(new Object[]{"CODIGO", "SEXO"});
@@ -37,7 +39,12 @@ public class VSexo extends javax.swing.JFrame {
         while(rs.next()){
             modelo.addRow(new Object[]{rs.getString("sex_codigo"), rs.getString("sex_sexo")});
         }
-        jtablesexo.setModel(modelo);
+        tablaSexo.setModel(modelo);
+    }
+    
+    public void limpiarCampos(){
+        txtCodigo.setText("");
+        txtSexo.setText("");
     }
 
     /**
@@ -56,11 +63,11 @@ public class VSexo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jtcodigo = new javax.swing.JTextField();
-        jtsexo = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        txtSexo = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtablesexo = new javax.swing.JTable();
+        tablaSexo = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jbtncrear = new javax.swing.JButton();
         jbtneliminar = new javax.swing.JButton();
@@ -123,19 +130,19 @@ public class VSexo extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtcodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(jtsexo))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(txtSexo))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jtsexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jtablesexo.setModel(new javax.swing.table.DefaultTableModel(
+        tablaSexo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -146,7 +153,12 @@ public class VSexo extends javax.swing.JFrame {
                 "CODIGO", "SEXO"
             }
         ));
-        jScrollPane1.setViewportView(jtablesexo);
+        tablaSexo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaSexoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaSexo);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -180,6 +192,11 @@ public class VSexo extends javax.swing.JFrame {
         });
 
         jbtnmodificar.setText("MODIFICAR");
+        jbtnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnmodificarActionPerformed(evt);
+            }
+        });
 
         jbtsalir.setText("SALIR");
 
@@ -264,9 +281,15 @@ public class VSexo extends javax.swing.JFrame {
 
     private void jbtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtncrearActionPerformed
         // TODO add your handling code here:
-        Sexo sex = new Sexo(jtcodigo.getText(), jtsexo.getText());
+        Sexo sex = new Sexo(txtCodigo.getText(), txtSexo.getText());
         if(sex.insertar()){
             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VSexo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {
@@ -276,15 +299,48 @@ public class VSexo extends javax.swing.JFrame {
 
     private void jbtneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtneliminarActionPerformed
         // TODO add your handling code here:
-        Sexo sex = new Sexo(jtcodigo.getText(), null);
+        Sexo sex = new Sexo(txtCodigo.getText(), null);
         if(sex.eliminar()){
             JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VSexo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {
             JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente");
         }
     }//GEN-LAST:event_jbtneliminarActionPerformed
+
+    private void jbtnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnmodificarActionPerformed
+        // TODO add your handling code here:
+        Sexo sex = new Sexo(txtCodigo.getText(), txtSexo.getText());
+        if(sex.actualizar()){
+            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VSexo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
+        }
+    }//GEN-LAST:event_jbtnmodificarActionPerformed
+
+    private void tablaSexoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaSexoMouseClicked
+        // TODO add your handling code here:
+        int filaa = tablaSexo.getSelectedRow();
+        String codigo = tablaSexo.getValueAt(filaa, 0).toString();
+        txtCodigo.setText(codigo);
+        String sex = tablaSexo.getValueAt(filaa, 1).toString();
+        txtSexo.setText(sex);
+    }//GEN-LAST:event_tablaSexoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -319,7 +375,7 @@ public class VSexo extends javax.swing.JFrame {
                 try {
                     new VSexo().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(VFormacion.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VSexo.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -340,8 +396,8 @@ public class VSexo extends javax.swing.JFrame {
     private javax.swing.JButton jbtneliminar;
     private javax.swing.JButton jbtnmodificar;
     private javax.swing.JButton jbtsalir;
-    private javax.swing.JTable jtablesexo;
-    private javax.swing.JTextField jtcodigo;
-    private javax.swing.JTextField jtsexo;
+    private javax.swing.JTable tablaSexo;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtSexo;
     // End of variables declaration//GEN-END:variables
 }
