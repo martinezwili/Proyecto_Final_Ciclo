@@ -7,6 +7,8 @@ package Modelo;
 
 import Conexion.Conexionbd;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -120,5 +122,40 @@ public class Docente   {
         {
             return false;
         }
+    }
+    
+    public boolean compd() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT doc_cedula FROM docente WHERE doc_cedula = '" + getDoc_cedula()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public static boolean loginDO(String a, String b) throws SQLException{
+        Conexionbd conexion = new Conexionbd();
+        //sentencia para validar que sea un administrador
+        int resul = 0; 
+        boolean as = false;
+        ResultSet rs = conexion.query("SELECT doc_cedula FROM docente WHERE doc_cedula = '" + a +"'");
+        if(rs.next()){
+            //sentencia para comprovar contrase;a
+            ResultSet rs2 = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "'");
+            if(rs2.next()){
+                as = true;
+            }
+            else
+            {
+                as = false;
+            }
+        }
+        else
+        {
+            as =  false;
+        }
+        return as;
     }
 }

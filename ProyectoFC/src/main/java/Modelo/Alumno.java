@@ -64,11 +64,11 @@ public class Alumno {
     public void setCur_codigo(String cur_codigo) {
         this.cur_codigo = cur_codigo;
     }
+    
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertarA(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO alumno (alu_cedula, alu_correo, for_codigo, per_cedula) VALUES ('" + getAlu_cedula() + "','" + getAlu_telrepresentante() + "','" +getJor_codigo()+ "','" + getMod_codigo()+ "','" +getCur_codigo()+ "','" + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO alumno (alu_cedula, alu_correo, for_codigo, per_cedula) VALUES ('" + getAlu_cedula() + "','" + getAlu_telrepresentante() + "','" +getJor_codigo()+ "','" + getMod_codigo()+ "','" +getCur_codigo()+ "','" + "');") == null){
             return true;
         }
         else
@@ -78,10 +78,7 @@ public class Alumno {
     }
     
     public boolean eliminarA(){
-         Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM alumno WHERE alu_cedula = '" + getAlu_cedula()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM alumno WHERE alu_cedula = '" + getAlu_cedula()+ "'") == null){
             return true;
         }
         else
@@ -89,15 +86,25 @@ public class Alumno {
             return false;
         }
     }
-    public static boolean loginE(String a, String b) throws SQLException{
+    
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT alu_cedula FROM alumno WHERE alu_cedula = '" + getAlu_cedula() + "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public static boolean loginAL(String a, String b) throws SQLException{
         Conexionbd conexion = new Conexionbd();
-        String sql = "SELECT alu_cedula FROM alumno WHERE alu_cedula = '" + a +"'";
         int resul = 0; 
         boolean as = false;
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT alu_cedula FROM alumno WHERE alu_cedula = '" + a +"'");
         if(rs.next()){
-            String sql2 = "SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "'";
-            ResultSet rs2 = conexion.query(sql2);
+            ResultSet rs2 = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "'");
             if(rs2.next()){
                 as = true;
             }

@@ -71,7 +71,7 @@ public class VDireccion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("DIRECCION CREAR / MODIFICAR / ELIMINAR");
+        jLabel1.setText("ESTA HAY QUE VER NO AGAN ND PUEDE QUE SE ELIMINE");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

@@ -56,11 +56,10 @@ public class Administradorr{
         this.adm_per_cedula = adm_per_cedula;
     }
 
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO administrador (adm_cedula, adm_correo, for_codigo, per_cedula) VALUES ('" + getAdm_cedula()+ "','" + getAdm_correo()+ "','" + getFor_codigo()+ "','" + getAdm_per_cedula() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO administrador (adm_cedula, adm_correo, for_codigo, per_cedula) VALUES ('" + getAdm_cedula()+ "','" + getAdm_correo()+ "','" + getFor_codigo()+ "','" + getAdm_per_cedula() + "');") == null){
             return true;
         }
         else
@@ -70,10 +69,7 @@ public class Administradorr{
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM administrador WHERE adm_cedula = '" + getAdm_cedula()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM administrador WHERE adm_cedula = '" + getAdm_cedula()+ "'") == null){
             return true;
         }
         else
@@ -82,17 +78,26 @@ public class Administradorr{
         }
     }  
     
-    public static boolean login(String a, String b) throws SQLException{
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT adm_cedula FROM administrador WHERE adm_cedula = '" + getAdm_cedula()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public static boolean loginAD(String a, String b) throws SQLException{
         Conexionbd conexion = new Conexionbd();
         //sentencia para validar que sea un administrador
-        String sql = "SELECT adm_cedula FROM administrador WHERE adm_cedula = '" + a +"'";
         int resul = 0; 
         boolean as = false;
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT adm_cedula FROM administrador WHERE adm_cedula = '" + a +"'");
         if(rs.next()){
             //sentencia para comprovar contrase;a
-            String sql2 = "SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "'";
-            ResultSet rs2 = conexion.query(sql2);
+            ResultSet rs2 = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "'");
             if(rs2.next()){
                 as = true;
             }
