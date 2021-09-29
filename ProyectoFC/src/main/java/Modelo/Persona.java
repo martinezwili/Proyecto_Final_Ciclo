@@ -84,11 +84,20 @@ public class Persona {
         this.per_nacimiento = per_nacimiento;
     }
     
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO persona (per_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_contraseña, rel_cedula) VALUES ('" + getPer_cedula() + "','" + getPer_nombre() + "','" + getPer_apellido() + "','" + getPer_telefono() + "','" + getPer_nacimiento() + "','" + getPer_contraseña() + "','" + getRel_cedula() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO persona (per_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_contraseña, rel_cedula) VALUES ('" + getPer_cedula() + "','" + getPer_nombre() + "','" + getPer_apellido() + "','" + getPer_telefono() + "','" + getPer_nacimiento() + "','" + getPer_contraseña() + "','" + getRel_cedula() + "');") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE persona SET per_nombre = '"+ getPer_nombre() +"', per_apellido = '"+ getPer_apellido() +"', per_telefono = '"+ getPer_telefono() +"', per_nacimiento = '"+ getPer_nacimiento() +"', per_contraseña = '"+ getPer_contraseña() +"' WHERE per_cedula ='"+ getPer_cedula() +"'") == null){
             return true;
         }
         else
@@ -98,10 +107,7 @@ public class Persona {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM persona WHERE per_cedula = '" + getPer_cedula() +"'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM persona WHERE per_cedula = '" + getPer_cedula() +"'") == null){
             return true;
         }
         else
@@ -111,9 +117,7 @@ public class Persona {
     }
     
     public boolean comp() throws SQLException{
-        Conexionbd conexion = new Conexionbd();
-        String sql2 = "SELECT per_cedula FROM persona WHERE per_cedula = '" + getPer_cedula()+ "'";
-        ResultSet rs2 = conexion.query(sql2);
+        ResultSet rs2 = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '" + getPer_cedula()+ "'");
         if(rs2.next()){
             return true;
         }

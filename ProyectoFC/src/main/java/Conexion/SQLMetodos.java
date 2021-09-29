@@ -47,13 +47,29 @@ public class SQLMetodos {
         ResultSet rs = conexion.query(sql);
         return rs;
     }
-        
-    public  ResultSet mjtableadministrador(){
-        String sql = ("SELECT adm_cedula, per_nombre, per_apellido, adm_correo FROM persona INNER JOIN administrador ON persona.per_cedula = administrador.per_cedula");
+    
+    public  ResultSet mcbboxrango(){
+        String sql = ("SELECT ran_rango FROM rango");
         ResultSet rs = conexion.query(sql);
         return rs;
     }
     
+    public  ResultSet mcbboxjornada(){
+        String sql = ("SELECT jor_jornada FROM jornada");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
+    public  ResultSet mcbboxasignatura(){
+        String sql = ("SELECT asig_nombre FROM asignatura");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+       
+    
+       
+    
+       
     public  String obtenernacionalidad(String a) throws SQLException{
         String sql = ("SELECT nac_codigo FROM nacionalidad WHERE nac_nacionalidad = '" + a + "'");
         ResultSet rs = conexion.query(sql);
@@ -94,34 +110,6 @@ public class SQLMetodos {
         return formacion;
     }
     
-    
-    
-    
-    
-    public  ResultSet mcbboxrango(){
-        String sql = ("SELECT ran_rango FROM rango");
-        ResultSet rs = conexion.query(sql);
-        return rs;
-    }
-    
-    public  ResultSet mcbboxjornada(){
-        String sql = ("SELECT jor_jornada FROM jornada");
-        ResultSet rs = conexion.query(sql);
-        return rs;
-    }
-    
-    public  ResultSet mcbboxasignatura(){
-        String sql = ("SELECT asig_nombre FROM asignatura");
-        ResultSet rs = conexion.query(sql);
-        return rs;
-    }
-    
-    public  ResultSet mjtabledocente(){
-        String sql = ("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.per_cedula RIGHT JOIN rango ON rango.ran_codigo = docente.ran_codigo");
-        ResultSet rs = conexion.query(sql);
-        return rs;
-    }
-    
     public  String obtenerrango(String a) throws SQLException{
         String sql = ("SELECT ran_codigo FROM rango WHERE ran_rango = '" + a + "'");
         ResultSet rs = conexion.query(sql);
@@ -150,5 +138,116 @@ public class SQLMetodos {
             asignatura = rs.getString("asig_codigo");
         }
         return asignatura;
+    }
+    
+    
+    
+    
+    
+    public  ResultSet mjtableadministrador(){
+        String sql = ("SELECT adm_cedula, per_nombre, per_apellido, adm_correo FROM persona INNER JOIN administrador ON persona.per_cedula = administrador.per_cedula");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
+    public  ResultSet mjtabledocente(){
+        String sql = ("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.per_cedula RIGHT JOIN rango ON rango.ran_codigo = docente.ran_codigo");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
+    
+    
+    
+    
+    public  String mnacionalidad(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT nac_nacionalidad FROM nacionalidad INNER JOIN relacion ON relacion.rel_cedula = '"+ a +"' AND relacion.nac_codigo = nacionalidad.nac_codigo");
+        String nacionalidad = null;
+        while(rs.next()){
+            nacionalidad = rs.getString("nac_nacionalidad");
+        }
+        return nacionalidad;
+    }
+    
+    public  String mpoliglota(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT pol_poliglota FROM poliglota INNER JOIN relacion ON relacion.rel_cedula = '"+ a +"' AND relacion.pol_codigo = poliglota.pol_codigo");
+        String poliglota = null;
+        while(rs.next()){
+            poliglota = rs.getString("pol_poliglota");
+        }
+        return poliglota;
+    }
+    
+    public  String msexo(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT sex_sexo FROM sexo INNER JOIN relacion ON relacion.rel_cedula = '"+ a +"' AND relacion.sex_codigo = sexo.sex_codigo");
+        String sexo = null;
+        while(rs.next()){
+             sexo = rs.getString("sex_sexo");
+        }
+        return sexo;
+    }
+    
+    public  String mformacion(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT for_nivel FROM formacion INNER JOIN docente ON docente.doc_cedula = '"+ a +"' AND docente.for_codigo = formacion.for_codigo");
+        String formacion = null;
+        while(rs.next()){
+            formacion = rs.getString("for_nivel");
+        }
+        return formacion;
+    }
+    
+    public  String mrango(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT ran_rango FROM rango INNER JOIN docente ON docente.doc_cedula = '"+ a +"' AND docente.ran_codigo = rango.ran_codigo");
+        String rango = null;
+        while(rs.next()){
+            rango = rs.getString("ran_rango");
+        }
+        return rango;
+    }
+    
+    public  String mjornada(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT jor_jornada FROM jornada INNER JOIN docente ON docente.doc_cedula = '"+ a +"' AND docente.jor_codigo = jornada.jor_codigo");
+        String jornada = null;
+        while(rs.next()){
+             jornada = rs.getString("jor_jornada");
+        }
+        return jornada;
+    }
+    
+    public  String masignatura1(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN docente ON docente.doc_cedula = '"+ a +"' AND docente.as1_codigo = asignatura.asig_codigo");
+        String asignatura1 = null;
+        while(rs.next()){
+            asignatura1 = rs.getString("asig_nombre");
+        }
+        return asignatura1;
+    }
+    
+    public  String masignatura2(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN docente ON docente.doc_cedula = '"+ a +"' AND docente.as2_codigo = asignatura.asig_codigo");
+        String asignatura2 = null;
+        while(rs.next()){
+            asignatura2 = rs.getString("asig_nombre");
+        }
+        return asignatura2;
+    }
+    
+    public  String masignatura3(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN docente ON docente.doc_cedula = '"+ a +"' AND docente.as3_codigo = asignatura.asig_codigo");
+        String asignatura3 = null;
+        while(rs.next()){
+            asignatura3 = rs.getString("asig_nombre");
+        }
+        return asignatura3;
+    }
+        
+    public  ResultSet mtabledireccion(String a){
+        ResultSet rs = conexion.query("SELECT direccion.dir_codigo, dic_calle, dir_comuna FROM direccion INNER JOIN relacion ON relacion.rel_cedula = '"+ a +"' AND relacion.dir_codigo = direccion.dir_codigo");
+        return rs;
+    }
+    
+    public  ResultSet mtablepersona(String a){
+        ResultSet rs = conexion.query("SELECT per_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_contraseña FROM persona WHERE per_cedula = '"+ a +"'");
+        return rs;
     }
 }

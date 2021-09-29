@@ -49,9 +49,17 @@ public class Direccion {
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        String nsql = "INSERT INTO direccion (dir_codigo, dic_calle, dir_comuna) VALUES ('" + getDir_codigo()+ "','" + getDic_calle()+ "','" + getDir_comuna() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO direccion (dir_codigo, dic_calle, dir_comuna) VALUES ('" + getDir_codigo()+ "','" + getDic_calle()+ "','" + getDir_comuna() + "');") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE direccion SET dic_calle = '"+ getDic_calle() +"', dir_comuna = '"+ getDir_comuna() +"' WHERE dir_codigo = '"+ getDir_codigo() +"'") == null){
             return true;
         }
         else
@@ -61,9 +69,18 @@ public class Direccion {
     }
     
     public boolean eliminar(){
-        String nsql = "DELETE FROM direccion WHERE dir_codigo = " + getDir_codigo() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM direccion WHERE dir_codigo = '" + getDir_codigo() + "'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean compb() throws SQLException{
+        ResultSet rs = conexion.query("SELECT dir_codigo FROM direccion WHERE dir_codigo = '" + getDir_codigo() + "'");
+        if(rs.next()){
             return true;
         }
         else

@@ -90,12 +90,20 @@ public class Docente   {
         this.per_cedula = per_cedula;
     }
 
+    Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO docente (doc_cedula, for_codigo, ran_codigo, as1_codigo, as2_codigo, as3_codigo, jor_codigo, per_cedula) VALUES ('" + getDoc_cedula()+ "','" + getFor_codigo()+ "','" + getRan_codigo()+ "','" + getAs1_codigo()+ "','" +getAs2_codigo()+ "','" +getAs3_codigo()+ "','" +getJor_codigo()+ "','" +getPer_cedula() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO docente (doc_cedula, for_codigo, ran_codigo, as1_codigo, as2_codigo, as3_codigo, jor_codigo, per_cedula) VALUES ('" + getDoc_cedula()+ "','" + getFor_codigo()+ "','" + getRan_codigo()+ "','" + getAs1_codigo()+ "','" +getAs2_codigo()+ "','" +getAs3_codigo()+ "','" +getJor_codigo()+ "','" +getPer_cedula() + "');") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE docente SET for_codigo = '"+ getFor_codigo() +"', ran_codigo = '"+ getRan_codigo() +"', as1_codigo ='"+ getAs1_codigo() +"', as2_codigo = '"+ getAs2_codigo() +"', as3_codigo = '"+ getAs3_codigo() +"', jor_codigo = '"+ getJor_codigo() +"' WHERE doc_cedula = '"+ getDoc_cedula() +"'") == null){
             return true;
         }
         else
@@ -105,10 +113,7 @@ public class Docente   {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM docente WHERE doc_cedula = '" + getDoc_cedula()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM docente WHERE doc_cedula = '" + getDoc_cedula()+ "'") == null){
             return true;
         }
         else

@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
+
 import Conexion.Conexionbd;
 import Conexion.SQLMetodos;
 import Modelo.*;
@@ -15,10 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-/**
- *
- * @author byron
- */
+
 public class CrearDocente extends javax.swing.JFrame {
     
     Conexionbd conexion = new Conexionbd();
@@ -29,8 +22,7 @@ public class CrearDocente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         todo();
-    }
-    
+    }    
     
     public void todo() throws SQLException{
         mosnacionalidad();
@@ -125,7 +117,7 @@ public class CrearDocente extends javax.swing.JFrame {
         while(rs.next()){
             modelo.addRow(new Object[]{rs.getString("DOC_cedula"), rs.getString("per_nombre"), rs.getString("per_apellido"), rs.getString("ran_rango")});
         }
-        tablaDocentes.setModel(modelo);
+        jtabladocentes.setModel(modelo);
     }
 
     @SuppressWarnings("unchecked")
@@ -143,25 +135,25 @@ public class CrearDocente extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaDocentes = new javax.swing.JTable();
+        jtabladocentes = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jbtncrear = new javax.swing.JButton();
         jbtnsalir = new javax.swing.JButton();
         jbtnmodificar = new javax.swing.JButton();
         jbtneliminar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        txtCedula = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtApellido = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        jtfcontras = new javax.swing.JPasswordField();
+        jtfcedula = new javax.swing.JTextField();
+        jtfnombre = new javax.swing.JTextField();
+        jtfapellido = new javax.swing.JTextField();
+        jtftelefono = new javax.swing.JTextField();
+        jtfcontra = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jcanacimiento = new com.toedter.calendar.JDateChooser();
+        jcnacimiento = new com.toedter.calendar.JDateChooser();
         contenedor = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         cbpoliglota = new javax.swing.JComboBox<>();
@@ -247,7 +239,7 @@ public class CrearDocente extends javax.swing.JFrame {
 
         jPanel12.setBackground(new java.awt.Color(0, 153, 153));
 
-        tablaDocentes.setModel(new javax.swing.table.DefaultTableModel(
+        jtabladocentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -258,12 +250,12 @@ public class CrearDocente extends javax.swing.JFrame {
                 "CEDULA", "NOMBRE", "APELLIDO", "RANGO"
             }
         ));
-        tablaDocentes.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtabladocentes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaDocentesMouseClicked(evt);
+                jtabladocentesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaDocentes);
+        jScrollPane1.setViewportView(jtabladocentes);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -271,7 +263,7 @@ public class CrearDocente extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -299,8 +291,18 @@ public class CrearDocente extends javax.swing.JFrame {
         });
 
         jbtnmodificar.setText("MODIFICAR");
+        jbtnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnmodificarActionPerformed(evt);
+            }
+        });
 
         jbtneliminar.setText("ELIMINAR");
+        jbtneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtneliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -335,33 +337,33 @@ public class CrearDocente extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
-        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+        jtfcedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCedulaFocusLost(evt);
+                jtfcedulaFocusLost(evt);
             }
         });
 
-        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+        jtfnombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreFocusLost(evt);
+                jtfnombreFocusLost(evt);
             }
         });
 
-        txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+        jtfapellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtApellidoFocusLost(evt);
+                jtfapellidoFocusLost(evt);
             }
         });
 
-        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+        jtftelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTelefonoFocusLost(evt);
+                jtftelefonoFocusLost(evt);
             }
         });
 
-        jtfcontras.addFocusListener(new java.awt.event.FocusAdapter() {
+        jtfcontra.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtfcontrasFocusLost(evt);
+                jtfcontraFocusLost(evt);
             }
         });
 
@@ -398,12 +400,12 @@ public class CrearDocente extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtfcontras)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtTelefono)
-                    .addComponent(txtApellido)
-                    .addComponent(jcanacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                    .addComponent(jtfcontra)
+                    .addComponent(jtfcedula, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtfnombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtftelefono)
+                    .addComponent(jtfapellido)
+                    .addComponent(jcnacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -411,27 +413,27 @@ public class CrearDocente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfcedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtftelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfcontras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfcontra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
         );
@@ -560,7 +562,7 @@ public class CrearDocente extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 731, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,7 +596,7 @@ public class CrearDocente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 362, Short.MAX_VALUE))
+                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -650,59 +652,50 @@ public class CrearDocente extends javax.swing.JFrame {
         try {
             //se pasa la fecha de nacimiento del formato date de jcalendar a string y de nuevo a date
             SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-            String nacimiento = f.format(jcanacimiento.getDate());
-            //se emvia datos por parametros a metodos en clase SQLMetodos
+            String nacimiento = f.format(jcnacimiento.getDate());
+            //obtener codigos por medio de consulta sql de los combo box
             String rs1 = sqlm.obtenerpoliglota(cbpoliglota.getSelectedItem().toString()),rs2 = sqlm.obtenernacionalidad(cbnacionalidad.getSelectedItem().toString()), rs3 = sqlm.obtenersexo(cbsexo.getSelectedItem().toString()), rs4 = sqlm.obtenerformacion(cbformacion.getSelectedItem().toString()), rs5 = sqlm.obtenerrango(cbrango.getSelectedItem().toString()), rs6 = sqlm.obtenerjornada(cbjornada.getSelectedItem().toString()), rs7 = sqlm.obtenerasignatura(cbasignatura1.getSelectedItem().toString()), rs8 = sqlm.obtenerasignatura(cbasignatura2.getSelectedItem().toString()), rs9  = sqlm.obtenerasignatura(cbasignatura3.getSelectedItem().toString());
-            //instanciar clases direccion, relacion, persona, administrador se almacena la informacion en este orden por que las tablas estan relacionadas
+            //instanciar direccion con datos
             Direccion dir = new Direccion(jtfcodigo.getText(), jtfcalle.getText(), jtfcomuna.getText());
-            Relacion rel = new Relacion(txtCedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);
-            Persona per = new Persona(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), jtfcontras.getText(), txtCedula.getText(), Date.valueOf(nacimiento));
-            Docente doc = new Docente(txtCedula.getText(), rs4, rs5, rs7, rs8, rs9, rs6, txtCedula.getText());
-            if(dir.insertar()){
-                if(rel.insertar()){
-                    if(per.insertar()){
-                        if(doc.insertar()){
-                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                            limpiar();
-                            try {
-                                todo();
-                            } catch (SQLException ex) {
-                                System.out.println("Error mosadministrador");
-                                Logger.getLogger(RegistrarAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        else
-                        {
-                            //eliminar datos de la tabla relacion y persona por que hay un error en el ingreso de datos de administrador
-                            dir.eliminar();
-                            rel.eliminar();
-                            per.eliminar();
-                            JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
-                        }
-                    }
-                    else
-                    {
-                        //eliminar datos almacenados de la tabla relacion por que hay un error en el ingreso de datos de persona
-                        dir.eliminar();
-                        rel.eliminar();
-                        JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
-                    }
-                }
-                else
-                {
-                    //eliminar datos almacenados de la tabla direccion por que hay un error en el ingreso de datos de relacion
-                    dir.eliminar();
-                    JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
-                }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la casa");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error String rs1, rs2, rs3, rs4");
-            Logger.getLogger(RegistrarAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            //instanciar relacion con datos
+            Relacion rel = new Relacion(jtfcedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);
+            //instanciar persona con datos
+            Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
+            //instanciar docente con datos
+            Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs7, rs8, rs9, rs6, jtfcedula.getText());
+            //comprueba dirccion
+            if(dir.compb() == false){
+                //excepcion de comprobar persona
+                try {
+                    //comprueba personas
+                    if(per.comp() == false){
+                        //insertar direccion
+                        if(dir.insertar()){
+                            //insertar relacion
+                            if(rel.insertar()){
+                                //insertar persona
+                                if(per.insertar()){
+                                    //insertar docente
+                                    if(doc.insertar()){
+                                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");  
+                                        //excepcion llama metodo de limpiar y todo
+                                        try {limpiar(); todo(); } catch (SQLException ex) { System.out.println("Error limpiar y mostrar docente");}
+                                    //elimina datos ingresados por que hay un error
+                                    }else { doc.eliminar(); per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                                //elimina datos ingresados por que hay un error
+                                }else { per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                            //elimina datos ingresados por que hay un error
+                            }else { rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                        //elimina datos ingresados por que hay un error
+                        }else { dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                    //mensaje de cedula ya existente
+                    }else { JOptionPane.showMessageDialog(rootPane, "Esta cedula ya esta registrado Verifique"); }
+                //mensaje de excepcion  de comprobar persona
+                } catch (SQLException ex) { System.out.println("Error comprobacion de persona"); } 
+            ////mensaje de codigo de casa ya existente
+            }else{ JOptionPane.showMessageDialog(rootPane, "Este codigo de la casa ya esta registrado Verifique"); }
+        //mensaje de excepcion de comprobar direccion
+        } catch (SQLException ex) { System.out.println("Error comprobasion de direccion"); }
     }//GEN-LAST:event_jbtncrearActionPerformed
 
     private void jbtnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnsalirActionPerformed
@@ -712,58 +705,133 @@ public class CrearDocente extends javax.swing.JFrame {
         lg.setVisible(true);
     }//GEN-LAST:event_jbtnsalirActionPerformed
 
-    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+    private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
         // validacion cedula
-        if(vali.validaCedulaoTelefono(txtCedula.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "Verifique la cedula");
-        }
-    }//GEN-LAST:event_txtCedulaFocusLost
+        if(vali.validaCedulaoTelefono(jtfcedula.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
+    }//GEN-LAST:event_jtfcedulaFocusLost
 
-    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+    private void jtfnombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfnombreFocusLost
         // validacion nombre
-        if(vali.validaNombreoApellido(txtNombre.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "Verifique el nombre");
-        }
-    }//GEN-LAST:event_txtNombreFocusLost
+        if(vali.validaNombreoApellido(jtfnombre.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el nombre"); }
+    }//GEN-LAST:event_jtfnombreFocusLost
 
-    private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
+    private void jtfapellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfapellidoFocusLost
         // validacion apellido
-        if(vali.validaNombreoApellido(txtApellido.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "Verifique el apellido");
-        }
-    }//GEN-LAST:event_txtApellidoFocusLost
+        if(vali.validaNombreoApellido(jtfapellido.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el apellido"); }
+    }//GEN-LAST:event_jtfapellidoFocusLost
 
-    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
+    private void jtftelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtftelefonoFocusLost
         // validacion telefono
-        if(vali.validaCedulaoTelefono(txtTelefono.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico");
-        }
-    }//GEN-LAST:event_txtTelefonoFocusLost
+        if(vali.validaCedulaoTelefono(jtftelefono.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico"); }
+    }//GEN-LAST:event_jtftelefonoFocusLost
 
-    private void jtfcontrasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcontrasFocusLost
+    private void jtfcontraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcontraFocusLost
         // validar contrase;a
-        if(vali.validaContraseña(jtfcontras.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "La contraseña no cumple con los parametros requeridos verifique");
-        }
-    }//GEN-LAST:event_jtfcontrasFocusLost
+        if(vali.validaContraseña(jtfcontra.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "La contraseña no cumple con los parametros requeridos verifique"); }
+    }//GEN-LAST:event_jtfcontraFocusLost
 
-    private void tablaDocentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDocentesMouseClicked
-        // TODO add your handling code here:
-        int filaa  = tablaDocentes.getSelectedRow();
-        String cedula = tablaDocentes.getValueAt(filaa, 0).toString();
-        txtCedula.setText(cedula);
-        String nombre = tablaDocentes.getValueAt(filaa,1).toString();
-        txtNombre.setText(nombre);
-        String apellido = tablaDocentes.getValueAt(filaa,2).toString();
-        txtApellido.setText(apellido);
-        String fechaNac = tablaDocentes.getValueAt(filaa,2).toString();
-        //jcanacimiento.setDate(tablaDocentes.get(fechaNac));
-        //String apellido = tablaDocentes.getValueAt(filaa,2).toString();
-        txtApellido.setText(apellido);
-        String rango = tablaDocentes.getValueAt(filaa,1).toString();
-        cbrango.setSelectedItem(rango);
-        
-    }//GEN-LAST:event_tablaDocentesMouseClicked
+    private void jtabladocentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabladocentesMouseClicked
+        // obtener datos de la tabla
+        int filaa = jtabladocentes.getSelectedRow();
+        String cedula = jtabladocentes.getValueAt(filaa, 0).toString();
+        try { mostrarseleccionado(cedula); } catch (SQLException ex) { System.out.println("error selecion tabla mostrar datos"); }        
+    }//GEN-LAST:event_jtabladocentesMouseClicked
+
+    private void jbtneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtneliminarActionPerformed
+        // instanciar direccion
+        Direccion dir = new Direccion(jtfcodigo.getText(), null, null);
+        // instanciar relacion
+        Relacion rel = new Relacion(jtfcedula.getText(), null, null, null, null);
+        // instanciar persona
+        Persona per = new Persona(jtfcedula.getText(), null,null, null, null, null, null);
+        // instanciar docente
+        Docente doc = new Docente(jtfcedula.getText(), null, null, null, null, null, null, null);
+        //excepcion de comprobar direccion
+        try {
+            //comprobar direccion
+            if(dir.compb()){
+                //excepcion de comprobar persona
+                try {
+                    //comprueba que exista la cedula de la persona
+                    if(per.comp()){
+                        //elimina docente
+                        if(doc.eliminar()){
+                            //elimina persona
+                            if(per.eliminar()){
+                                //elimina relacion
+                                if(rel.eliminar()){
+                                    //elimina direccion
+                                    if(dir.eliminar()){
+                                        JOptionPane.showMessageDialog(rootPane, "Los datos se eliminaron correctamente");
+                                        //limpia datos y actualiza
+                                        limpiar(); todo();
+                                        //mensaje de falla en eliminar datos
+                                    } else { JOptionPane.showMessageDialog(rootPane, "No se eliminaron los datos correctamente intente nuevamente"); }
+                                    //mensaje de falla en eliminar datos
+                                } else { JOptionPane.showMessageDialog(rootPane, "No se eliminaron los datos correctamente intente nuevamente"); }
+                                //mensaje de falla en eliminar datos
+                            } else { JOptionPane.showMessageDialog(rootPane, "No se eliminaron los datos correctamente intente nuevamente"); }
+                            //mensaje de falla en eliminar datos
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se eliminaron los datos correctamente intente nuevamente"); }
+                        //mensaje de verifique la cedula
+                    } else { JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
+                    //mensaje de exepcion de comprobacion de personas
+                } catch (SQLException ex) { System.out.println("Error comprobar persona"); }
+                //mensaje de comprobacion de direccion
+            } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la casa"); }
+        //mensaje de excepcion comprobar direccion
+        } catch (SQLException ex) { System.out.println("Error en verificacion de codigo de casa"); }
+    }//GEN-LAST:event_jbtneliminarActionPerformed
+
+    private void jbtnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnmodificarActionPerformed
+        try {                                              
+            // TODO add your handling code here:
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            String nacimiento = f.format(jcnacimiento.getDate());
+            //se emvia datos por parametros a metodos en clase SQLMetodos
+            String rs1 = sqlm.obtenerpoliglota(cbpoliglota.getSelectedItem().toString()),rs2 = sqlm.obtenernacionalidad(cbnacionalidad.getSelectedItem().toString()), rs3 = sqlm.obtenersexo(cbsexo.getSelectedItem().toString()), rs4 = sqlm.obtenerformacion(cbformacion.getSelectedItem().toString()), rs5 = sqlm.obtenerrango(cbrango.getSelectedItem().toString()), rs6 = sqlm.obtenerjornada(cbjornada.getSelectedItem().toString()), rs7 = sqlm.obtenerasignatura(cbasignatura1.getSelectedItem().toString()), rs8 = sqlm.obtenerasignatura(cbasignatura2.getSelectedItem().toString()), rs9  = sqlm.obtenerasignatura(cbasignatura3.getSelectedItem().toString());
+            //instanciar direccion
+            Direccion dir = new Direccion(jtfcodigo.getText(), jtfcalle.getText(), jtfcomuna.getText());
+            //instanciar relacion
+            Relacion rel = new Relacion(jtfcedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);
+            //instanciar persona
+            Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
+            //instanciar docente
+            Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs7, rs8, rs9, rs6, jtfcedula.getText());
+            //comprobar direccion
+            if(dir.compb()){
+                //excepcion de comprobar persona
+                try {
+                    //comprobar persona
+                    if(per.comp()){
+                        //actualizar direccion
+                        if(dir.actualizar()){
+                            //actualizar relacion
+                            if(rel.actualizar()){
+                                //actualizar persona
+                                if(per.actualizar()){
+                                    //actualizar docente
+                                    if(doc.actualizar()){
+                                        JOptionPane.showMessageDialog(rootPane, "Los datos se actualizaron correctamente");
+                                        //llamar a los metodos impiar y todo
+                                        limpiar(); todo();
+                                    //mensaje de datos no actualizados crrectamente de docente
+                                    } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
+                                //mensaje de datos no actualizados crrectamente de persona
+                                } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
+                            //mensaje de datos no actualizados crrectamente de relacion
+                            } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
+                        //mensaje de datos no actualizados crrectamente de direccion
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
+                    //mensaje de que la cedula no esta registrada
+                    } else { JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
+                //mensaje de error de comprobacion de cedula
+                } catch (SQLException ex) { System.out.println("Error comprobar persona"); Logger.getLogger(CrearDocente.class.getName()).log(Level.SEVERE, null, ex); }
+            //mensaje de que el codigo de la direccion no esta registrada
+            } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la casa"); }
+        //mensaje de error de comprobacion de codigo de direccion
+        } catch (SQLException ex) { System.out.println("Error combropacion de codigo direccion"); Logger.getLogger(CrearDocente.class.getName()).log(Level.SEVERE, null, ex); }
+    }//GEN-LAST:event_jbtnmodificarActionPerformed
 
     
     /**
@@ -808,16 +876,54 @@ public class CrearDocente extends javax.swing.JFrame {
         });
     }
 
+    public void mostrarseleccionado(String a) throws SQLException{
+        cbpoliglota.setSelectedItem(sqlm.mpoliglota(a));
+        cbnacionalidad.setSelectedItem(sqlm.mnacionalidad(a));
+        cbsexo.setSelectedItem(sqlm.msexo(a));
+        cbformacion.setSelectedItem(sqlm.mformacion(a));
+        cbrango.setSelectedItem(sqlm.mrango(a));
+        cbjornada.setSelectedItem(sqlm.mjornada(a));
+        cbasignatura1.setSelectedItem(sqlm.masignatura1(a));
+        cbasignatura2.setSelectedItem(sqlm.masignatura2(a));
+        cbasignatura3.setSelectedItem(sqlm.masignatura3(a));
+        
+        ResultSet rs = sqlm.mtablepersona(a);
+        while(rs.next()){
+            jtfcedula.setText(rs.getString("per_cedula"));
+            jtfnombre.setText(rs.getString("per_nombre"));
+            jtfapellido.setText(rs.getString("per_apellido"));
+            jtftelefono.setText(rs.getString("per_telefono"));
+            jcnacimiento.setDate(rs.getDate("per_nacimiento"));
+            jtfcontra.setText(rs.getString("per_contraseña"));
+        }
+        
+        ResultSet rs1 = sqlm.mtabledireccion(a);
+        while(rs1.next()){
+            jtfcodigo.setText(rs1.getString("dir_codigo"));
+            jtfcalle.setText(rs1.getString("dic_calle"));
+            jtfcomuna.setText(rs1.getString("dir_comuna"));
+        }
+    }
+
     public void limpiar(){
-        txtApellido.setText("");
-        txtCedula.setText("");
+        jtfapellido.setText("");
+        jtfcedula.setText("");
         jtfcalle.setText("");
         jtfcodigo.setText("");
         jtfcomuna.setText("");
-        jtfcontras.setText("");
-        txtNombre.setText("");
-        txtTelefono.setText("");
-        jcanacimiento.setDate(null);
+        jtfcontra.setText("");
+        jtfnombre.setText("");
+        jtftelefono.setText("");
+        jcnacimiento.setDate(null);
+        cbpoliglota.setSelectedItem("");
+        cbnacionalidad.setSelectedItem("");
+        cbsexo.setSelectedItem("");
+        cbformacion.setSelectedItem("");
+        cbrango.setSelectedItem("");
+        cbjornada.setSelectedItem("");
+        cbasignatura1.setSelectedItem("");
+        cbasignatura2.setSelectedItem("");
+        cbasignatura3.setSelectedItem("");        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -863,15 +969,15 @@ public class CrearDocente extends javax.swing.JFrame {
     private javax.swing.JButton jbtneliminar;
     private javax.swing.JButton jbtnmodificar;
     private javax.swing.JButton jbtnsalir;
-    private com.toedter.calendar.JDateChooser jcanacimiento;
+    private com.toedter.calendar.JDateChooser jcnacimiento;
+    private javax.swing.JTable jtabladocentes;
+    private javax.swing.JTextField jtfapellido;
     private javax.swing.JTextField jtfcalle;
+    private javax.swing.JTextField jtfcedula;
     private javax.swing.JTextField jtfcodigo;
     private javax.swing.JTextField jtfcomuna;
-    private javax.swing.JPasswordField jtfcontras;
-    private javax.swing.JTable tablaDocentes;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JPasswordField jtfcontra;
+    private javax.swing.JTextField jtfnombre;
+    private javax.swing.JTextField jtftelefono;
     // End of variables declaration//GEN-END:variables
 }

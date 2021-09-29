@@ -62,11 +62,20 @@ public class Relacion {
         this.pol_codigo = pol_codigo;
     }
     
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO relacion (rel_cedula, dir_codigo, sex_codigo, nac_codigo, pol_codigo) VALUES ('" + getRel_cedula()+ "','" + getDir_codigo()+ "','" + getSex_codigo()+ "','" + getNac_codigo()+ "','" + getPol_codigo() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO relacion (rel_cedula, dir_codigo, sex_codigo, nac_codigo, pol_codigo) VALUES ('" + getRel_cedula()+ "','" + getDir_codigo()+ "','" + getSex_codigo()+ "','" + getNac_codigo()+ "','" + getPol_codigo() + "');") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE relacion SET dir_codigo = '"+ getDir_codigo() +"', sex_codigo = '"+ getSex_codigo() +"', nac_codigo = '"+ getNac_codigo() +"', pol_codigo = '"+ getPol_codigo() +"' WHERE rel_cedula = '"+ getRel_cedula() + "'") == null){
             return true;
         }
         else
@@ -76,10 +85,7 @@ public class Relacion {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM relacion WHERE rel_cedula = '" + getRel_cedula()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM relacion WHERE rel_cedula = '" + getRel_cedula()+ "'") == null){
             return true;
         }
         else
