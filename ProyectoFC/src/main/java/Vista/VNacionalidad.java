@@ -29,15 +29,19 @@ public class VNacionalidad extends javax.swing.JFrame {
         initComponents();
         
         setLocationRelativeTo(null);
+        mostrar();
+    }
+    
+    public void mostrar() throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
         String sql = ("SELECT * FROM nacionalidad");
         modelo.setColumnIdentifiers(new Object[]{"CODIGO", "NACIONALIDAD"});
         ResultSet rs = conexion.query(sql);
         while(rs.next()){
-            modelo.addRow(new Object[]{rs.getString("nac_codigo"), rs.getString("nac_nivel")});
+            modelo.addRow(new Object[]{rs.getString("nac_codigo"), rs.getString("nac_nacionalidad")});
         }
-        jtableNacionalidad.setModel(modelo);
-    }
+        tablaNacionalidad.setModel(modelo);
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,11 +59,11 @@ public class VNacionalidad extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jtcodigo = new javax.swing.JTextField();
-        jtnacionalidad = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        txtNacionalidad = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtableNacionalidad = new javax.swing.JTable();
+        tablaNacionalidad = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jbtncrear = new javax.swing.JButton();
         jbtneliminar = new javax.swing.JButton();
@@ -115,6 +119,12 @@ public class VNacionalidad extends javax.swing.JFrame {
                 .addComponent(jLabel3))
         );
 
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -122,19 +132,19 @@ public class VNacionalidad extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtcodigo)
-                    .addComponent(jtnacionalidad))
+                    .addComponent(txtCodigo)
+                    .addComponent(txtNacionalidad))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jtnacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jtableNacionalidad.setModel(new javax.swing.table.DefaultTableModel(
+        tablaNacionalidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -145,7 +155,12 @@ public class VNacionalidad extends javax.swing.JFrame {
                 "CODIGO", "NACIONALIDAD"
             }
         ));
-        jScrollPane1.setViewportView(jtableNacionalidad);
+        tablaNacionalidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaNacionalidadMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaNacionalidad);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -179,6 +194,11 @@ public class VNacionalidad extends javax.swing.JFrame {
         });
 
         jbtnmodificar.setText("MODIFICAR");
+        jbtnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnmodificarActionPerformed(evt);
+            }
+        });
 
         jbtsalir.setText("SALIR");
 
@@ -263,9 +283,15 @@ public class VNacionalidad extends javax.swing.JFrame {
 
     private void jbtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtncrearActionPerformed
         // TODO add your handling code here:
-        Nacionalidad nac = new Nacionalidad(jtcodigo.getText(), jtnacionalidad.getText());
+        Nacionalidad nac = new Nacionalidad(txtCodigo.getText(), txtNacionalidad.getText());
         if(nac.insertar()){
             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VNacionalidad.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {
@@ -275,16 +301,58 @@ public class VNacionalidad extends javax.swing.JFrame {
 
     private void jbtneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtneliminarActionPerformed
         // TODO add your handling code here:
-        Nacionalidad nac = new Nacionalidad(jtcodigo.getText(), null);
+        Nacionalidad nac = new Nacionalidad(txtCodigo.getText(),null);
         if(nac.eliminar()){
             JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
+            try {
+                mostrar();
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VNacionalidad.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {
-            JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente");
+            JOptionPane.showMessageDialog(rootPane, "Error al eliminar");
         }
     }//GEN-LAST:event_jbtneliminarActionPerformed
 
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtCodigoFocusLost
+
+    private void tablaNacionalidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaNacionalidadMouseClicked
+        // TODO add your handling code here:
+        int filaa = tablaNacionalidad.getSelectedRow();
+        String codigo = tablaNacionalidad.getValueAt(filaa, 0).toString();
+        txtCodigo.setText(codigo);
+        String nac = tablaNacionalidad.getValueAt(filaa,1).toString();
+        txtNacionalidad.setText(nac);
+    }//GEN-LAST:event_tablaNacionalidadMouseClicked
+
+    private void jbtnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnmodificarActionPerformed
+        // TODO add your handling code here:
+        Nacionalidad nac = new Nacionalidad(txtCodigo.getText(), txtNacionalidad.getText());
+        if(nac.actualizar()){
+            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VNacionalidad.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
+        }
+    }//GEN-LAST:event_jbtnmodificarActionPerformed
+
+    public void limpiarCampos(){
+        txtCodigo.setText("");
+        txtNacionalidad.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -318,7 +386,7 @@ public class VNacionalidad extends javax.swing.JFrame {
                 try {
                     new VNacionalidad().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(VFormacion.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VNacionalidad.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -339,8 +407,8 @@ public class VNacionalidad extends javax.swing.JFrame {
     private javax.swing.JButton jbtneliminar;
     private javax.swing.JButton jbtnmodificar;
     private javax.swing.JButton jbtsalir;
-    private javax.swing.JTable jtableNacionalidad;
-    private javax.swing.JTextField jtcodigo;
-    private javax.swing.JTextField jtnacionalidad;
+    private javax.swing.JTable tablaNacionalidad;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtNacionalidad;
     // End of variables declaration//GEN-END:variables
 }

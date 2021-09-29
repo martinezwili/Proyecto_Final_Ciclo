@@ -51,4 +51,29 @@ public class Poliglota {
             return false;
         }
     }
+    
+    Conexionbd conexion = new Conexionbd();
+    
+    public boolean eliminar(){
+        Conexionbd conexion = new Conexionbd();
+        String nsql = "DELETE FROM poliglota WHERE pol_codigo = '" + getPol_codigo()+ "'";
+        
+        if(conexion.noQuery(nsql) == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE poliglota SET pol_codigo = '"+ getPol_codigo() +"', pol_poliglota = '"+ getPol_poliglota() +"' WHERE pol_codigo = '"+ getPol_codigo() +"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

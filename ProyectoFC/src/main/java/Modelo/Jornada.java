@@ -60,4 +60,16 @@ public class Jornada {
             return false;
         }
     }
+    
+    Conexionbd conexion = new Conexionbd();
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE jornada SET jor_codigo = '"+ getJor_codigo() +"', jor_jornada = '"+ getJor_jornada() +"' WHERE jor_codigo = '"+ getJor_codigo() +"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

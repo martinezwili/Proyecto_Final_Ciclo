@@ -5,20 +5,43 @@
  */
 package Vista;
 
+import Conexion.Conexionbd;
 import Modelo.Poliglota;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author MAWIL
  */
 public class VPoliglota extends javax.swing.JFrame {
-
+    Conexionbd conexion = new Conexionbd();
     /**
      * Creates new form VPoliglota
      */
-    public VPoliglota() {
+    public VPoliglota() throws SQLException {
         initComponents();
+        mostrar();
+    }
+    public void mostrar() throws SQLException{
+        //metodo para mostar los datos en la tabla
+        DefaultTableModel modelo = new DefaultTableModel();
+        String sql = ("SELECT * FROM poliglota");
+        modelo.setColumnIdentifiers(new Object[]{"CODIGO", "POLIGLOTA"});
+        ResultSet rs = conexion.query(sql);
+        while(rs.next()){
+            modelo.addRow(new Object[]{rs.getString("pol_codigo"), rs.getString("pol_poliglota")});
+        }
+        tablaPoliglota.setModel(modelo);
+    }
+    
+    public void limpiarCampos(){
+        txtCodigo.setText("");
+        txtPoliglota.setText("");
     }
 
     /**
@@ -38,10 +61,10 @@ public class VPoliglota extends javax.swing.JFrame {
         jbtsalir = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtablepoliglota = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jtcodigo = new javax.swing.JTextField();
-        jtpoliglota = new javax.swing.JTextField();
+        tablaPoliglota = new javax.swing.JTable();
+        panel2 = new javax.swing.JPanel();
+        txtCodigo = new javax.swing.JTextField();
+        txtPoliglota = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,6 +88,11 @@ public class VPoliglota extends javax.swing.JFrame {
         });
 
         jbtnmodificar.setText("MODIFICAR");
+        jbtnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnmodificarActionPerformed(evt);
+            }
+        });
 
         jbtsalir.setText("SALIR");
 
@@ -95,7 +123,7 @@ public class VPoliglota extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jtablepoliglota.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPoliglota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -106,7 +134,12 @@ public class VPoliglota extends javax.swing.JFrame {
                 "CODIGO", "POLIGLOTA"
             }
         ));
-        jScrollPane1.setViewportView(jtablepoliglota);
+        tablaPoliglota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPoliglotaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaPoliglota);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -125,23 +158,23 @@ public class VPoliglota extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
+        panel2.setLayout(panel2Layout);
+        panel2Layout.setHorizontalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtcodigo)
-                    .addComponent(jtpoliglota))
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodigo)
+                    .addComponent(txtPoliglota))
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        panel2Layout.setVerticalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jtpoliglota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtPoliglota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -204,7 +237,7 @@ public class VPoliglota extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -220,7 +253,7 @@ public class VPoliglota extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,27 +276,66 @@ public class VPoliglota extends javax.swing.JFrame {
 
     private void jbtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtncrearActionPerformed
         // TODO add your handling code here:
-        Poliglota pol = new Poliglota(jtcodigo.getText(), jtpoliglota.getText());
+        Poliglota pol = new Poliglota(txtCodigo.getText(), txtPoliglota.getText());
         if(pol.insertar()){
             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VPoliglota.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {
-            JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
+            JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
         }
     }//GEN-LAST:event_jbtncrearActionPerformed
 
     private void jbtneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtneliminarActionPerformed
         // TODO add your handling code here:
-        Poliglota pol = new Poliglota(jtcodigo.getText(), null);
-        /*if(pol.eliminar()){
+        Poliglota pol = new Poliglota(txtCodigo.getText(), null);
+        if(pol.eliminar()){
             JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VPoliglota.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {
             JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente");
-        }*/
+        }
     }//GEN-LAST:event_jbtneliminarActionPerformed
+
+    private void jbtnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnmodificarActionPerformed
+        // TODO add your handling code here:
+        Poliglota pol = new Poliglota(txtCodigo.getText(), txtPoliglota.getText());
+        if(pol.actualizar()){
+            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(VPoliglota.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
+        }
+    }//GEN-LAST:event_jbtnmodificarActionPerformed
+
+    private void tablaPoliglotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPoliglotaMouseClicked
+        // TODO add your handling code here:
+        int filaa = tablaPoliglota.getSelectedRow();
+        String codigo = tablaPoliglota.getValueAt(filaa, 0).toString();
+        txtCodigo.setText(codigo);
+        String pol = tablaPoliglota.getValueAt(filaa, 1).toString();
+        txtPoliglota.setText(pol);
+    }//GEN-LAST:event_tablaPoliglotaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -295,7 +367,11 @@ public class VPoliglota extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VPoliglota().setVisible(true);
+                try {
+                    new VPoliglota().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VPoliglota.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -307,7 +383,6 @@ public class VPoliglota extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
@@ -315,8 +390,9 @@ public class VPoliglota extends javax.swing.JFrame {
     private javax.swing.JButton jbtneliminar;
     private javax.swing.JButton jbtnmodificar;
     private javax.swing.JButton jbtsalir;
-    private javax.swing.JTable jtablepoliglota;
-    private javax.swing.JTextField jtcodigo;
-    private javax.swing.JTextField jtpoliglota;
+    private javax.swing.JPanel panel2;
+    private javax.swing.JTable tablaPoliglota;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtPoliglota;
     // End of variables declaration//GEN-END:variables
 }

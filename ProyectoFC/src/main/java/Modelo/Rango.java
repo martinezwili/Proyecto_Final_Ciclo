@@ -60,4 +60,15 @@ public class Rango {
             return false;
         }
    }
+    Conexionbd conexion = new Conexionbd();
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE rango SET ran_codigo = '"+ getRan_codigo() +"', ran_rango = '"+ getRan_rango() +"' WHERE ran_codigo = '"+ getRan_codigo() +"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

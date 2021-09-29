@@ -35,6 +35,8 @@ public class Nacionalidad {
         this.nac_nacionalidad = nac_nacionalidad;
     }
     
+        Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
         Conexionbd conexion = new Conexionbd();
         String nsql = "INSERT INTO nacionalidad (nac_codigo, nac_nacionalidad) VALUES ('" + getNac_codigo()+ "','" + getNac_nacionalidad()+ "');";
@@ -47,12 +49,22 @@ public class Nacionalidad {
             return false;
         }
     }
-    
+       
     public boolean eliminar(){
         Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM nacionalidad WHERE" + getNac_codigo()+ "');";
+        String nsql = "DELETE FROM nacionalidad WHERE nac_codigo = '" + getNac_codigo()+ "'";
         
         if(conexion.noQuery(nsql) == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE nacionalidad SET nac_codigo = '"+ getNac_codigo() +"', nac_nacionalidad = '"+ getNac_nacionalidad() +"' WHERE nac_codigo = '"+ getNac_codigo() +"'") == null){
             return true;
         }
         else

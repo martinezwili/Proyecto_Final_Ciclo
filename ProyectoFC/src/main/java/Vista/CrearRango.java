@@ -319,6 +319,7 @@ public class CrearRango extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
             try {
                 mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
             } catch (SQLException ex) {
                 Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -347,20 +348,40 @@ public class CrearRango extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
             try {
                 mostrar();
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearRango.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "Error al eliminar");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        Rango ran = new Rango(txtCodigo.getText(), txtRango.getText());
+        if(ran.actualizar()){ //utilizamos la sentencia sql para crear un obejto
+            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+            try {
+                mostrar(); //mostramos los datos en la tabla
+                limpiarCampos();
             } catch (SQLException ex) {
                 Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente");
+            JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
         }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarActionPerformed
-
+    
+    public void limpiarCampos(){
+        txtCodigo.setText("");
+        txtRango.setText("");
+    }
+    
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed

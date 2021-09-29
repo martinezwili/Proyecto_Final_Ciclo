@@ -268,6 +268,7 @@ public class CrearJornada extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
             try {
                 mostrar();
+                limpiarCampos();
             } catch (SQLException ex) {
                 Logger.getLogger(VRegistrarFormacion.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -280,11 +281,19 @@ public class CrearJornada extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        try {
-            // recargar informacion de las tablas
-            todo();
-        } catch (SQLException ex) {
-            Logger.getLogger(CrearJornada.class.getName()).log(Level.SEVERE, null, ex);
+        Jornada jor = new Jornada(txtCodigo.getText(), txtJornada.getText());
+        if(jor.actualizar()){
+            JOptionPane.showMessageDialog(rootPane, "Actualizado exitosamente");
+            try {
+                mostrar();
+                limpiarCampos();
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearJornada.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "No se actualizo exitosamente");
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -304,8 +313,9 @@ public class CrearJornada extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
             try {
                 mostrar();
+                limpiarCampos();
             } catch (SQLException ex) {
-                Logger.getLogger(VRegistrarFormacion.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CrearJornada.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else
@@ -313,7 +323,11 @@ public class CrearJornada extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    
+    public void limpiarCampos(){
+        txtCodigo.setText("");
+        txtJornada.setText("");
+    }
     /**
      * @param args the command line arguments
      */

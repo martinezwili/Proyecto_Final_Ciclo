@@ -69,4 +69,16 @@ public class Asignatura {
             return false;
         }
     }
+    
+    Conexionbd conexion = new Conexionbd();
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE asignatura SET asig_codigo = '"+ getAsig_codigo() +"', asig_nombre = '"+ getAsig_nombre()+"',asig_descripcion = '"+getAsig_descripcion()+"' WHERE asig_codigo = '"+ getAsig_codigo() +"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
