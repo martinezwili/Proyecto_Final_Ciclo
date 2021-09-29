@@ -35,6 +35,8 @@ public class Sexo {
         this.sex_sexo = sex_sexo;
     }
     
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
         Conexionbd conexion = new Conexionbd();
         String nsql = "INSERT INTO sexo (sex_codigo, sex_sexo) VALUES ('" + getSex_codigo()+ "','" + getSex_sexo()+ "');";
@@ -50,9 +52,19 @@ public class Sexo {
     
     public boolean eliminar(){
         Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM sexo WHERE sex_codigo =" + getSex_codigo()+ "');";
+        String nsql = "DELETE FROM sexo WHERE sex_codigo = '" + getSex_codigo()+ "'";
         
         if(conexion.noQuery(nsql) == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE sexo SET sex_codigo = '"+ getSex_codigo() +"', sex_sexo = '"+ getSex_sexo() +"' WHERE sex_codigo = '"+ getSex_codigo() +"'") == null){
             return true;
         }
         else

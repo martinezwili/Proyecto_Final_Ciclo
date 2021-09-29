@@ -185,7 +185,7 @@ public class LoginAdministrador extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // validar cedula y contrase;a de administrador
-            if(Administradorr.login(jtcedula.getText(), jtcontra.getText()) == true){
+            if(Administradorr.loginAD(jtcedula.getText(), jtcontra.getText()) == true){
                 JOptionPane.showMessageDialog(rootPane, "BIENVENIDO");
                 this.dispose();
                 Menuadministrador madm = new Menuadministrador();
