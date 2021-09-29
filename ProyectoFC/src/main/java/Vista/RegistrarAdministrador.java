@@ -505,56 +505,41 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
             String nacimiento = f.format(jcanacimiento.getDate()); 
             //se emvia datos por parametros a metodos en clase SQLMetodos
             String rs1 = sqlm.obtenerpoliglota(cbpoliglota.getSelectedItem().toString()),rs2 = sqlm.obtenernacionalidad(cbnacionalidad.getSelectedItem().toString()), rs3 = sqlm.obtenersexo(cbsexo.getSelectedItem().toString()), rs4 = sqlm.obtenerformacion(cbformacion.getSelectedItem().toString());
-            //instanciar clases direccion, relacion, persona, administrador se almacena la informacion en este orden por que las tablas estan relacionadas
+            //instanciar clases direccion
             Direccion dir = new Direccion(jtfcodigo.getText(), jtfcalle.getText(), jtfcomuna.getText());
+            //instanciar relacion
             Relacion rel = new Relacion(ctfcedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);                
+            // instanciar persona
             Persona per = new Persona(ctfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), ctfcedula.getText(), Date.valueOf(nacimiento));
+            //instanciar administrador
             Administradorr ad = new Administradorr(ctfcedula.getText(), jtfcorreo.getText(), rs4.toString(), ctfcedula.getText());
-            if(dir.insertar()){
-                if(rel.insertar()){
-                    if(per.insertar()){
-                        if(ad.insertar()){
-                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                            limpiar();
-                            try {
-                                mosadministrador();
-                            } catch (SQLException ex) {
-                                System.out.println("Error mosadministrador");
-                                Logger.getLogger(RegistrarAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        else
-                        {
-                            //eliminar datos de la tabla relacion y persona por que hay un error en el ingreso de datos de administrador
-                            dir.eliminar();
-                            rel.eliminar();
-                            per.eliminar();
-                            JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
-                        }
-                    }
-                    else
-                    {
-                        //eliminar datos almacenados de la tabla relacion por que hay un error en el ingreso de datos de persona
-                        dir.eliminar();
-                        rel.eliminar();
-                        JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
-                    }
-                }
-                else
-                {
-                    //eliminar datos almacenados de la tabla direccion por que hay un error en el ingreso de datos de relacion
-                    dir.eliminar();
-                    JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
-                }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la casa");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error String rs1, rs2, rs3, rs4");
-            Logger.getLogger(RegistrarAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+           //comprobacion de codigo de direccion
+            if(dir.compb() == false){
+                //comprobacion de cedula de persona
+               if(per.comp() == false){
+                    //guardar datos de direccion 
+                    if(dir.insertar()){
+                        //guardar datos de relacion
+                        if(rel.insertar()){
+                            //guardar datos de persona
+                            if(per.insertar()){
+                                //guardar datos de administrador
+                                if(ad.insertar()){
+                                    JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+                                    //exepcion para limpiar y mostrar datos del administrador
+                                    try { limpiar(); mosadministrador(); } catch (SQLException ex) { System.out.println("Error mosadministrador"); }
+                                //se elimina los datos registrados de direccion relacion y persona
+                                } else { per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                            //se elimina los datos registrados de direccion relacion
+                            } else { rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                        //se elimina los datos registrados de direccion 
+                        } else { dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                    // mensaje de no se guardaron datos
+                    } else { JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+               } else { JOptionPane.showMessageDialog(rootPane, "Cedula ya registrada verifique"); }
+           } else { JOptionPane.showMessageDialog(rootPane, "Codigo de casa ya registrado verifique"); }
+        // mensaje de xcepcion
+        } catch (SQLException ex) { System.out.println("Error String rs1, rs2, rs3, rs4"); }
     }//GEN-LAST:event_jbtnregistrarseActionPerformed
 
     private void jbtncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtncancelarActionPerformed
@@ -566,37 +551,27 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
 
     private void ctfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ctfcedulaFocusLost
         // validacion cedula
-        if(vali.validaCedulaoTelefono(ctfcedula.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "Verifique la cedula");
-        }
+        if(vali.validaCedulaoTelefono(ctfcedula.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
     }//GEN-LAST:event_ctfcedulaFocusLost
 
     private void jtfnombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfnombreFocusLost
         // validacion nombre
-        if(vali.validaNombreoApellido(jtfnombre.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "Verifique el nombre");
-        }
+        if(vali.validaNombreoApellido(jtfnombre.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el nombre"); }
     }//GEN-LAST:event_jtfnombreFocusLost
 
     private void jtfapellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfapellidoFocusLost
         // validacion apellido
-        if(vali.validaNombreoApellido(jtfapellido.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "Verifique el apellido");
-        }
+        if(vali.validaNombreoApellido(jtfapellido.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el apellido"); }
     }//GEN-LAST:event_jtfapellidoFocusLost
 
     private void jtftelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtftelefonoFocusLost
         // validacion telefono
-        if(vali.validaCedulaoTelefono(jtftelefono.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico");
-        }
+        if(vali.validaCedulaoTelefono(jtftelefono.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico"); }
     }//GEN-LAST:event_jtftelefonoFocusLost
 
     private void jtfcontrasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcontrasFocusLost
         // validar contrase;a
-        if(vali.validaContraseña(jtfcontras.getText()) == false){
-            JOptionPane.showMessageDialog(rootPane, "La contraseña no cumple con los parametros requeridos verifique");
-        }
+        if(vali.validaContraseña(jtfcontras.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "La contraseña no cumple con los parametros requeridos verifique"); }
     }//GEN-LAST:event_jtfcontrasFocusLost
 
     //limpiar los jtext file cuando se guarde la informacion
@@ -614,14 +589,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
             jtfcomuna.setText("");
             jcanacimiento.setDate(null);
             todo();
-        } catch (SQLException ex) {
-            System.out.println("Error limpiesa de datos");
-            Logger.getLogger(RegistrarAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void mostrardatos(){
-        
+        } catch (SQLException ex) { System.out.println("Error limpiesa de datos"); }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

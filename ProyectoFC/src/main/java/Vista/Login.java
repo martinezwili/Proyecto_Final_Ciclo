@@ -48,18 +48,23 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("REGISTRAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jbtningresar)
-                .addGap(43, 43, 43)
+                .addGap(58, 58, 58)
                 .addComponent(jButton2)
-                .addGap(56, 56, 56))
+                .addGap(41, 41, 41))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +149,8 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,12 +192,14 @@ public class Login extends javax.swing.JFrame {
                 //verifica seleccion
                 if(cbboxeres.getSelectedItem().equals("ADMINISTRADOR")){
                     //verifica cedula de administrador
-                    if(doc.compd()){
+                    if(adm.comp()){
                         //verificar datos
                         if(Administradorr.loginAD(jtfcedula.getText(), jtfcontras.getText())){
-                            
+                            this.dispose();
+                            Menuadministrador madm = new Menuadministrador();
+                            madm.setVisible(true);
                         //mensaje de datos incorrectos
-                        }else {  }
+                        }else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                         //mensaje de cedula incorrecta
                     } else { JOptionPane.showMessageDialog(rootPane, "Verifique su cedula o intente en DOCENTE O ALUMNO"); }
                 //verifica seleccion
@@ -201,9 +208,11 @@ public class Login extends javax.swing.JFrame {
                     if(doc.compd()){
                         //verificar datos
                         if(Alumno.loginAL(jtfcedula.getText(), jtfcontras.getText())){
-                        
+                            this.dispose();
+                            MenuDocente mdoc = new MenuDocente();
+                            mdoc.setVisible(true);
                         //mensaje de datos incorrectos
-                        } else {  }
+                        } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                     //mensaje de cedula incorrecta
                     }else { JOptionPane.showMessageDialog(rootPane, "Verifique su cedula o intente en ADMINISTRADOR O ALUMNO"); }
                 //verifica seleccion
@@ -214,7 +223,7 @@ public class Login extends javax.swing.JFrame {
                         if(Docente.loginDO(jtfcedula.getText(), jtfcontras.getText())){
                             
                         //mensaje de datos incorrectos
-                        } else {  }
+                        } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                     //mensaje cedula no registrada en alumno    
                     } else { JOptionPane.showMessageDialog(rootPane, "Verifique su cedula o intente en DOCENTE O ADMINISTRADOR"); }
                 //mensaje que verifique su opcion 
@@ -224,6 +233,15 @@ public class Login extends javax.swing.JFrame {
         //mensaje de comprobacion de cedula
         } catch (SQLException ex) { System.out.println("error login comprobacion cedula"); }
     }//GEN-LAST:event_jbtningresarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            RegistrarAdministrador radm = new RegistrarAdministrador();
+            radm.setVisible(true);
+        } catch (SQLException ex) { System.out.println("error pasar ventana de registrar administrador"); }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
