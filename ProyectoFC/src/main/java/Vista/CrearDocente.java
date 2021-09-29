@@ -760,8 +760,8 @@ public class CrearDocente extends javax.swing.JFrame {
         //jcanacimiento.setDate(tablaDocentes.get(fechaNac));
         //String apellido = tablaDocentes.getValueAt(filaa,2).toString();
         txtApellido.setText(apellido);
-        //String rango = tablaDocentes.getValueAt(filaa,1).toString();
-        //cbrango.setSelectedItem(rango);
+        String rango = tablaDocentes.getValueAt(filaa,1).toString();
+        cbrango.setSelectedItem(rango);
         
     }//GEN-LAST:event_tablaDocentesMouseClicked
 
