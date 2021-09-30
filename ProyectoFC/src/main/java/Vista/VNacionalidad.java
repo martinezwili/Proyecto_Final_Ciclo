@@ -7,6 +7,7 @@ package Vista;
 
 import Conexion.Conexionbd;
 import Modelo.Nacionalidad;
+import Modelo.Validaciones;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class VNacionalidad extends javax.swing.JFrame {
 
     Conexionbd conexion = new Conexionbd();
-    
+    Validaciones vali = new Validaciones();
     /**
      * Creates new form VNacionalidad
      */
@@ -65,10 +66,10 @@ public class VNacionalidad extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaNacionalidad = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        jbtncrear = new javax.swing.JButton();
-        jbtneliminar = new javax.swing.JButton();
-        jbtnmodificar = new javax.swing.JButton();
-        jbtsalir = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,16 +126,22 @@ public class VNacionalidad extends javax.swing.JFrame {
             }
         });
 
+        txtNacionalidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNacionalidadFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigo)
-                    .addComponent(txtNacionalidad))
-                .addContainerGap())
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNacionalidad, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(txtCodigo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,11 +162,6 @@ public class VNacionalidad extends javax.swing.JFrame {
                 "CODIGO", "NACIONALIDAD"
             }
         ));
-        tablaNacionalidad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaNacionalidadMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tablaNacionalidad);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -179,28 +181,23 @@ public class VNacionalidad extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jbtncrear.setText("CREAR");
-        jbtncrear.addActionListener(new java.awt.event.ActionListener() {
+        btnCrear.setText("CREAR");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtncrearActionPerformed(evt);
+                btnCrearActionPerformed(evt);
             }
         });
 
-        jbtneliminar.setText("ELIMINAR");
-        jbtneliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtneliminarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
-        jbtnmodificar.setText("MODIFICAR");
-        jbtnmodificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnmodificarActionPerformed(evt);
-            }
-        });
+        btnModificar.setText("MODIFICAR");
 
-        jbtsalir.setText("SALIR");
+        btnSalir.setText("SALIR");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -209,23 +206,23 @@ public class VNacionalidad extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtncrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jbtncrear)
+                .addComponent(btnCrear)
                 .addGap(18, 18, 18)
-                .addComponent(jbtneliminar)
+                .addComponent(btnEliminar)
                 .addGap(18, 18, 18)
-                .addComponent(jbtnmodificar)
+                .addComponent(btnModificar)
                 .addGap(18, 18, 18)
-                .addComponent(jbtsalir)
+                .addComponent(btnSalir)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -281,7 +278,7 @@ public class VNacionalidad extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtncrearActionPerformed
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
         Nacionalidad nac = new Nacionalidad(txtCodigo.getText(), txtNacionalidad.getText());
         if(nac.insertar()){
@@ -297,9 +294,9 @@ public class VNacionalidad extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
         }
-    }//GEN-LAST:event_jbtncrearActionPerformed
+    }//GEN-LAST:event_btnCrearActionPerformed
 
-    private void jbtneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtneliminarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         Nacionalidad nac = new Nacionalidad(txtCodigo.getText(),null);
         if(nac.eliminar()){
@@ -315,11 +312,11 @@ public class VNacionalidad extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar");
         }
-    }//GEN-LAST:event_jbtneliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
         // TODO add your handling code here:
-        
+        if(vali.validarCodigo(txtCodigo.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, solo 4 digitos"); }
     }//GEN-LAST:event_txtCodigoFocusLost
 
     private void tablaNacionalidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaNacionalidadMouseClicked
@@ -348,6 +345,11 @@ public class VNacionalidad extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente");
         }
     }//GEN-LAST:event_jbtnmodificarActionPerformed
+
+    private void txtNacionalidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNacionalidadFocusLost
+        // TODO add your handling code here:
+        if(vali.validaNombreoApellido(txtNacionalidad.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, ingrese solo letras"); }
+    }//GEN-LAST:event_txtNacionalidadFocusLost
 
     public void limpiarCampos(){
         txtCodigo.setText("");
@@ -393,6 +395,10 @@ public class VNacionalidad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -403,10 +409,6 @@ public class VNacionalidad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbtncrear;
-    private javax.swing.JButton jbtneliminar;
-    private javax.swing.JButton jbtnmodificar;
-    private javax.swing.JButton jbtsalir;
     private javax.swing.JTable tablaNacionalidad;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNacionalidad;
