@@ -272,8 +272,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCodigo">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCodigoFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtRango">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtRangoFocusLost"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

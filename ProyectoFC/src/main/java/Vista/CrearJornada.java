@@ -6,6 +6,7 @@
 package Vista;
 import Conexion.Conexionbd;
 import Modelo.Jornada;
+import Modelo.Validaciones;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CrearJornada extends javax.swing.JFrame {
     Conexionbd conexion = new Conexionbd();
+    Validaciones vali = new Validaciones();
     /**
      * Creates new form CrearJornada
      */
@@ -76,6 +78,18 @@ public class CrearJornada extends javax.swing.JFrame {
         jLabel2.setText("Codigo Jornada");
 
         jLabel3.setText("Jornada");
+
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
+
+        txtJornada.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtJornadaFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -323,6 +337,16 @@ public class CrearJornada extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+        // TODO add your handling code here:
+        if(vali.validarCodigo(txtCodigo.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, solo 4 digitos"); }
+    }//GEN-LAST:event_txtCodigoFocusLost
+
+    private void txtJornadaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtJornadaFocusLost
+        // TODO add your handling code here:
+        if(vali.validaNombreoApellido(txtJornada.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, ingrese solo letras"); }
+    }//GEN-LAST:event_txtJornadaFocusLost
     
     public void limpiarCampos(){
         txtCodigo.setText("");

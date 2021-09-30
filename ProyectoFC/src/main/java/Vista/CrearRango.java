@@ -6,6 +6,7 @@
 package Vista;
 import Conexion.Conexionbd;
 import Modelo.Rango;
+import Modelo.Validaciones;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CrearRango extends javax.swing.JFrame {
     Conexionbd conexion = new Conexionbd();
+    Validaciones vali = new Validaciones();
     /**
      * Creates new form CrearRango
      */
@@ -148,6 +150,18 @@ public class CrearRango extends javax.swing.JFrame {
         jLabel4.setText("Codigo Rango");
 
         jLabel5.setText("Rango");
+
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
+
+        txtRango.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRangoFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -385,6 +399,16 @@ public class CrearRango extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+        // TODO add your handling code here:
+        if(vali.validarCodigo(txtCodigo.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, solo 4 digitos"); }
+    }//GEN-LAST:event_txtCodigoFocusLost
+
+    private void txtRangoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRangoFocusLost
+        // TODO add your handling code here:
+        if(vali.validaNombreoApellido(txtRango.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, ingrese solo letras"); }
+    }//GEN-LAST:event_txtRangoFocusLost
 
     /**
      * @param args the command line arguments
