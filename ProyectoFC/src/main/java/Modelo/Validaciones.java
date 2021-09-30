@@ -50,4 +50,16 @@ public class Validaciones {
             return false;
         }
     }
+    
+     public boolean validarCodigo(String codigo){
+        int longitud =0;
+        
+        longitud = codigo.length();
+        if((longitud ==4)){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
 }
