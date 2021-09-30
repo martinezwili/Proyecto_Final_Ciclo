@@ -68,6 +68,16 @@ public class Administradorr{
         }
     }
     
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE administrador SET adm_correo = '"+ getAdm_correo() +"', for_codigo = '"+ getFor_codigo() +"' WHERE adm_cedula = '"+ getAdm_cedula()+"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     public boolean eliminar(){
         if(conexion.noQuery("DELETE FROM administrador WHERE adm_cedula = '" + getAdm_cedula()+ "'") == null){
             return true;

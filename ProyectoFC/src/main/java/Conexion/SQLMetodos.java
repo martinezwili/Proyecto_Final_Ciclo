@@ -240,6 +240,24 @@ public class SQLMetodos {
         }
         return asignatura3;
     }
+    
+    public String mformacionadm(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT for_nivel FROM formacion INNER JOIN administrador ON administrador.adm_cedula = '"+ a +"' AND administrador.for_codigo = formacion.for_codigo");
+        String formacion = null;
+        while(rs.next()){
+            formacion = rs.getString("for_nivel");
+        }
+        return formacion;
+    }
+    
+    public  String mcorreo(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT adm_correo FROM administrador WHERE adm_cedula = '"+ a +"'");
+        String correo = null;
+        while(rs.next()){
+            correo = rs.getString("adm_correo");
+        }
+        return correo;
+    }
         
     public  ResultSet mtabledireccion(String a){
         ResultSet rs = conexion.query("SELECT direccion.dir_codigo, dic_calle, dir_comuna FROM direccion INNER JOIN relacion ON relacion.rel_cedula = '"+ a +"' AND relacion.dir_codigo = direccion.dir_codigo");

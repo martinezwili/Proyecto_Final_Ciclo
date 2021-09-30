@@ -701,8 +701,8 @@ public class CrearDocente extends javax.swing.JFrame {
     private void jbtnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnsalirActionPerformed
         // instanciar login
         this.dispose();
-        Login lg = new Login();
-        lg.setVisible(true);
+        Menuadministrador madm = new Menuadministrador();
+        madm.setVisible(true);
     }//GEN-LAST:event_jbtnsalirActionPerformed
 
     private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
@@ -832,49 +832,6 @@ public class CrearDocente extends javax.swing.JFrame {
         //mensaje de error de comprobacion de codigo de direccion
         } catch (SQLException ex) { System.out.println("Error combropacion de codigo direccion"); Logger.getLogger(CrearDocente.class.getName()).log(Level.SEVERE, null, ex); }
     }//GEN-LAST:event_jbtnmodificarActionPerformed
-
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrearDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrearDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrearDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrearDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new CrearDocente().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CrearDocente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
 
     public void mostrarseleccionado(String a) throws SQLException{
         cbpoliglota.setSelectedItem(sqlm.mpoliglota(a));
