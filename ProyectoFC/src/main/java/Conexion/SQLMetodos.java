@@ -65,6 +65,18 @@ public class SQLMetodos {
         ResultSet rs = conexion.query(sql);
         return rs;
     }
+    
+    public  ResultSet mcbboxCurso(){
+        String sql = ("SELECT cur_nombre FROM curso");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
+    public  ResultSet mcbboxmodalidad(){
+        String sql = ("SELECT mod_modalidad FROM modalidad");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
        
     
        
@@ -138,6 +150,26 @@ public class SQLMetodos {
             asignatura = rs.getString("asig_codigo");
         }
         return asignatura;
+    }
+    
+    public  String obtenermodalidad(String a) throws SQLException{
+        String sql = ("SELECT mod_codigo FROM modalidad WHERE mod_modalidad = '" + a + "'");
+        ResultSet rs = conexion.query(sql);
+        String modalidad = null;
+        while(rs.next()){
+            modalidad = rs.getString("mod_codigo");
+        }
+        return modalidad;
+    }
+    
+    public  String obtenerCurso(String a) throws SQLException{
+        String sql = ("SELECT cur_codigo FROM curso WHERE cur_nombre = '" + a + "'");
+        ResultSet rs = conexion.query(sql);
+        String curso = null;
+        while(rs.next()){
+            curso = rs.getString("cur_codigo");
+        }
+        return curso;
     }
     
     

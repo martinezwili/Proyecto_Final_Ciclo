@@ -68,7 +68,7 @@ public class Alumno {
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertarA(){
-        if(conexion.noQuery("INSERT INTO alumno (alu_cedula, alu_correo, for_codigo, per_cedula) VALUES ('" + getAlu_cedula() + "','" + getAlu_telrepresentante() + "','" +getJor_codigo()+ "','" + getMod_codigo()+ "','" +getCur_codigo()+ "','" + "');") == null){
+        if(conexion.noQuery("INSERT INTO alumno (alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo,cur_codigo) VALUES ('" + getAlu_cedula() + "','" + getAlu_telrepresentante() + "','" +getJor_codigo()+ "','" + getMod_codigo()+ "','" +getCur_codigo()+ "');") == null){
             return true;
         }
         else
