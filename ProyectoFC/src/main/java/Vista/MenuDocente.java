@@ -22,7 +22,7 @@ public class MenuDocente extends javax.swing.JFrame {
      */
     public MenuDocente() {
         initComponents();
-        this.colocarImagen(this.lblImagen, "src\\main\\java\\Imagenes\\escuela.jpg");
+        this.colocarImagen(this.lblImagen, "src\\main\\java\\Imagenes\\education.png");
     }
 
     /**
