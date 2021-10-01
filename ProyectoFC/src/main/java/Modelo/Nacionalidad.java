@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-/**
- *
- * @author MAWIL
- */
 public class Nacionalidad {
     private String nac_codigo, nac_nacionalidad;
 
@@ -38,10 +31,7 @@ public class Nacionalidad {
         Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO nacionalidad (nac_codigo, nac_nacionalidad) VALUES ('" + getNac_codigo()+ "','" + getNac_nacionalidad()+ "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO nacionalidad (nac_codigo, nac_nacionalidad) VALUES ('" + getNac_codigo()+ "','" + getNac_nacionalidad()+ "');") == null){
             return true;
         }
         else
@@ -51,10 +41,7 @@ public class Nacionalidad {
     }
        
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM nacionalidad WHERE nac_codigo = '" + getNac_codigo()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM nacionalidad WHERE nac_codigo = '" + getNac_codigo()+ "'") == null){
             return true;
         }
         else
@@ -65,6 +52,28 @@ public class Nacionalidad {
     
     public boolean actualizar(){
         if(conexion.noQuery("UPDATE nacionalidad SET nac_codigo = '"+ getNac_codigo() +"', nac_nacionalidad = '"+ getNac_nacionalidad() +"' WHERE nac_codigo = '"+ getNac_codigo() +"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT nac_codigo FROM nacionalidad WHERE nac_codigo = '" + getNac_codigo()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean compparaeliminar() throws SQLException{
+        ResultSet rs1 = conexion.query("SELECT nacionalidad.nac_codigo FROM nacionalidad INNER JOIN relacion ON relacion.nac_codigo = nacionalidad.nac_codigo");
+        if(rs1.next()){
             return true;
         }
         else

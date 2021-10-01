@@ -335,7 +335,7 @@ public class CrearRango extends javax.swing.JFrame {
                 mostrar(); //mostramos los datos en la tabla
                 limpiarCampos();
             } catch (SQLException ex) {
-                Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ADMcrearasignatura.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else
@@ -382,7 +382,7 @@ public class CrearRango extends javax.swing.JFrame {
                 mostrar(); //mostramos los datos en la tabla
                 limpiarCampos();
             } catch (SQLException ex) {
-                Logger.getLogger(CrearAsignatura.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ADMcrearasignatura.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else

@@ -12,13 +12,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class CrearDocente extends javax.swing.JFrame {
+public class ADMcreardocente extends javax.swing.JFrame {
     
     Conexionbd conexion = new Conexionbd();
     SQLMetodos sqlm = new SQLMetodos();
     Validaciones vali = new Validaciones();
     
-    public CrearDocente() throws SQLException {
+    public ADMcreardocente() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         todo();
@@ -596,7 +596,7 @@ public class CrearDocente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -663,37 +663,44 @@ public class CrearDocente extends javax.swing.JFrame {
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar docente con datos
             Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs7, rs8, rs9, rs6, jtfcedula.getText());
-            //comprueba dirccion
-            if(dir.compb() == false){
-                //excepcion de comprobar persona
-                try {
-                    //comprueba personas
-                    if(per.comp() == false){
-                        //insertar direccion
-                        if(dir.insertar()){
-                            //insertar relacion
-                            if(rel.insertar()){
-                                //insertar persona
-                                if(per.insertar()){
-                                    //insertar docente
-                                    if(doc.insertar()){
-                                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");  
-                                        //excepcion llama metodo de limpiar y todo
-                                        try {limpiar(); todo(); } catch (SQLException ex) { System.out.println("Error limpiar y mostrar docente");}
+            //verificacion de campos vacios
+            if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontra.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
+                //verificar que se cumplan las validaciones
+                if(cumplirvalidaciones(jtfcedula.getText(), jtfnombre.getText() ,jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText()) == true){    
+                    //comprueba dirccion
+                    if(dir.compb() == false){
+                        //excepcion de comprobar persona
+                        try {
+                            //comprueba personas
+                            if(per.comp() == false){
+                                //insertar direccion
+                                if(dir.insertar()){
+                                    //insertar relacion
+                                    if(rel.insertar()){
+                                        //insertar persona
+                                        if(per.insertar()){
+                                            //insertar docente
+                                            if(doc.insertar()){
+                                                JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");  
+                                                //excepcion llama metodo de limpiar y todo
+                                                try {limpiar(); todo(); } catch (SQLException ex) { System.out.println("Error limpiar y mostrar docente");}
+                                            //elimina datos ingresados por que hay un error
+                                            }else { doc.eliminar(); per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                                        //elimina datos ingresados por que hay un error
+                                        }else { per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
                                     //elimina datos ingresados por que hay un error
-                                    }else { doc.eliminar(); per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                                    }else { rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
                                 //elimina datos ingresados por que hay un error
-                                }else { per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
-                            //elimina datos ingresados por que hay un error
-                            }else { rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
-                        //elimina datos ingresados por que hay un error
-                        }else { dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
-                    //mensaje de cedula ya existente
-                    }else { JOptionPane.showMessageDialog(rootPane, "Esta cedula ya esta registrado Verifique"); }
-                //mensaje de excepcion  de comprobar persona
-                } catch (SQLException ex) { System.out.println("Error comprobacion de persona"); } 
-            ////mensaje de codigo de casa ya existente
-            }else{ JOptionPane.showMessageDialog(rootPane, "Este codigo de la casa ya esta registrado Verifique"); }
+                                }else { dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
+                            //mensaje de cedula ya existente
+                            }else { JOptionPane.showMessageDialog(rootPane, "Esta cedula ya esta registrado Verifique"); }
+                        //mensaje de excepcion  de comprobar persona
+                        } catch (SQLException ex) { System.out.println("Error comprobacion de persona"); } 
+                    ////mensaje de codigo de casa ya existente
+                    }else{ JOptionPane.showMessageDialog(rootPane, "Este codigo de la casa ya esta registrado Verifique"); }
+                }
+            // mensaje de comprobacion de campos vacios
+            } else { JOptionPane.showMessageDialog(rootPane, "No pueden haber campos vacios verifique"); }
         //mensaje de excepcion de comprobar direccion
         } catch (SQLException ex) { System.out.println("Error comprobasion de direccion"); }
     }//GEN-LAST:event_jbtncrearActionPerformed
@@ -701,7 +708,7 @@ public class CrearDocente extends javax.swing.JFrame {
     private void jbtnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnsalirActionPerformed
         // instanciar login
         this.dispose();
-        Menuadministrador madm = new Menuadministrador();
+        ADMmenu madm = new ADMmenu();
         madm.setVisible(true);
     }//GEN-LAST:event_jbtnsalirActionPerformed
 
@@ -798,39 +805,46 @@ public class CrearDocente extends javax.swing.JFrame {
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar docente
             Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs7, rs8, rs9, rs6, jtfcedula.getText());
-            //comprobar direccion
-            if(dir.compb()){
-                //excepcion de comprobar persona
-                try {
-                    //comprobar persona
-                    if(per.comp()){
-                        //actualizar direccion
-                        if(dir.actualizar()){
-                            //actualizar relacion
-                            if(rel.actualizar()){
-                                //actualizar persona
-                                if(per.actualizar()){
-                                    //actualizar docente
-                                    if(doc.actualizar()){
-                                        JOptionPane.showMessageDialog(rootPane, "Los datos se actualizaron correctamente");
-                                        //llamar a los metodos impiar y todo
-                                        limpiar(); todo();
-                                    //mensaje de datos no actualizados crrectamente de docente
+            //verificacion de campos vacios
+            if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontra.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
+                //verificar que se cumplan las validaciones
+                if(cumplirvalidaciones(jtfcedula.getText(), jtfnombre.getText() ,jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText()) == true){
+                    //comprobar direccion
+                    if(dir.compb()){
+                        //excepcion de comprobar persona
+                        try {
+                            //comprobar persona
+                            if(per.comp()){
+                                //actualizar direccion
+                                if(dir.actualizar()){
+                                    //actualizar relacion
+                                    if(rel.actualizar()){
+                                        //actualizar persona
+                                        if(per.actualizar()){
+                                            //actualizar docente
+                                            if(doc.actualizar()){
+                                                JOptionPane.showMessageDialog(rootPane, "Los datos se actualizaron correctamente");
+                                                //llamar a los metodos impiar y todo
+                                                limpiar(); todo();
+                                            //mensaje de datos no actualizados crrectamente de docente
+                                            } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
+                                        //mensaje de datos no actualizados crrectamente de persona
+                                        } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
+                                    //mensaje de datos no actualizados crrectamente de relacion
                                     } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
-                                //mensaje de datos no actualizados crrectamente de persona
+                                //mensaje de datos no actualizados crrectamente de direccion
                                 } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
-                            //mensaje de datos no actualizados crrectamente de relacion
-                            } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
-                        //mensaje de datos no actualizados crrectamente de direccion
-                        } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
-                    //mensaje de que la cedula no esta registrada
-                    } else { JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
-                //mensaje de error de comprobacion de cedula
-                } catch (SQLException ex) { System.out.println("Error comprobar persona"); Logger.getLogger(CrearDocente.class.getName()).log(Level.SEVERE, null, ex); }
-            //mensaje de que el codigo de la direccion no esta registrada
-            } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la casa"); }
+                            //mensaje de que la cedula no esta registrada
+                            } else { JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
+                        //mensaje de error de comprobacion de cedula
+                        } catch (SQLException ex) { System.out.println("Error comprobar persona"); Logger.getLogger(ADMcreardocente.class.getName()).log(Level.SEVERE, null, ex); }
+                    //mensaje de que el codigo de la direccion no esta registrada
+                    } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la casa"); }
+                }
+            // mensaje de comprobacion de campos vacios
+            } else { JOptionPane.showMessageDialog(rootPane, "No pueden haber campos vacios verifique"); }
         //mensaje de error de comprobacion de codigo de direccion
-        } catch (SQLException ex) { System.out.println("Error combropacion de codigo direccion"); Logger.getLogger(CrearDocente.class.getName()).log(Level.SEVERE, null, ex); }
+        } catch (SQLException ex) { System.out.println("Error combropacion de codigo direccion"); Logger.getLogger(ADMcreardocente.class.getName()).log(Level.SEVERE, null, ex); }
     }//GEN-LAST:event_jbtnmodificarActionPerformed
 
     public void mostrarseleccionado(String a) throws SQLException{
@@ -881,6 +895,29 @@ public class CrearDocente extends javax.swing.JFrame {
         cbasignatura1.setSelectedItem("");
         cbasignatura2.setSelectedItem("");
         cbasignatura3.setSelectedItem("");        
+    }
+    
+    public boolean cumplirvalidaciones(String cedula, String nombre, String apellido, String telefono, String contra){
+        String as = null;
+        boolean ab = false;
+        if(vali.validaCedulaoTelefono(cedula) == true){
+            if(vali.validaCedulaoTelefono(telefono) == true){
+                if(vali.validaNombreoApellido(nombre) == true){
+                    if(vali.validaNombreoApellido(apellido) == true){
+                        if(vali.validaContraseña(contra) == true){} else { as = "Verifique la contraseña"; }
+                    } else { as = "Verifique el apellido";  }
+                } else { as = "Verifique el nombre";  }
+            } else { as = "Verifique el telefono";  }
+        } else { as = "Verifique la cedula";  }
+        
+        if(as == null){
+            ab = true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, as);
+        }
+        return ab;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-/**
- *
- * @author MAWIL
- */
 public class Sexo {
     private String sex_codigo, sex_sexo;
 
@@ -38,10 +31,7 @@ public class Sexo {
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO sexo (sex_codigo, sex_sexo) VALUES ('" + getSex_codigo()+ "','" + getSex_sexo()+ "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO sexo (sex_codigo, sex_sexo) VALUES ('" + getSex_codigo()+ "','" + getSex_sexo()+ "');") == null){
             return true;
         }
         else
@@ -51,10 +41,7 @@ public class Sexo {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM sexo WHERE sex_codigo = '" + getSex_codigo()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM sexo WHERE sex_codigo = '" + getSex_codigo()+ "'") == null){
             return true;
         }
         else
@@ -64,7 +51,29 @@ public class Sexo {
     }
     
     public boolean actualizar(){
-        if(conexion.noQuery("UPDATE sexo SET sex_codigo = '"+ getSex_codigo() +"', sex_sexo = '"+ getSex_sexo() +"' WHERE sex_codigo = '"+ getSex_codigo() +"'") == null){
+        if(conexion.noQuery("UPDATE sexo SET sex_sexo = '"+ getSex_sexo() +"' WHERE sex_codigo = '"+ getSex_codigo() +"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT sex_codigo FROM sexo WHERE sex_codigo = '" + getSex_codigo()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean compparaeliminar() throws SQLException{
+        ResultSet rs1 = conexion.query("SELECT sexo.sex_codigo FROM sexo INNER JOIN relacion ON relacion.sex_codigo = sexo.sex_codigo");
+        if(rs1.next()){
             return true;
         }
         else

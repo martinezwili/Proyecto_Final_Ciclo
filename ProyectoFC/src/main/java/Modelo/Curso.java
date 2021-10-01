@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-/**
- *
- * @author usuario
- */
 public class Curso {
     private String cur_codigo,cur_nombre;
 
@@ -18,8 +11,6 @@ public class Curso {
         this.cur_codigo = cur_codigo;
         this.cur_nombre = cur_nombre;
     }
-
-    
 
     public String getCur_codigo() {
         return cur_codigo;
@@ -37,12 +28,20 @@ public class Curso {
         this.cur_nombre = cur_nombre;
     }
 
+    Conexionbd conexion = new Conexionbd();
  
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO curso (cur_codigo, cur_nombre) VALUES ('" + getCur_codigo()+ "','" + getCur_nombre()+ "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO curso (cur_codigo, cur_nombre) VALUES ('" + getCur_codigo()+ "','" + getCur_nombre()+ "');") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE curso SET cur_nombre = '"+ getCur_nombre() +"' WHERE cur_codigo = '" + getCur_codigo()+ "'") == null){
             return true;
         }
         else
@@ -52,15 +51,50 @@ public class Curso {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM curso WHERE cur_codigo =" + getCur_codigo()+ "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM curso WHERE cur_codigo = '" + getCur_codigo()+ "'") == null){
             return true;
         }
         else
         {
             return false;
         }
+    }
+    
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT cur_codigo FROM curso WHERE cur_codigo = '" + getCur_codigo()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean compparaeliminar() throws SQLException{
+        boolean as = false;
+        ResultSet rs1 = conexion.query("SELECT curso.cur_codigo FROM curso INNER JOIN asignatura ON asignatura.cur_codigo = curso.cur_codigo ");
+        if(rs1.next()){
+            as = true;
+        }
+        else
+        {
+            ResultSet rs2 = conexion.query("SELECT curso.cur_codigo FROM curso INNER JOIN notas ON notas.cur_codigo = curso.cur_codigo");
+            if(rs2.next()){
+                as = true;
+            }
+            else
+            {
+                ResultSet rs3 = conexion.query("SELECT curso.cur_codigo FROM curso INNER JOIN alumno ON alumno.cur_codigo = curso.cur_codigo");
+                if(rs3.next()){
+                    as = true;
+                }
+                else
+                {
+                    as = false;
+                }
+            }
+        }
+        return as;
     }
 }

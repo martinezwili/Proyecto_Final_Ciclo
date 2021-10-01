@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author MAWIL
@@ -51,7 +54,13 @@ public class Validaciones {
         }
     }
     
-     public boolean validarCodigo(String codigo){
+    public boolean validarcorreo(String correo){
+        Pattern guia = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mat = guia.matcher(correo);
+        return mat.find();
+    }
+    
+    public boolean validarCodigo(String codigo){
         int longitud =0;
         
         longitud = codigo.length();

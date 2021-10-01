@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Conexion.Conexionbd;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author MAWIL
- */
-public class Administradorr{
+public class Administrador{
     private String adm_cedula, adm_correo, for_codigo, adm_per_cedula;
 
-    public Administradorr(String adm_cedula, String adm_correo, String for_codigo, String adm_per_cedula) {
+    public Administrador(String adm_cedula, String adm_correo, String for_codigo, String adm_per_cedula) {
         this.adm_cedula = adm_cedula;
         this.adm_correo = adm_correo;
         this.for_codigo = for_codigo;

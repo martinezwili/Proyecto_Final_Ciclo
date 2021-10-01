@@ -1,20 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import Modelo.*;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author MAWIL
- */
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -184,7 +173,7 @@ public class Login extends javax.swing.JFrame {
         Persona pers = new Persona(jtfcedula.getText(), null, null, null, null, null, null);
         Docente doc = new Docente(jtfcedula.getText(), null, null, null, null, null, null, null);
         Alumno alu = new Alumno(null, jtfcedula.getText(), null, null, null);
-        Administradorr adm = new Administradorr(jtfcedula.getText(), null, null, null);
+        Administrador adm = new Administrador(jtfcedula.getText(), null, null, null);
         //excepcion de comprobacion de cedula
         try {
             //comprobacion de cedula
@@ -194,9 +183,9 @@ public class Login extends javax.swing.JFrame {
                     //verifica cedula de administrador
                     if(adm.comp()){
                         //verificar datos
-                        if(Administradorr.loginAD(jtfcedula.getText(), jtfcontras.getText())){
+                        if(Administrador.loginAD(jtfcedula.getText(), jtfcontras.getText())){
                             this.dispose();
-                            Menuadministrador madm = new Menuadministrador();
+                            ADMmenu madm = new ADMmenu();
                             madm.setVisible(true);
                         //mensaje de datos incorrectos
                         }else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
@@ -235,12 +224,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtningresarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            // TODO add your handling code here:
-            this.dispose();
-            RegistrarAdministrador radm = new RegistrarAdministrador();
-            radm.setVisible(true);
-        } catch (SQLException ex) { System.out.println("error pasar ventana de registrar administrador"); }
+        //registrar administrador
+        try { this.dispose(); LGregistraradministrador radm = new LGregistraradministrador(); radm.setVisible(true); } catch (SQLException ex) { System.out.println("error pasar ventana de registrar administrador"); }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

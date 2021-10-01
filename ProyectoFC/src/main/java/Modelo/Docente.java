@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Conexion.Conexionbd;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author MAWIL
- */
-public class Docente   {
+public class Docente {
     private String doc_cedula,for_codigo,ran_codigo,as1_codigo,as2_codigo,as3_codigo,jor_codigo,per_cedula;
 
     public Docente(String doc_cedula, String for_codigo, String ran_codigo, String as1_codigo, String as2_codigo, String as3_codigo, String jor_codigo, String per_cedula) {

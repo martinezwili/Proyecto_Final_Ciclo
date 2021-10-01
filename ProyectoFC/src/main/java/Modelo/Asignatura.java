@@ -1,23 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-/**
- *
- * @author byron
- */
 public class Asignatura {
-    private String asig_codigo,asig_nombre,asig_descripcion;
+    private String asig_codigo, asig_nombre, asig_descripcion, cur_codigo;
 
-    public Asignatura(String asig_codigo, String asig_nombre, String asig_descripcion) {
+    public Asignatura(String asig_codigo, String asig_nombre, String asig_descripcion, String cur_codigo) {
         this.asig_codigo = asig_codigo;
         this.asig_nombre = asig_nombre;
         this.asig_descripcion = asig_descripcion;
+        this.cur_codigo = cur_codigo;
     }
 
     public String getAsig_codigo() {
@@ -43,12 +37,27 @@ public class Asignatura {
     public void setAsig_descripcion(String asig_descripcion) {
         this.asig_descripcion = asig_descripcion;
     }
+
+    public String getCur_codigo() {
+        return cur_codigo;
+    }
+
+    public void setCur_codigo(String cur_codigo) {
+        this.cur_codigo = cur_codigo;
+    }
+
+    public Conexionbd getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Conexionbd conexion) {
+        this.conexion = conexion;
+    }
+
+    Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO asignatura (asig_codigo, asig_nombre, asig_descripcion) VALUES ('" + getAsig_codigo()+ "','" + getAsig_nombre()+ "','" + getAsig_descripcion() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO asignatura (asig_codigo, asig_nombre, asig_descripcion, cur_codigo) VALUES ('" + getAsig_codigo()+ "','" + getAsig_nombre()+ "','" + getAsig_descripcion() +"','"+ getCur_codigo() + "');") == null){
             return true;
         }
         else
@@ -58,10 +67,7 @@ public class Asignatura {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM asignatura WHERE asig_codigo = '" + getAsig_codigo()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM asignatura WHERE asig_codigo = '" + getAsig_codigo()+ "'") == null){
             return true;
         }
         else
@@ -70,10 +76,30 @@ public class Asignatura {
         }
     }
     
-    Conexionbd conexion = new Conexionbd();
-    
     public boolean actualizar(){
-        if(conexion.noQuery("UPDATE asignatura SET asig_codigo = '"+ getAsig_codigo() +"', asig_nombre = '"+ getAsig_nombre()+"',asig_descripcion = '"+getAsig_descripcion()+"' WHERE asig_codigo = '"+ getAsig_codigo() +"'") == null){
+        if(conexion.noQuery("UPDATE asignatura SET  asig_nombre = '"+ getAsig_nombre()+"',asig_descripcion = '"+getAsig_descripcion()+"', cur_codigo = '" + getCur_codigo() +"' WHERE asig_codigo = '"+ getAsig_codigo() +"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT asig_codigo FROM asignatura WHERE asig_codigo = '" + getAsig_codigo()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean compparaeliminar() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT curso.cur_codigo FROM curso INNER JOIN asignatura ON asignatura.cur_codigo = curso.cur_codigo");
+        if(rs2.next()){
             return true;
         }
         else

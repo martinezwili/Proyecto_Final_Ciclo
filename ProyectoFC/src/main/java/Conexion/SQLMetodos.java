@@ -1,25 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Conexion;
 
-import Modelo.Poliglota;
-import Vista.*;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 
-/**
- *
- * @author MAWIL
- */
-
-//bebecita
 public class SQLMetodos {
     
     Conexionbd conexion = new Conexionbd();
@@ -183,7 +166,7 @@ public class SQLMetodos {
     }
     
     public  ResultSet mjtabledocente(){
-        String sql = ("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.per_cedula RIGHT JOIN rango ON rango.ran_codigo = docente.ran_codigo");
+        String sql = ("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.per_cedula INNER JOIN rango ON rango.ran_codigo = docente.ran_codigo");
         ResultSet rs = conexion.query(sql);
         return rs;
     }
@@ -298,6 +281,31 @@ public class SQLMetodos {
     
     public  ResultSet mtablepersona(String a){
         ResultSet rs = conexion.query("SELECT per_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_contraseña FROM persona WHERE per_cedula = '"+ a +"'");
+        return rs;
+    }
+    
+    public  ResultSet masignatura(){
+        ResultSet rs = conexion.query("SELECT asig_codigo, asig_nombre, asig_descripcion, cur_nombre FROM asignatura INNER JOIN curso ON curso.cur_codigo = asignatura.cur_codigo");
+        return rs;
+    }
+    
+    public  ResultSet mcurso(){
+        ResultSet rs = conexion.query("SELECT * FROM curso");
+        return rs;
+    }
+    
+    public  ResultSet mnacionalidad(){
+        ResultSet rs = conexion.query("SELECT * FROM nacionalidad");
+        return rs;
+    }
+    
+    public  ResultSet mpoliglota(){
+        ResultSet rs = conexion.query("SELECT * FROM poliglota");
+        return rs;
+    }
+    
+    public  ResultSet msexo(){
+        ResultSet rs = conexion.query("SELECT * FROM sexo");
         return rs;
     }
 }
