@@ -1,7 +1,7 @@
 package Vista;
 
 public class ALUmenu extends javax.swing.JFrame {
-
+//oo
     public ALUmenu() {
         initComponents();
     }

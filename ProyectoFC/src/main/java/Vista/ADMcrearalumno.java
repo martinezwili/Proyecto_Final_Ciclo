@@ -83,7 +83,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     }
     
     public void mosalumno() throws SQLException{
-        //mostrar informacion de la tabla administrador
+        //mostrar informacion de la tabla administradorr
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "TELEFONO REPRESENTANTE", "CURSO", "MODALIDAD", "JORNADA"});
         ResultSet rs = sqlm.mjtableAlumno();

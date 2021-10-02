@@ -262,7 +262,7 @@ public class ADMcrearmodalidad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtbtneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbtneliminarActionPerformed
-        //excepcion de modalidad de codigo
+        //excepcion de modalidad de codigoo
         try {
             //instanciar clase modalidad
             Modalidad moda = new Modalidad(jCodM.getText(), null);

@@ -265,7 +265,7 @@ public class ADMcrearformacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtncrearActionPerformed
-        //excepcion de verificacion de codigo
+        //excepcion de verificacion de codigoo
         try {
             //instanciar clase formacion
             Formacion form = new Formacion(jtcodigo.getText(), jtformacion.getText());

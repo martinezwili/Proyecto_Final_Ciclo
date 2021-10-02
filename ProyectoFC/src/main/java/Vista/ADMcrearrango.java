@@ -342,7 +342,7 @@ public class ADMcrearrango extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // excepcion de comprobacion de rango
+        // excepcion de comprobacion de rangoo
         try{
             //instanciar clase rango
             Rango ran = new Rango(txtCodigo.getText(), txtRango.getText());

@@ -324,7 +324,7 @@ public class ADMcrearjornada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        //excepcion de verificacion de codigo
+        //excepcion de verificacion de codigoo
         try {
             //instanciar clase jornada
             Jornada jor = new Jornada(txtCodigo.getText(), txtJornada.getText());
