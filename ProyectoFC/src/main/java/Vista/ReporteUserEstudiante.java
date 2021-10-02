@@ -47,7 +47,10 @@ public class ReporteUserEstudiante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
+
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 204, 255));
         jLabel3.setText("MODIFICAR ALUMNO / ESTUDIANTE");
 
         jLabel5.setText("NOMBRES:");

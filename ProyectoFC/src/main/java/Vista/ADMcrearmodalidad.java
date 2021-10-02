@@ -57,6 +57,8 @@ public class ADMcrearmodalidad extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
+
         jPanel2.setBackground(new java.awt.Color(102, 255, 102));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -77,6 +79,8 @@ public class ADMcrearmodalidad extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3))
         );
+
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel1.setText("CODIGO");
 
@@ -122,6 +126,8 @@ public class ADMcrearmodalidad extends javax.swing.JFrame {
                     .addComponent(jNnmod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel4.setBackground(new java.awt.Color(153, 255, 153));
 
         btnCrearM.setText("CREAR");
         btnCrearM.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +183,8 @@ public class ADMcrearmodalidad extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
+
+        jPanel5.setBackground(new java.awt.Color(153, 255, 153));
 
         jTableModalidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

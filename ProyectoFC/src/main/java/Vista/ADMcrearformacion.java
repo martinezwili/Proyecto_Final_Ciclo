@@ -56,6 +56,10 @@ public class ADMcrearformacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("TIPO DE FORMACION CREAR / MODIFICAR / ELIMINAR");
 
@@ -75,6 +79,8 @@ public class ADMcrearformacion extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("CODIGO:");
@@ -103,6 +109,8 @@ public class ADMcrearformacion extends javax.swing.JFrame {
                 .addComponent(jLabel3))
         );
 
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -121,6 +129,8 @@ public class ADMcrearformacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jtformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
 
         jtableformacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,6 +166,8 @@ public class ADMcrearformacion extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jbtncrear.setText("CREAR");
         jbtncrear.addActionListener(new java.awt.event.ActionListener() {

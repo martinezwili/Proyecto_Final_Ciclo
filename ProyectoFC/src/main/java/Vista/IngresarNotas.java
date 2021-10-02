@@ -54,6 +54,10 @@ public class IngresarNotas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
+
         cbCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +107,8 @@ public class IngresarNotas extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -147,6 +153,8 @@ public class IngresarNotas extends javax.swing.JFrame {
         btnAgregar.setText("Agregar");
 
         btnCancelar.setText("Cancelar");
+
+        jPanel4.setBackground(new java.awt.Color(153, 255, 153));
 
         lblAporte1.setText("Aporte1");
 

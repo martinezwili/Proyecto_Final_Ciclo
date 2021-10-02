@@ -38,6 +38,10 @@ public class ReporteNotasEstudiante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 153));
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("LISTA ASIGNATURAS");
 
@@ -79,7 +83,10 @@ public class ReporteNotasEstudiante extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("REPORTE DE NOTAS");
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 153));
 
         jButton1.setText("SALIR");
 
