@@ -72,7 +72,7 @@ public class Sexo {
     }
     
     public boolean compparaeliminar() throws SQLException{
-        ResultSet rs1 = conexion.query("SELECT sexo.sex_codigo FROM sexo INNER JOIN relacion ON relacion.sex_codigo = sexo.sex_codigo");
+        ResultSet rs1 = conexion.query("SELECT rel_cedula FROM relacion WHERE sex_codigo = '" + getSex_codigo()+ "'");
         if(rs1.next()){
             return true;
         }

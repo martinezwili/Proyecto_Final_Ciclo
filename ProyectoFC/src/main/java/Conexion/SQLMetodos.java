@@ -171,6 +171,12 @@ public class SQLMetodos {
         return rs;
     }
     
+    public  ResultSet mjtableAlumno(){
+        String sql = ("SELECT alu_cedula, per_nombre, per_apellido, alu_telrepresentante, cur_nombre, mod_modalidad, jor_jornada FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN curso ON curso.cur_codigo = alumno.cur_codigo INNER JOIN modalidad ON modalidad.mod_codigo = alumno.mod_codigo INNER JOIN jornada ON jornada.jor_codigo = alumno.jor_codigo");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+    
     
     
     
@@ -273,7 +279,47 @@ public class SQLMetodos {
         }
         return correo;
     }
-        
+    
+    public  String mjornadaalu(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT jor_jornada FROM jornada INNER JOIN alumno ON alumno.alu_cedula = '"+ a +"' AND alumno.jor_codigo = jornada.jor_codigo");
+        String jornada = null;
+        while(rs.next()){
+             jornada = rs.getString("jor_jornada");
+        }
+        return jornada;
+    }
+    
+    public  String mcursoalu(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT cur_nombre FROM curso INNER JOIN alumno ON alumno.alu_cedula = '"+ a +"' AND alumno.cur_codigo = curso.cur_codigo");
+        String curso = null;
+        while(rs.next()){
+            curso = rs.getString("cur_nombre");
+        }
+        return curso;
+    }
+    
+    public  String mmodalidad(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT mod_modalidad FROM modalidad INNER JOIN alumno ON alumno.alu_cedula = '"+ a +"' AND alumno.mod_codigo = modalidad.mod_codigo");
+        String modalidad = null;
+        while(rs.next()){
+            modalidad = rs.getString("mod_modalidad");
+        }
+        return modalidad;
+    }
+    
+    public  String mtelefonorepresentante(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT alu_telrepresentante FROM alumno WHERE alumno.alu_cedula = '"+ a +"'");
+        String tel = null;
+        while(rs.next()){
+            tel = rs.getString("alu_telrepresentante");
+        }
+        return tel;
+    }
+    
+    
+    
+    
+    
     public  ResultSet mtabledireccion(String a){
         ResultSet rs = conexion.query("SELECT direccion.dir_codigo, dic_calle, dir_comuna FROM direccion INNER JOIN relacion ON relacion.rel_cedula = '"+ a +"' AND relacion.dir_codigo = direccion.dir_codigo");
         return rs;
@@ -288,6 +334,10 @@ public class SQLMetodos {
         ResultSet rs = conexion.query("SELECT asig_codigo, asig_nombre, asig_descripcion, cur_nombre FROM asignatura INNER JOIN curso ON curso.cur_codigo = asignatura.cur_codigo");
         return rs;
     }
+    
+    
+    
+    
     
     public  ResultSet mcurso(){
         ResultSet rs = conexion.query("SELECT * FROM curso");
@@ -306,6 +356,26 @@ public class SQLMetodos {
     
     public  ResultSet msexo(){
         ResultSet rs = conexion.query("SELECT * FROM sexo");
+        return rs;
+    }
+    
+    public  ResultSet mformacion(){
+        ResultSet rs = conexion.query("SELECT * FROM formacion");
+        return rs;
+    }
+    
+    public  ResultSet mjornada(){
+        ResultSet rs = conexion.query("SELECT * FROM jornada");
+        return rs;
+    }
+    
+    public  ResultSet mmodalidad(){
+        ResultSet rs = conexion.query("SELECT * FROM modalidad");
+        return rs;
+    }
+    
+    public  ResultSet mrango(){
+        ResultSet rs = conexion.query("SELECT * FROM rango");
         return rs;
     }
 }

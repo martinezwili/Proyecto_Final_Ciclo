@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-/**
- *
- * @author byron
- */
 public class Jornada {
     private String jor_codigo,jor_jornada;
 
@@ -71,5 +64,36 @@ public class Jornada {
         {
             return false;
         }
+    }
+    
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT jor_codigo FROM jornada WHERE jor_codigo = '" + getJor_codigo()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean compparaeliminar() throws SQLException{
+        boolean as = false;
+        ResultSet rs1 = conexion.query("SELECT alu_cedula FROM alumno WHERE jor_codigo = '"+ getJor_codigo()+"'");
+        if(rs1.next()){
+            as = true;
+        }
+        else
+        {
+            ResultSet rs2 = conexion.query("SELECT doc_cedula FROM docente WHERE jor_codigo = '" + getJor_codigo()+ "'");
+            if(rs2.next()){
+                as = true;
+            }
+            else
+            {
+                as = false;
+            }
+        }
+        return as;
     }
 }

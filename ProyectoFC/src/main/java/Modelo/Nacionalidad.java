@@ -72,7 +72,7 @@ public class Nacionalidad {
     }
     
     public boolean compparaeliminar() throws SQLException{
-        ResultSet rs1 = conexion.query("SELECT nacionalidad.nac_codigo FROM nacionalidad INNER JOIN relacion ON relacion.nac_codigo = nacionalidad.nac_codigo");
+        ResultSet rs1 = conexion.query("SELECT rel_cedula FROM relacion WHERE nac_codigo = '" + getNac_codigo()+ "'");
         if(rs1.next()){
             return true;
         }

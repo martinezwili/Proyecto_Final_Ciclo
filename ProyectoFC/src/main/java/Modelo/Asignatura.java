@@ -98,13 +98,43 @@ public class Asignatura {
     }
     
     public boolean compparaeliminar() throws SQLException{
-        ResultSet rs2 = conexion.query("SELECT curso.cur_codigo FROM curso INNER JOIN asignatura ON asignatura.cur_codigo = curso.cur_codigo");
-        if(rs2.next()){
-            return true;
+        boolean as = false;
+        ResultSet rs1 = conexion.query("SELECT doc_cedula FROM docente WHERE as1_codigo = '" + getAsig_codigo()+ "'");
+        if(rs1.next()){
+            as = true;
         }
         else
         {
-            return false;
+            ResultSet rs2 = conexion.query("SELECT doc_cedula FROM docente WHERE as2_codigo = '" + getAsig_codigo()+ "'");
+            if(rs2.next()){
+                as = true;
+            }
+            else
+            {
+                ResultSet rs3 = conexion.query("SELECT doc_cedula FROM docente WHERE as3_codigo = '" + getAsig_codigo()+ "'");
+                if(rs2.next()){
+                    as = true;
+                }
+                else
+                {
+                    ResultSet rs4 = conexion.query("SELECT not_codigo FROM notas WHERE asig_codigo = '" + getAsig_codigo()+ "'");
+                    if(rs2.next()){
+                        return true;
+                    }
+                    else
+                    {
+                        ResultSet rs5 = conexion.query("SELECT asis_codigo FROM asistencia WHERE asig_codigo = '" + getAsig_codigo()+ "'");
+                        if(rs2.next()){
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
         }
+        return as;
     }
 }

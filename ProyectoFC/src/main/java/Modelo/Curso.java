@@ -73,19 +73,19 @@ public class Curso {
     
     public boolean compparaeliminar() throws SQLException{
         boolean as = false;
-        ResultSet rs1 = conexion.query("SELECT curso.cur_codigo FROM curso INNER JOIN asignatura ON asignatura.cur_codigo = curso.cur_codigo ");
+        ResultSet rs1 = conexion.query("SELECT asig_codigo FROM asignatura WHERE cur_codigo = '" + getCur_codigo()+ "'");
         if(rs1.next()){
             as = true;
         }
         else
         {
-            ResultSet rs2 = conexion.query("SELECT curso.cur_codigo FROM curso INNER JOIN notas ON notas.cur_codigo = curso.cur_codigo");
+            ResultSet rs2 = conexion.query("SELECT not_codigo FROM notas WHERE cur_codigo = '" + getCur_codigo()+ "'");
             if(rs2.next()){
                 as = true;
             }
             else
             {
-                ResultSet rs3 = conexion.query("SELECT curso.cur_codigo FROM curso INNER JOIN alumno ON alumno.cur_codigo = curso.cur_codigo");
+                ResultSet rs3 = conexion.query("SELECT alu_cedula FROM alumno WHERE cur_codigo = '" + getCur_codigo()+ "'");
                 if(rs3.next()){
                     as = true;
                 }

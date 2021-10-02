@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
-import Conexion.Conexionbd;
+import Conexion.*;
 import java.sql.ResultSet;
-import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
 
-/**
- *
- * @author MAWIL
- */
 public class Formacion {
     private String for_codigo, for_nivel;
 
@@ -37,11 +28,10 @@ public class Formacion {
         this.for_nivel = for_nivel;
     }
     
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO formacion (for_codigo, for_nivel) VALUES ('" + getFor_codigo()+ "','" + getFor_nivel()+ "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO formacion (for_codigo, for_nivel) VALUES ('" + getFor_codigo()+ "','" + getFor_nivel()+ "');") == null){
             return true;
         }
         else
@@ -51,15 +41,53 @@ public class Formacion {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM formacion WHERE for_codigo = '" + getFor_codigo() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM formacion WHERE for_codigo = '" + getFor_codigo() + "'") == null){
             return true;
         }
         else
         {
             return false;
         }
+    }
+    
+    public boolean actualizar(){
+        if(conexion.noQuery("UPDATE formacion SET for_nivel = '"+ getFor_nivel()+"' WHERE for_codigo = '" + getFor_codigo()+ "'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT for_codigo FROM formacion WHERE for_codigo = '" + getFor_codigo()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean compparaeliminar() throws SQLException{
+        boolean as = false;
+        ResultSet rs1 = conexion.query("SELECT adm_cedula FROM administrador WHERE for_codigo = '"+ getFor_codigo() +"'");
+        if(rs1.next()){
+            as = true;
+        }
+        else
+        {
+            ResultSet rs2 = conexion.query("SELECT doc_cedula FROM docente WHERE for_codigo = '" + getFor_codigo() + "'");
+            if(rs2.next()){
+                as = true;
+            }
+            else
+            {
+                as = false;
+            }
+        }
+        return as;
     }
 }

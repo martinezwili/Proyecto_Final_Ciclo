@@ -74,7 +74,7 @@ public class Poliglota{
     }
     
     public boolean compparaeliminar() throws SQLException{
-        ResultSet rs1 = conexion.query("SELECT poliglota.pol_codigo FROM poliglota INNER JOIN relacion ON relacion.pol_codigo = poliglota.pol_codigo");
+        ResultSet rs1 = conexion.query("SELECT rel_cedula FROM relacion WHERE pol_codigo = '" + getPol_codigo()+ "'");
         if(rs1.next()){
             return true;
         }

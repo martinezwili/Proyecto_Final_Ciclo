@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-/**
- *
- * @author byron
- */
 public class Rango {
-    private String ran_codigo,ran_rango;
+    private String ran_codigo, ran_rango;
 
     public Rango(String ran_codigo, String ran_rango) {
         this.ran_codigo = ran_codigo;
@@ -35,11 +28,10 @@ public class Rango {
         this.ran_rango = ran_rango;
     }
     
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO rango (ran_codigo,ran_rango ) VALUES ('" + getRan_codigo()+ "','" + getRan_rango() + "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO rango (ran_codigo,ran_rango ) VALUES ('" + getRan_codigo()+ "','" + getRan_rango() + "');") == null){
             return true;
         }
         else
@@ -49,10 +41,7 @@ public class Rango {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM rango WHERE ran_codigo = '" + getRan_codigo()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM rango WHERE ran_codigo = '" + getRan_codigo()+ "'") == null){
             return true;
         }
         else
@@ -60,15 +49,38 @@ public class Rango {
             return false;
         }
    }
-    Conexionbd conexion = new Conexionbd();
     
     public boolean actualizar(){
-        if(conexion.noQuery("UPDATE rango SET ran_codigo = '"+ getRan_codigo() +"', ran_rango = '"+ getRan_rango() +"' WHERE ran_codigo = '"+ getRan_codigo() +"'") == null){
+        if(conexion.noQuery("UPDATE rango SET ran_rango = '"+ getRan_rango() +"' WHERE ran_codigo = '"+ getRan_codigo() +"'") == null){
             return true;
         }
         else
         {
             return false;
         }
+    }
+    
+    public boolean comp() throws SQLException{
+        ResultSet rs2 = conexion.query("SELECT ran_codigo FROM rango WHERE ran_codigo = '" + getRan_codigo()+ "'");
+        if(rs2.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean compparaeliminar() throws SQLException{
+        boolean as = false;
+        ResultSet rs2 = conexion.query("SELECT doc_cedula FROM docente WHERE ran_codigo = '" + getRan_codigo()+ "'");
+        if(rs2.next()){
+            as = true;
+        }
+        else
+        {
+            as = false;
+        }
+        return as;
     }
 }
