@@ -109,6 +109,10 @@ public class Login extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
 
+        jtfcedula.setText("0150213456");
+
+        jtfcontras.setText("Nomesale123");
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CONTRASEÑA:");

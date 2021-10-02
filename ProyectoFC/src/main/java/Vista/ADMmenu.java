@@ -62,6 +62,11 @@ public class ADMmenu extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("ALUMNOS");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("ASIGNATURAS");
@@ -169,6 +174,10 @@ public class ADMmenu extends javax.swing.JFrame {
         // instanciar clase sexo
         try{ this.dispose(); ADMcrearsexo cpol = new ADMcrearsexo(); cpol.setVisible(true); } catch (SQLException ex) { System.out.println("error menu administrador a crear sexo"); }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        try{ this.dispose(); ADMcrearalumno cal = new ADMcrearalumno(); cal.setVisible(true); } catch (SQLException ex) { System.out.println("error menu Alumno"); }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
