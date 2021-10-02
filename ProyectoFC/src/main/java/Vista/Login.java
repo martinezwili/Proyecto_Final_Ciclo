@@ -229,9 +229,7 @@ public class Login extends javax.swing.JFrame {
                     if(adm.comp()){
                         //verificar datos
                         if(Administrador.loginAD(jtfcedula.getText(), jtfcontras.getText())){
-                            this.dispose();
-                            ADMmenu madm = new ADMmenu();
-                            madm.setVisible(true);
+                            this.dispose(); ADMmenu madm = new ADMmenu(); madm.setVisible(true);
                         //mensaje de datos incorrectos
                         }else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                         //mensaje de cedula incorrecta
@@ -241,10 +239,8 @@ public class Login extends javax.swing.JFrame {
                     //verifica cedula de docente
                     if(doc.compd()){
                         //verificar datos
-                        if(Alumno.loginAL(jtfcedula.getText(), jtfcontras.getText())){
-                            this.dispose();
-                            MenuDocente mdoc = new MenuDocente();
-                            mdoc.setVisible(true);
+                        if(Docente.loginDO(jtfcedula.getText(), jtfcontras.getText())){
+                            this.dispose(); DOCmenu mdoc = new DOCmenu(); mdoc.setVisible(true);
                         //mensaje de datos incorrectos
                         } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                     //mensaje de cedula incorrecta
@@ -254,8 +250,8 @@ public class Login extends javax.swing.JFrame {
                     //verifica cedula de alumno
                     if(alu.comp()){
                         //verificar datos
-                        if(Docente.loginDO(jtfcedula.getText(), jtfcontras.getText())){
-                            
+                        if(Alumno.loginAL(jtfcedula.getText(), jtfcontras.getText())){
+                            this.dispose(); ALUmenu mdoc = new ALUmenu(); mdoc.setVisible(true);
                         //mensaje de datos incorrectos
                         } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                     //mensaje cedula no registrada en alumno    
