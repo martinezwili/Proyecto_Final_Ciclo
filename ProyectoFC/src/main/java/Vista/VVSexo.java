@@ -136,6 +136,11 @@ public class VVSexo extends javax.swing.JFrame {
                 txtCodigoFocusLost(evt);
             }
         });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
+            }
+        });
 
         txtSexo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -326,7 +331,8 @@ public class VVSexo extends javax.swing.JFrame {
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
         // TODO add your handling code here:
-        if(vali.validarCodigo(txtCodigo.getText()) == false){ lblComprobacion.setText("VERIFIQUE EL CODIGO"); }
+        if(vali.validarCodigo(txtCodigo.getText()) == false){ lblComprobacion.setText("VERIFIQUE EL CODIGO");}      
+
     }//GEN-LAST:event_txtCodigoFocusLost
 
     private void txtSexoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSexoFocusLost
@@ -396,6 +402,11 @@ public class VVSexo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente");
         }
     }//GEN-LAST:event_jbtnmodificarActionPerformed
+
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        // TODO add your handling code here:
+        vali.validarCodigo(txtCodigo.getText());
+    }//GEN-LAST:event_txtCodigoKeyReleased
 
     /**
      * @param args the command line arguments
