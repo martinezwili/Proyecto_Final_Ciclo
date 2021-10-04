@@ -344,6 +344,11 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
                 jtfcedulaFocusLost(evt);
             }
         });
+        jtfcedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfcedulaActionPerformed(evt);
+            }
+        });
 
         jtfnombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -729,6 +734,10 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
         //validacion de correo
         if(vali.validarcorreo(jtfcorreo.getText()) == false) { JOptionPane.showMessageDialog(rootPane, "Verifique el correo"); }
     }//GEN-LAST:event_jtfcorreoFocusLost
+
+    private void jtfcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfcedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfcedulaActionPerformed
 
     public void mostrarseleccionado(String a) throws SQLException{
         cbpoliglota.setSelectedItem(sqlm.mpoliglota(a));
