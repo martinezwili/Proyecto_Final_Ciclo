@@ -80,7 +80,7 @@ public class ADMcrearformacion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("CODIGO:");
@@ -109,7 +109,7 @@ public class ADMcrearformacion extends javax.swing.JFrame {
                 .addComponent(jLabel3))
         );
 
-        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel4.setBackground(new java.awt.Color(204, 255, 255));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -130,7 +130,7 @@ public class ADMcrearformacion extends javax.swing.JFrame {
                 .addComponent(jtformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel5.setBackground(new java.awt.Color(204, 255, 255));
 
         jtableformacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -167,7 +167,7 @@ public class ADMcrearformacion extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.setBackground(new java.awt.Color(204, 255, 255));
 
         jbtncrear.setText("CREAR");
         jbtncrear.addActionListener(new java.awt.event.ActionListener() {

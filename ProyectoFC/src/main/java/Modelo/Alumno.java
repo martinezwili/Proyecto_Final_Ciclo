@@ -5,14 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Alumno {
-    private String alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo, cur_codigo;
+    private String alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo, cur_codigo, per_cedula;
 
-    public Alumno(String alu_cedula, String alu_telrepresentante, String jor_codigo, String mod_codigo, String cur_codigo) {
+    public Alumno(String alu_cedula, String alu_telrepresentante, String jor_codigo, String mod_codigo, String cur_codigo, String per_cedula) {
         this.alu_cedula = alu_cedula;
         this.alu_telrepresentante = alu_telrepresentante;
         this.jor_codigo = jor_codigo;
         this.mod_codigo = mod_codigo;
         this.cur_codigo = cur_codigo;
+        this.per_cedula = per_cedula;
     }
 
     public String getAlu_cedula() {
@@ -55,6 +56,14 @@ public class Alumno {
         this.cur_codigo = cur_codigo;
     }
 
+    public String getPer_cedula() {
+        return per_cedula;
+    }
+
+    public void setPer_cedula(String per_cedula) {
+        this.per_cedula = per_cedula;
+    }
+
     public Conexionbd getConexion() {
         return conexion;
     }
@@ -66,7 +75,7 @@ public class Alumno {
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        if(conexion.noQuery("INSERT INTO alumno (alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo, cur_codigo) VALUES ('" + getAlu_cedula() + "','" + getAlu_telrepresentante() + "','" +getJor_codigo()+ "','" + getMod_codigo()+ "','" +getCur_codigo()+ "');") == null){
+        if(conexion.noQuery("INSERT INTO alumno (alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo, cur_codigo, per_cedula) VALUES ('" + getAlu_cedula() + "','" + getAlu_telrepresentante() + "','" +getJor_codigo()+ "','" + getMod_codigo()+ "','" +getCur_codigo()+ "','" + getPer_cedula()+ "');") == null){
             return true;
         }
         else

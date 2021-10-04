@@ -296,7 +296,7 @@ public class ADMcrearnacionalidad extends javax.swing.JFrame {
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
         // TODO add your handling code here:
-        if(vali.validarCodigo(txtCodigo.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, solo 4 digitos"); }
+        if(vali.validardijitos8(txtCodigo.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, solo 4 digitos"); }
     }//GEN-LAST:event_txtCodigoFocusLost
 
     private void tablaNacionalidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaNacionalidadMouseClicked

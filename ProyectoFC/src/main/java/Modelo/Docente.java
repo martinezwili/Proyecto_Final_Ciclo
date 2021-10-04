@@ -5,15 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Docente {
-    private String doc_cedula,for_codigo,ran_codigo,as1_codigo,as2_codigo,as3_codigo,jor_codigo,per_cedula;
+    private String doc_cedula,for_codigo,ran_codigo,jor_codigo,per_cedula;
 
-    public Docente(String doc_cedula, String for_codigo, String ran_codigo, String as1_codigo, String as2_codigo, String as3_codigo, String jor_codigo, String per_cedula) {
+    public Docente(String doc_cedula, String for_codigo, String ran_codigo, String jor_codigo, String per_cedula) {
         this.doc_cedula = doc_cedula;
         this.for_codigo = for_codigo;
         this.ran_codigo = ran_codigo;
-        this.as1_codigo = as1_codigo;
-        this.as2_codigo = as2_codigo;
-        this.as3_codigo = as3_codigo;
         this.jor_codigo = jor_codigo;
         this.per_cedula = per_cedula;
     }
@@ -42,30 +39,6 @@ public class Docente {
         this.ran_codigo = ran_codigo;
     }
 
-    public String getAs1_codigo() {
-        return as1_codigo;
-    }
-
-    public void setAs1_codigo(String as1_codigo) {
-        this.as1_codigo = as1_codigo;
-    }
-
-    public String getAs2_codigo() {
-        return as2_codigo;
-    }
-
-    public void setAs2_codigo(String as2_codigo) {
-        this.as2_codigo = as2_codigo;
-    }
-
-    public String getAs3_codigo() {
-        return as3_codigo;
-    }
-
-    public void setAs3_codigo(String as3_codigo) {
-        this.as3_codigo = as3_codigo;
-    }
-
     public String getJor_codigo() {
         return jor_codigo;
     }
@@ -82,10 +55,18 @@ public class Docente {
         this.per_cedula = per_cedula;
     }
 
+    public Conexionbd getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Conexionbd conexion) {
+        this.conexion = conexion;
+    }    
+
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        if(conexion.noQuery("INSERT INTO docente (doc_cedula, for_codigo, ran_codigo, as1_codigo, as2_codigo, as3_codigo, jor_codigo, per_cedula) VALUES ('" + getDoc_cedula()+ "','" + getFor_codigo()+ "','" + getRan_codigo()+ "','" + getAs1_codigo()+ "','" +getAs2_codigo()+ "','" +getAs3_codigo()+ "','" +getJor_codigo()+ "','" +getPer_cedula() + "');") == null){
+        if(conexion.noQuery("INSERT INTO docente (doc_cedula, for_codigo, ran_codigo, jor_codigo, per_cedula) VALUES ('" + getDoc_cedula()+ "','" + getFor_codigo()+ "','" + getRan_codigo()+ "','" +getJor_codigo()+ "','" +getPer_cedula() + "');") == null){
             return true;
         }
         else
@@ -95,7 +76,7 @@ public class Docente {
     }
     
     public boolean actualizar(){
-        if(conexion.noQuery("UPDATE docente SET for_codigo = '"+ getFor_codigo() +"', ran_codigo = '"+ getRan_codigo() +"', as1_codigo ='"+ getAs1_codigo() +"', as2_codigo = '"+ getAs2_codigo() +"', as3_codigo = '"+ getAs3_codigo() +"', jor_codigo = '"+ getJor_codigo() +"' WHERE doc_cedula = '"+ getDoc_cedula() +"'") == null){
+        if(conexion.noQuery("UPDATE docente SET for_codigo = '"+ getFor_codigo() +"', ran_codigo = '"+ getRan_codigo() +"', jor_codigo = '"+ getJor_codigo() +"' WHERE doc_cedula = '"+ getDoc_cedula() +"'") == null){
             return true;
         }
         else

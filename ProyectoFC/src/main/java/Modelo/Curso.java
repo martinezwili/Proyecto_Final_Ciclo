@@ -73,25 +73,32 @@ public class Curso {
     
     public boolean compparaeliminar() throws SQLException{
         boolean as = false;
-        ResultSet rs1 = conexion.query("SELECT asig_codigo FROM asignatura WHERE cur_codigo = '" + getCur_codigo()+ "'");
+        ResultSet rs1 = conexion.query("SELECT relasig_codigo FROM relacioncursoasignaturas WHERE cur_codigo = '" + getCur_codigo()+ "'");
         if(rs1.next()){
             as = true;
         }
         else
         {
-            ResultSet rs2 = conexion.query("SELECT not_codigo FROM notas WHERE cur_codigo = '" + getCur_codigo()+ "'");
+            ResultSet rs2 = conexion.query("SELECT relnot_codigo FROM relacionnotas WHERE cur_codigo = '" + getCur_codigo()+ "'");
             if(rs2.next()){
                 as = true;
             }
             else
             {
-                ResultSet rs3 = conexion.query("SELECT alu_cedula FROM alumno WHERE cur_codigo = '" + getCur_codigo()+ "'");
+                ResultSet rs3 = conexion.query("SELECT relasis_codigo FROM relacionasistencia WHERE cur_codigo = '" + getCur_codigo()+ "'");
                 if(rs3.next()){
                     as = true;
                 }
                 else
                 {
-                    as = false;
+                    ResultSet rs4 = conexion.query("SELECT alu_cedula FROM alumno WHERE cur_codigo = '" + getCur_codigo()+ "'");
+                    if(rs4.next()){
+                        as = true;
+                    }
+                    else
+                    {
+                        as = false;
+                    }
                 }
             }
         }

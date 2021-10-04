@@ -594,7 +594,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
 
     private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
         // validacion cedula
-        if(vali.validaCedulaoTelefono(jtfcedula.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
+        if(vali.validarCedula(jtfcedula.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
     }//GEN-LAST:event_jtfcedulaFocusLost
 
     private void jtfnombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfnombreFocusLost
@@ -609,7 +609,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
 
     private void jtftelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtftelefonoFocusLost
         // validacion telefono
-        if(vali.validaCedulaoTelefono(jtftelefono.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico"); }
+        if(vali.ValidarTelefono(jtftelefono.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico"); }
     }//GEN-LAST:event_jtftelefonoFocusLost
 
     private void jtfcontrasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcontrasFocusLost
@@ -785,8 +785,8 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
     public boolean cumplirvalidaciones(String cedula, String nombre, String apellido, String telefono, String correo, String contra){
         String as = null;
         boolean ab = false;
-        if(vali.validaCedulaoTelefono(cedula) == true){
-            if(vali.validaCedulaoTelefono(telefono) == true){
+        if(vali.validarCedula(cedula) == true){
+            if(vali.ValidarTelefono(telefono) == true){
                 if(vali.validaNombreoApellido(nombre) == true){
                     if(vali.validaNombreoApellido(apellido) == true){
                         if(vali.validarcorreo(correo) == true){

@@ -3,12 +3,16 @@ package Vista;
 
 import Conexion.*;
 import Modelo.*;
+import java.awt.Image;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,11 +20,14 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     
     SQLMetodos sqlm = new SQLMetodos();
     Validaciones vali = new Validaciones();
+    private ImageIcon imagen;
+    private Icon icono;
         
     public ADMcrearalumno() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         todo();
+        this.colocarImagen(this.jlbbuscar, "src\\main\\java\\Imagenes\\buscar.png");
     }
     
     public void todo() throws SQLException{
@@ -144,6 +151,9 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         jcanacimiento = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jtfbuscar = new javax.swing.JTextField();
+        jlbbuscar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -270,16 +280,15 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtbtnmodificar)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jbtnregistrarse)
-                        .addGap(48, 48, 48)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbtncancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtneliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jbtnregistrarse)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtbtnmodificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtncancelar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,12 +296,10 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnregistrarse)
-                    .addComponent(jbtncancelar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtbtnmodificar)
-                    .addComponent(jbtneliminar))
-                .addContainerGap())
+                    .addComponent(jbtneliminar)
+                    .addComponent(jbtncancelar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -519,6 +526,33 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jtfbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfbuscarKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jtfbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jlbbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jlbbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfbuscar))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -537,7 +571,8 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -552,7 +587,10 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -600,11 +638,11 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             // instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar alumno
-            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, rs6);
+            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, rs6, jtfcedula.getText());
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtftelefonorepresentante.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
-                if(cumplirvalidaciones(jtfcedula.getText(), jtfnombre.getText() ,jtfapellido.getText(), jtftelefono.getText(), jtftelefonorepresentante.getText(), jtfcontras.getText()) == true){
+                //if(cumplirvalidaciones(jtfcedula.getText(), jtfnombre.getText() ,jtfapellido.getText(), jtftelefono.getText(), jtftelefonorepresentante.getText(), jtfcontras.getText()) == true){
                     //comprobacion de codigo de direccion
                     if(dir.compb() == false){
                         //comprobacion de cedula de persona
@@ -632,7 +670,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                         } else { JOptionPane.showMessageDialog(rootPane, "Cedula ya registrada verifique"); }
                         //mensaje de comprobacion de codigo
                     } else { JOptionPane.showMessageDialog(rootPane, "Codigo de casa ya registrado verifique"); }
-                }
+                //}
                 // mensaje de comprobacion de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden haber campos vacios verifique"); }
             // mensaje de xcepcion
@@ -658,11 +696,11 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             //instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar alumno
-            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, rs6);
+            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, rs6, jtfcedula.getText());
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtftelefonorepresentante.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
-                if(cumplirvalidaciones(jtfcedula.getText(), jtfnombre.getText() ,jtfapellido.getText(), jtftelefono.getText(), jtftelefonorepresentante.getText(), jtfcontras.getText()) == true){
+                //if(cumplirvalidaciones(jtfcedula.getText(), jtfnombre.getText() ,jtfapellido.getText(), jtftelefono.getText(), jtftelefonorepresentante.getText(), jtfcontras.getText()) == true){
                     //comprobar direccion
                     if(dir.compb()){
                         //excepcion de comprobar persona
@@ -694,7 +732,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                         } catch (SQLException ex) { System.out.println("Error comprobar persona"); }
                         //mensaje de que el codigo de la direccion no esta registrada
                     } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la casa"); }
-                }
+                //}
                 // mensaje de comprobacion de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden haber campos vacios verifique"); }
             //mensaje de error de comprobacion de codigo de direccion
@@ -710,7 +748,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         // instanciar persona
         Persona per = new Persona(jtfcedula.getText(), null,null, null, null, null, null);
         // instanciar alumno
-        Alumno al = new Alumno(jtfcedula.getText(), null, null, null, null);
+        Alumno al = new Alumno(jtfcedula.getText(), null, null, null, null, null);
         //excepcion de comprobar direccion
         try {
             //comprobar direccion
@@ -750,7 +788,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
 
     private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
         // validacion cedula
-        if(vali.validaCedulaoTelefono(jtfcedula.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
+        if(vali.ValidarTelefono(jtfcedula.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique la cedula"); }
     }//GEN-LAST:event_jtfcedulaFocusLost
 
     private void jtfnombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfnombreFocusLost
@@ -765,7 +803,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
 
     private void jtftelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtftelefonoFocusLost
         // validacion telefono
-        if(vali.validaCedulaoTelefono(jtftelefono.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico"); }
+        if(vali.ValidarTelefono(jtftelefono.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico"); }
     }//GEN-LAST:event_jtftelefonoFocusLost
 
     private void jtfcontrasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcontrasFocusLost
@@ -775,8 +813,20 @@ public class ADMcrearalumno extends javax.swing.JFrame {
 
     private void jtftelefonorepresentanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtftelefonorepresentanteFocusLost
         // validacion telefono de representante
-        if(vali.validaCedulaoTelefono(jtftelefonorepresentante.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico del representante"); }
+        if(vali.ValidarTelefono(jtftelefonorepresentante.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el numero telefonico del representante"); }
     }//GEN-LAST:event_jtftelefonorepresentanteFocusLost
+
+    private void jtfbuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarKeyReleased
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "TELEFONO REPRESENTANTE", "CURSO", "MODALIDAD", "JORNADA"});
+            ResultSet rs = sqlm.buscaralumno(jtfbuscar.getText());
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getString("alu_cedula"), rs.getString("per_nombre"), rs.getString("per_apellido"), rs.getString("alu_telrepresentante"), rs.getString("cur_nombre"), rs.getString("mod_modalidad"), rs.getString("jor_jornada")});
+            }
+            jtablealumno.setModel(modelo);
+        } catch (SQLException ex) { System.out.println("error buscar administrador"); }
+    }//GEN-LAST:event_jtfbuscarKeyReleased
 
     public void mostrarseleccionado(String a) throws SQLException{
         cbpoliglota.setSelectedItem(sqlm.mpoliglota(a));
@@ -828,9 +878,9 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     public boolean cumplirvalidaciones(String cedula, String nombre, String apellido, String telefono, String telrep, String contra){
         String as = null;
         boolean ab = false;
-        if(vali.validaCedulaoTelefono(cedula) == true){
-            if(vali.validaCedulaoTelefono(telefono) == true){
-                if(vali.validaCedulaoTelefono(telrep) == true){
+        if(vali.ValidarTelefono(cedula) == true){
+            if(vali.ValidarTelefono(telefono) == true){
+                if(vali.ValidarTelefono(telrep) == true){
                     if(vali.validaNombreoApellido(nombre) == true){
                         if(vali.validaNombreoApellido(apellido) == true){
                             if(vali.validaContraseña(contra) == true){} else { as = "Verifique la contraseña"; }
@@ -848,6 +898,17 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, as);
         }
         return ab;
+    }
+    
+    private void colocarImagen(JLabel lbl, String ruta){
+        this.imagen = new ImageIcon(ruta);
+        this.icono = new ImageIcon(
+                this.imagen.getImage().getScaledInstance(
+                        lbl.getWidth(), 
+                        lbl.getHeight(), 
+                        Image.SCALE_SMOOTH)
+        );lbl.setIcon(this.icono);
+        this.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -881,15 +942,18 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtncancelar;
     private javax.swing.JButton jbtneliminar;
     private javax.swing.JButton jbtnregistrarse;
     private com.toedter.calendar.JDateChooser jcanacimiento;
+    private javax.swing.JLabel jlbbuscar;
     private javax.swing.JTable jtablealumno;
     private javax.swing.JButton jtbtnmodificar;
     private javax.swing.JTextField jtfapellido;
+    private javax.swing.JTextField jtfbuscar;
     private javax.swing.JTextField jtfcalle;
     private javax.swing.JTextField jtfcedula;
     private javax.swing.JTextField jtfcodigo;

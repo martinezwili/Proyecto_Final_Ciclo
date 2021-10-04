@@ -5,13 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Asignatura {
-    private String asig_codigo, asig_nombre, asig_descripcion, cur_codigo;
+    private String asig_codigo, asig_nombre, asig_descripcion;
 
-    public Asignatura(String asig_codigo, String asig_nombre, String asig_descripcion, String cur_codigo) {
+    public Asignatura(String asig_codigo, String asig_nombre, String asig_descripcion) {
         this.asig_codigo = asig_codigo;
         this.asig_nombre = asig_nombre;
         this.asig_descripcion = asig_descripcion;
-        this.cur_codigo = cur_codigo;
     }
 
     public String getAsig_codigo() {
@@ -38,14 +37,6 @@ public class Asignatura {
         this.asig_descripcion = asig_descripcion;
     }
 
-    public String getCur_codigo() {
-        return cur_codigo;
-    }
-
-    public void setCur_codigo(String cur_codigo) {
-        this.cur_codigo = cur_codigo;
-    }
-
     public Conexionbd getConexion() {
         return conexion;
     }
@@ -57,7 +48,7 @@ public class Asignatura {
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        if(conexion.noQuery("INSERT INTO asignatura (asig_codigo, asig_nombre, asig_descripcion, cur_codigo) VALUES ('" + getAsig_codigo()+ "','" + getAsig_nombre()+ "','" + getAsig_descripcion() +"','"+ getCur_codigo() + "');") == null){
+        if(conexion.noQuery("INSERT INTO asignatura (asig_codigo, asig_nombre, asig_descripcion) VALUES ('" + getAsig_codigo()+ "','" + getAsig_nombre()+ "','" + getAsig_descripcion() + "');") == null){
             return true;
         }
         else
@@ -77,7 +68,7 @@ public class Asignatura {
     }
     
     public boolean actualizar(){
-        if(conexion.noQuery("UPDATE asignatura SET  asig_nombre = '"+ getAsig_nombre()+"',asig_descripcion = '"+getAsig_descripcion()+"', cur_codigo = '" + getCur_codigo() +"' WHERE asig_codigo = '"+ getAsig_codigo() +"'") == null){
+        if(conexion.noQuery("UPDATE asignatura SET  asig_nombre = '"+ getAsig_nombre()+"',asig_descripcion = '"+getAsig_descripcion()+"' WHERE asig_codigo = '"+ getAsig_codigo() +"'") == null){
             return true;
         }
         else
@@ -117,13 +108,13 @@ public class Asignatura {
                 }
                 else
                 {
-                    ResultSet rs4 = conexion.query("SELECT not_codigo FROM notas WHERE asig_codigo = '" + getAsig_codigo()+ "'");
+                    ResultSet rs4 = conexion.query("SELECT relanot_codigo FROM relacionnotas WHERE asig_codigo = '" + getAsig_codigo()+ "'");
                     if(rs2.next()){
                         return true;
                     }
                     else
                     {
-                        ResultSet rs5 = conexion.query("SELECT asis_codigo FROM asistencia WHERE asig_codigo = '" + getAsig_codigo()+ "'");
+                        ResultSet rs5 = conexion.query("SELECT relaasig_codigo FROM relacioncursoasignatura WHERE asig_codigo = '" + getAsig_codigo()+ "'");
                         if(rs2.next()){
                             return true;
                         }

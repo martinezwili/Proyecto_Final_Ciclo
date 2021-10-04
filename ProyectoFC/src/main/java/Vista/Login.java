@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
+    
+    public static String administrador;
+    public static String docente;
+    public static String alumno;
     private ImageIcon imagen;
     private Icon icono;
 
@@ -220,8 +224,8 @@ public class Login extends javax.swing.JFrame {
     private void jbtningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtningresarActionPerformed
         // TODO add your handling code here:
         Persona pers = new Persona(jtfcedula.getText(), null, null, null, null, null, null);
-        Docente doc = new Docente(jtfcedula.getText(), null, null, null, null, null, null, null);
-        Alumno alu = new Alumno(null, jtfcedula.getText(), null, null, null);
+        Docente doc = new Docente(jtfcedula.getText(), null, null, null, null);
+        Alumno alu = new Alumno(jtfcedula.getText(), null, null, null, null, null);
         Administrador adm = new Administrador(jtfcedula.getText(), null, null, null);
         //excepcion de comprobacion de cedula
         try {
