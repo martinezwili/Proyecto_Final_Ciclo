@@ -214,36 +214,36 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ctfcedula" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                               <Component id="jLabel2" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="ctfcedula" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfnombre" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="jLabel3" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtfnombre" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfapellido" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="jLabel4" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtfapellido" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtftelefono" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="jLabel5" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtftelefono" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -254,20 +254,20 @@
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfcorreo" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                               <Component id="jLabel13" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtfcorreo" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfcontras" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="jLabel7" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtfcontras" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -563,28 +563,28 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfcodigo" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                               <Component id="jLabel16" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtfcodigo" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfcalle" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                               <Component id="jLabel14" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtfcalle" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfcomuna" alignment="3" max="32767" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                               <Component id="jLabel15" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jtfcomuna" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>

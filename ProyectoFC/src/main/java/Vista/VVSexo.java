@@ -335,7 +335,7 @@ public class VVSexo extends javax.swing.JFrame {
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
         // TODO add your handling code here:
-        if(vali.validarCodigo(txtCodigo.getText()) == false){ lblComprobacion.setText("VERIFIQUE EL CODIGO");}      
+        if(vali.validardijitos8(txtCodigo.getText()) == false){ lblComprobacion.setText("VERIFIQUE EL CODIGO");}      
 
     }//GEN-LAST:event_txtCodigoFocusLost
 
@@ -428,7 +428,7 @@ public class VVSexo extends javax.swing.JFrame {
 
     private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
         // TODO add your handling code here:
-        vali.validarCodigo(txtCodigo.getText());
+        vali.validardijitos8(txtCodigo.getText());
     }//GEN-LAST:event_txtCodigoKeyReleased
 
     /**
