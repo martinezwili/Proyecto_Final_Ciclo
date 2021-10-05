@@ -17,6 +17,7 @@ public class ADMasignaturas extends javax.swing.JFrame {
 
     SQLMetodos sqlm = new SQLMetodos();
     public static String cedula;
+    Validaciones vali = new Validaciones();
     private ImageIcon imagen;
     private Icon icono;
     
@@ -78,6 +79,7 @@ public class ADMasignaturas extends javax.swing.JFrame {
         jtfcedula = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jlbcargar = new javax.swing.JLabel();
+        codigolbl = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jbtnasignar = new javax.swing.JButton();
         jbtneliminar = new javax.swing.JButton();
@@ -119,6 +121,12 @@ public class ADMasignaturas extends javax.swing.JFrame {
         cbasignatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("CODIGO:");
+
+        jtfcodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfcodigoKeyReleased(evt);
+            }
+        });
 
         jLabel6.setText("DOCENTE:");
 
@@ -170,7 +178,9 @@ public class ADMasignaturas extends javax.swing.JFrame {
                             .addComponent(jtfcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(44, 44, 44)))))
+                                .addGap(44, 44, 44)))
+                        .addGap(18, 18, 18)
+                        .addComponent(codigolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -179,7 +189,9 @@ public class ADMasignaturas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -414,6 +426,11 @@ public class ADMasignaturas extends javax.swing.JFrame {
         this.dispose(); ADMmenu madm = new ADMmenu(); madm.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jtfcodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcodigoKeyReleased
+        // TODO add your handling code here:
+        if(vali.validardijitos8(jtfcodigo.getText())){ this.colocarImagen(this.codigolbl, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.codigolbl, "src\\main\\java\\Imagenes\\V2.png"); }        
+    }//GEN-LAST:event_jtfcodigoKeyReleased
+
     public void limpiar(){
         jtfbuscarcursos.setText("");
         jtfcodigo.setText("");
@@ -433,6 +450,7 @@ public class ADMasignaturas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbasignatura;
     private javax.swing.JComboBox<String> cbcurso;
+    private javax.swing.JLabel codigolbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
