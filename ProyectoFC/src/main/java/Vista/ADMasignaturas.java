@@ -94,6 +94,8 @@ public class ADMasignaturas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 204));
+
         jLabel1.setText("ASIGNAR ASIGNATURAS A CURSOS.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -101,16 +103,18 @@ public class ADMasignaturas extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
+                .addGap(213, 213, 213)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addComponent(jLabel1)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
+
+        jPanel3.setBackground(new java.awt.Color(153, 255, 204));
 
         jLabel2.setText("CURSO:");
 
@@ -179,7 +183,6 @@ public class ADMasignaturas extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(44, 44, 44)))
-                        .addGap(18, 18, 18)
                         .addComponent(codigolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -207,6 +210,8 @@ public class ADMasignaturas extends javax.swing.JFrame {
                     .addComponent(jlbcargar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jPanel4.setBackground(new java.awt.Color(153, 255, 204));
 
         jbtnasignar.setText("ASIGNAR");
         jbtnasignar.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +260,8 @@ public class ADMasignaturas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jPanel5.setBackground(new java.awt.Color(153, 255, 204));
 
         jLabel4.setText("BUSCAR CURSO:");
 
