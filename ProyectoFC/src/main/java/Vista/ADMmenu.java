@@ -32,6 +32,8 @@ public class ADMmenu extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        menuJornada = new javax.swing.JMenuItem();
+        menuFormacion = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,6 +125,22 @@ public class ADMmenu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem8);
 
+        menuJornada.setText("JORNADA");
+        menuJornada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuJornadaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuJornada);
+
+        menuFormacion.setText("FORMACIÓN");
+        menuFormacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFormacionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuFormacion);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("SALIR");
@@ -193,6 +211,16 @@ public class ADMmenu extends javax.swing.JFrame {
         try{ this.dispose(); ADMcrearalumno cal = new ADMcrearalumno(); cal.setVisible(true); } catch (SQLException ex) { System.out.println("error menu Alumno"); }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void menuFormacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFormacionActionPerformed
+        // TODO add your handling code here:
+        try{ this.dispose(); ADMcrearformacion acceso = new ADMcrearformacion(); acceso.setVisible(true); } catch (SQLException ex) { System.out.println("error menu formacion"); }
+    }//GEN-LAST:event_menuFormacionActionPerformed
+
+    private void menuJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuJornadaActionPerformed
+        // TODO add your handling code here:
+        try{ this.dispose(); ADMcrearjornada acces = new ADMcrearjornada(); acces.setVisible(true); } catch (SQLException ex) { System.out.println("error menu jornada"); }
+    }//GEN-LAST:event_menuJornadaActionPerformed
+
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);
         this.icono = new ImageIcon(
@@ -218,5 +246,7 @@ public class ADMmenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblImagen;
+    private javax.swing.JMenuItem menuFormacion;
+    private javax.swing.JMenuItem menuJornada;
     // End of variables declaration//GEN-END:variables
 }
