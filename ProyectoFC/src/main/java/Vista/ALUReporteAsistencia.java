@@ -9,12 +9,12 @@ package Vista;
  *
  * @author byron
  */
-public class ReporteAsistenciaEstudiante extends javax.swing.JFrame {
+public class ALUReporteAsistencia extends javax.swing.JFrame {
 
     /**
      * Creates new form ReporteAsistenciaEstudiante
      */
-    public ReporteAsistenciaEstudiante() {
+    public ALUReporteAsistencia() {
         initComponents();
     }
 
