@@ -1,5 +1,6 @@
 package Conexion;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -432,6 +433,11 @@ public class SQLMetodos {
         return rs;
     }
     
+    public  ResultSet buscarasislistadoestudiantes(String c, String b){
+        ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula AND alumno.cur_codigo = '"+ c +"' AND persona.per_apellido LIKE '"+ b +"_%' ORDER BY persona.per_apellido");
+        return rs;
+    }
+    
     
     
     
@@ -446,8 +452,23 @@ public class SQLMetodos {
         return rs;
     }
     
+    public  ResultSet DOCactividades(String c, String a){
+        ResultSet rs = conexion.query("SELECT DISTINCT not_nombre FROM notas WHERE cur_codigo = '"+ c +"' AND asig_codigo = '"+ a +"' ORDER BY not_nombre ");
+        return rs;
+    }
+    
     public  ResultSet DOCasislistadoestudiantes(String c){
         ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula AND alumno.cur_codigo = '"+ c +"' ORDER BY persona.per_apellido");
+        return rs;
+    }
+    
+    public  ResultSet DOCasislistadoestudiantesasistencia(String c, String a, Date fc){
+        ResultSet rs = conexion.query("SELECT asistencia.alu_cedula, per_nombre, per_apellido, asi_faltas FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN asistencia ON alumno.alu_cedula = asistencia.alu_cedula WHERE asistencia.cur_codigo = '"+ c +"' AND asistencia.asig_codigo = '"+ a +"' AND asistencia.asi_fecha = '"+ fc +"' ORDER BY persona.per_apellido");
+        return rs;
+    }
+    
+    public  ResultSet DOCasislistadoestudiantesnotas(String c, String a, String ac){
+        ResultSet rs = conexion.query("SELECT DISTINCT notas.alu_cedula, per_nombre, per_apellido, not_nota FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN notas ON alumno.alu_cedula = notas.alu_cedula WHERE notas.cur_codigo = '"+ c +"' AND notas.asig_codigo = '"+ a +"' AND notas.not_nombre = '"+ ac +"' ORDER BY persona.per_apellido");
         return rs;
     }
 }

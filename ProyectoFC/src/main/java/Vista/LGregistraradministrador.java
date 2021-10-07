@@ -668,7 +668,7 @@ public class LGregistraradministrador extends javax.swing.JFrame {
             //instanciar relacion
             Relacion rel = new Relacion(ctfcedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);                
             // instanciar persona
-            Persona per = new Persona(ctfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), ctfcedula.getText(), Date.valueOf(nacimiento));
+            Persona per = new Persona(ctfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", ctfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar administrador
             Administrador ad = new Administrador(ctfcedula.getText(), jtfcorreo.getText(), rs4.toString(), ctfcedula.getText());
             //verificacion de campos vacios

@@ -31,9 +31,7 @@ public class Poliglota{
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        System.out.println("sa");
         if(conexion.noQuery("INSERT INTO poliglota (pol_codigo, pol_poliglota) VALUES ('" + getPol_codigo()+ "','" + getPol_poliglota()+ "');") == null){
-            System.out.println("sa1");
             return true;
         }
         else

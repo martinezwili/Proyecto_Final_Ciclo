@@ -113,10 +113,6 @@ public class Login extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
 
-        jtfcedula.setText("0150213456");
-
-        jtfcontras.setText("Nomesale123");
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CONTRASEÑA:");
@@ -223,7 +219,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jbtningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtningresarActionPerformed
         // TODO add your handling code here:
-        Persona pers = new Persona(jtfcedula.getText(), null, null, null, null, null, null);
+        Persona pers = new Persona(jtfcedula.getText(), null, null, null, null, null, null, null);
         Docente doc = new Docente(jtfcedula.getText(), null, null, null, null);
         Alumno alu = new Alumno(jtfcedula.getText(), null, null, null, null, null);
         Administrador adm = new Administrador(jtfcedula.getText(), null, null, null);
@@ -238,6 +234,7 @@ public class Login extends javax.swing.JFrame {
                         //verificar datos
                         if(Administrador.loginAD(jtfcedula.getText(), jtfcontras.getText())){
                             this.dispose(); ADMmenu madm = new ADMmenu(); madm.setVisible(true);
+                            administrador = jtfcedula.getText();
                         //mensaje de datos incorrectos
                         }else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                         //mensaje de cedula incorrecta
@@ -249,6 +246,7 @@ public class Login extends javax.swing.JFrame {
                         //verificar datos
                         if(Docente.loginDO(jtfcedula.getText(), jtfcontras.getText())){
                             this.dispose(); DOCmenu mdoc = new DOCmenu(); mdoc.setVisible(true);
+                            docente = jtfcedula.getText();
                         //mensaje de datos incorrectos
                         } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                     //mensaje de cedula incorrecta
@@ -260,6 +258,7 @@ public class Login extends javax.swing.JFrame {
                         //verificar datos
                         if(Alumno.loginAL(jtfcedula.getText(), jtfcontras.getText())){
                             this.dispose(); ALUmenu mdoc = new ALUmenu(); mdoc.setVisible(true);
+                            alumno = jtfcedula.getText();
                         //mensaje de datos incorrectos
                         } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
                     //mensaje cedula no registrada en alumno    

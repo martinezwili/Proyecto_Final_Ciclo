@@ -1,6 +1,9 @@
 package Vista;
 
 import java.awt.Image;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -142,6 +145,11 @@ public class DOCmenu extends javax.swing.JFrame {
         });
 
         jButton6.setText("MODIFICAR ASISTENCIA");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("REPORTE GENERAL");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -239,7 +247,12 @@ public class DOCmenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // instanciar clase de asistencia
+            this.dispose();
+            DOCingresarasistencia dociasis = new DOCingresarasistencia();
+            dociasis.setVisible(true);
+        } catch (SQLException ex) { System.out.println("error menu docente a asistencia"); }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
@@ -247,15 +260,30 @@ public class DOCmenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // instanciar clase de modificar notas
+            this.dispose();
+            DOCmodificarnotas docnot = new DOCmodificarnotas();
+            docnot.setVisible(true);
+        } catch (SQLException ex) { System.out.println("error doc menu a modificar notas"); }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // instanciar clase de modificar notas
+            this.dispose();
+            DOCeliminarnotas docnot = new DOCeliminarnotas();
+            docnot.setVisible(true);
+        } catch (SQLException ex) { System.out.println("error doc menu a eliminar notas"); }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // instanciar clase de modificar asistencia
+            this.dispose();
+            DOCingresarnotas docnot = new DOCingresarnotas();
+            docnot.setVisible(true);
+        } catch (SQLException ex) { System.out.println("error doc menu a ingresar asistencia"); }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void NOEDITABLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NOEDITABLEActionPerformed
@@ -263,8 +291,19 @@ public class DOCmenu extends javax.swing.JFrame {
     }//GEN-LAST:event_NOEDITABLEActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:oo
+        this.dispose();
+        Login lg = new Login();
+        lg.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        try {
+            // instanciar clase de modificar asistencia
+            this.dispose();
+            DOCmodificarasistencia dociasis = new DOCmodificarasistencia();
+            dociasis.setVisible(true);
+        } catch (SQLException ex) { System.out.println("error menu docente a asistencia"); }
+    }//GEN-LAST:event_jButton6ActionPerformed
    
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);
