@@ -633,7 +633,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
             //instanciar relacion
             Relacion rel = new Relacion(jtfcedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);
             // instanciar persona
-            Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
+            Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar administrador
             Administrador ad = new Administrador(jtfcedula.getText(), jtfcorreo.getText(), rs4.toString(), jtfcedula.getText());
             //verificacion de campos vacios
@@ -719,7 +719,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
         // instanciar relacion
         Relacion rel = new Relacion(jtfcedula.getText(), null, null, null, null);
         // instanciar persona
-        Persona per = new Persona(jtfcedula.getText(), null,null, null, null, null, null);
+        Persona per = new Persona(jtfcedula.getText(), null,null, null, null, null, null, null);
         // instanciar administrador
         Administrador adm = new Administrador(jtfcedula.getText(), null, null, null);
         //excepcion de comprobar direccion

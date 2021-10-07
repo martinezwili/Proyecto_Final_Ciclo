@@ -636,7 +636,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             //instanciar relacion
             Relacion rel = new Relacion(jtfcedula.getText(), jtfcodigo.getText(), rs3, rs2, rs1);
             // instanciar persona
-            Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), jtfcedula.getText(), Date.valueOf(nacimiento));
+            Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar alumno
             Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, rs6, jtfcedula.getText());
             //verificacion de campos vacios
@@ -746,7 +746,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         // instanciar relacion
         Relacion rel = new Relacion(jtfcedula.getText(), null, null, null, null);
         // instanciar persona
-        Persona per = new Persona(jtfcedula.getText(), null,null, null, null, null, null);
+        Persona per = new Persona(jtfcedula.getText(), null,null, null, null, null, null, null);
         // instanciar alumno
         Alumno al = new Alumno(jtfcedula.getText(), null, null, null, null, null);
         //excepcion de comprobar direccion
