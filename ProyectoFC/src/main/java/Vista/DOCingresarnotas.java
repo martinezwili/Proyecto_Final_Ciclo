@@ -1,7 +1,7 @@
 package Vista;
 
 import Conexion.SQLMetodos;
-import Modelo.Notas;
+import Modelo.Notass;
 import java.awt.Image;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -340,12 +340,12 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                         Random rss = new Random(123);
                         codigo = String.valueOf(rs.nextInt(99999999-1+1) + 25);
                     }
-                }while(Notas.comcodigo(codigo) == true);
+                }while(Notass.comcodigo(codigo) == true);
                 String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
                 String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
                 String cedula = jtablenotas.getValueAt(i, 0).toString();
                 double notas = Double.parseDouble(jtablenotas.getValueAt(i,3).toString());
-                Notas nt = new Notas(codigo, jtfnombreactividad.getText(), curso, asignatura, cedula, notas);
+                Notass nt = new Notass(codigo, jtfnombreactividad.getText(), curso, asignatura, cedula, notas);
                 nt.insertar();
             } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
         }

@@ -1,7 +1,7 @@
 package Vista;
 
 import Conexion.SQLMetodos;
-import Modelo.Notas;
+import Modelo.Notass;
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -344,7 +344,7 @@ public class DOCmodificarnotas extends javax.swing.JFrame {
                 String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
                 String cedula = jtablenotas.getValueAt(i, 0).toString();
                 double notas = Double.parseDouble(jtablenotas.getValueAt(i,3).toString());
-                Notas nt = new Notas(null, cbactividades.getSelectedItem().toString(), curso, asignatura, cedula, notas);
+                Notass nt = new Notass(null, cbactividades.getSelectedItem().toString(), curso, asignatura, cedula, notas);
                 nt.actualizar();
             } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
         }
