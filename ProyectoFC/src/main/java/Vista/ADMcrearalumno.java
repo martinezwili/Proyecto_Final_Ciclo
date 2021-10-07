@@ -306,6 +306,11 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         jLabel8.setText("POLIGLOTA");
 
         cbpoliglota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbpoliglota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbpoliglotaActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("NACIONALIDAD:");
@@ -827,6 +832,10 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             jtablealumno.setModel(modelo);
         } catch (SQLException ex) { System.out.println("error buscar administrador"); }
     }//GEN-LAST:event_jtfbuscarKeyReleased
+
+    private void cbpoliglotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbpoliglotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbpoliglotaActionPerformed
 
     public void mostrarseleccionado(String a) throws SQLException{
         cbpoliglota.setSelectedItem(sqlm.mpoliglota(a));

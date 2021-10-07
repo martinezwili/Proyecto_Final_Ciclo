@@ -1,6 +1,8 @@
 package Vista;
 
+import Conexion.SQLMetodos;
 import java.awt.Image;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +13,7 @@ import javax.swing.JLabel;
 public class DOCmenu extends javax.swing.JFrame {
     private ImageIcon imagen;
     private Icon icono;
+    SQLMetodos sqlm = new SQLMetodos();
 
     public DOCmenu() {
         initComponents();
@@ -244,6 +247,10 @@ public class DOCmenu extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        /*this.dispose();
+        DOCreporteuser acceso = new DOCreporteuser();
+        acceso.setVisible(true);
+        ResultSet rs = sqlm.DOCcedula(c)*/
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

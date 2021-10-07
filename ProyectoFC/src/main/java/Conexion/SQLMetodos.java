@@ -471,4 +471,9 @@ public class SQLMetodos {
         ResultSet rs = conexion.query("SELECT DISTINCT notas.alu_cedula, per_nombre, per_apellido, not_nota FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN notas ON alumno.alu_cedula = notas.alu_cedula WHERE notas.cur_codigo = '"+ c +"' AND notas.asig_codigo = '"+ a +"' AND notas.not_nombre = '"+ ac +"' ORDER BY persona.per_apellido");
         return rs;
     }
+    
+    public  ResultSet DOCcedula(String c){
+        ResultSet rs = conexion.query("SELECT doc_cedula FROM docente WHERE doc_cedula = '"+ c +"'");
+        return rs;
+    }
 }
