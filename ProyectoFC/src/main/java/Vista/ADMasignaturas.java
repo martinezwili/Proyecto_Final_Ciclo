@@ -98,6 +98,8 @@ public class ADMasignaturas extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 204));
 
+        jPanel2.setBackground(new java.awt.Color(153, 255, 204));
+
         jLabel1.setText("ASIGNAR ASIGNATURAS A CURSOS.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -247,23 +249,23 @@ public class ADMasignaturas extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbtnasignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnasignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jbtnasignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jbtnasignar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -299,9 +301,11 @@ public class ADMasignaturas extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtfbuscarcursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnbusca))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbtnbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        jPanel6.setBackground(new java.awt.Color(153, 255, 204));
 
         jtabledatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -390,8 +394,11 @@ public class ADMasignaturas extends javax.swing.JFrame {
             String rs1 = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString()), rs2 = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
             //instanciar clase
             relacionasignaturas rca = new relacionasignaturas(jtfcodigo.getText(), rs2, rs1, jtfcedula.getText());
-            //insertar datos
-            if(rca.insertar()){ JOptionPane.showMessageDialog(rootPane, "Los datos se guardaron exitosamente"); todo(); } else { JOptionPane.showMessageDialog(rootPane, "No se guardaron exitosamente los datos"); }
+            //verificar que no se repitan asignaturas en un curso
+            if(rca.compasignacion() == false){
+                //insertar datos
+                if(rca.insertar()){ JOptionPane.showMessageDialog(rootPane, "Los datos se guardaron exitosamente"); todo(); } else { JOptionPane.showMessageDialog(rootPane, "No se guardaron exitosamente los datos"); }
+            } else { JOptionPane.showMessageDialog(rootPane, "Esta curso ya tiene esta asignatura verifique"); }
         } catch (SQLException ex) { System.out.println("error obtener codigo de combo box"); }
     }//GEN-LAST:event_jbtnasignarActionPerformed
 

@@ -66,4 +66,8 @@ public class Validaciones {
         } catch (NumberFormatException e) { estado = false; System.out.println("Error al intentar validar"); }
         return estado;
     }
+    
+    public boolean validarestado(String estado){
+        if(estado.equals("ACTIVO") || estado.equals("INACTIVO")){ return true; } else { return false; }
+    }
 }

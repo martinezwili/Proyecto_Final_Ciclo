@@ -1,5 +1,6 @@
 package Vista;
 
+import Conexion.SQLMetodos;
 import Modelo.*;
 import java.awt.Image;
 import java.sql.SQLException;
@@ -231,36 +232,48 @@ public class Login extends javax.swing.JFrame {
                 if(cbboxeres.getSelectedItem().equals("ADMINISTRADOR")){
                     //verifica cedula de administrador
                     if(adm.comp()){
-                        //verificar datos
-                        if(Administrador.loginAD(jtfcedula.getText(), jtfcontras.getText())){
-                            this.dispose(); ADMmenu madm = new ADMmenu(); madm.setVisible(true);
-                            administrador = jtfcedula.getText();
-                        //mensaje de datos incorrectos
-                        }else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
+                        //Verificar estado
+                        if(SQLMetodos.compestado(jtfcedula.getText()) == false){
+                            //verificar datos
+                            if(Administrador.loginAD(jtfcedula.getText(), jtfcontras.getText())){
+                                this.dispose(); ADMmenu madm = new ADMmenu(); madm.setVisible(true);
+                                administrador = jtfcedula.getText();
+                            //mensaje de datos incorrectos
+                            }else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
+                        // mensaje de que el usuario esta inactivo
+                        } else { JOptionPane.showMessageDialog(rootPane, "SE le a restringido el ingreso comuniquese con el administrador"); }
                         //mensaje de cedula incorrecta
                     } else { JOptionPane.showMessageDialog(rootPane, "Verifique su cedula o intente en DOCENTE O ALUMNO"); }
                 //verifica seleccion
                 } else if(cbboxeres.getSelectedItem().equals("DOCENTE")){
                     //verifica cedula de docente
                     if(doc.compd()){
-                        //verificar datos
-                        if(Docente.loginDO(jtfcedula.getText(), jtfcontras.getText())){
-                            this.dispose(); DOCmenu mdoc = new DOCmenu(); mdoc.setVisible(true);
-                            docente = jtfcedula.getText();
-                        //mensaje de datos incorrectos
-                        } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
+                        //Verificar estado
+                        if(SQLMetodos.compestado(jtfcedula.getText()) == false){
+                            //verificar datos
+                            if(Docente.loginDO(jtfcedula.getText(), jtfcontras.getText())){
+                                this.dispose(); DOCmenu mdoc = new DOCmenu(); mdoc.setVisible(true);
+                                docente = jtfcedula.getText();
+                            //mensaje de datos incorrectos
+                            } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
+                        // mensaje de que el usuario esta inactivo
+                        } else { JOptionPane.showMessageDialog(rootPane, "SE le a restringido el ingreso comuniquese con el administrador"); }
                     //mensaje de cedula incorrecta
                     }else { JOptionPane.showMessageDialog(rootPane, "Verifique su cedula o intente en ADMINISTRADOR O ALUMNO"); }
                 //verifica seleccion
                 }else if(cbboxeres.getSelectedItem().equals("ALUMNO")){
                     //verifica cedula de alumno
                     if(alu.comp()){
-                        //verificar datos
-                        if(Alumno.loginAL(jtfcedula.getText(), jtfcontras.getText())){
-                            this.dispose(); ALUmenu mdoc = new ALUmenu(); mdoc.setVisible(true);
-                            alumno = jtfcedula.getText();
-                        //mensaje de datos incorrectos
-                        } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
+                        //Verificar estado
+                        if(SQLMetodos.compestado(jtfcedula.getText()) == false){
+                            //verificar datos
+                            if(Alumno.loginAL(jtfcedula.getText(), jtfcontras.getText())){
+                                this.dispose(); ALUmenu mdoc = new ALUmenu(); mdoc.setVisible(true);
+                                alumno = jtfcedula.getText();
+                            //mensaje de datos incorrectos
+                            } else { JOptionPane.showMessageDialog(rootPane, "Datos incorrectos verifique"); }
+                        // mensaje de que el usuario esta inactivo
+                        } else { JOptionPane.showMessageDialog(rootPane, "SE le a restringido el ingreso comuniquese con el administrador"); }
                     //mensaje cedula no registrada en alumno    
                     } else { JOptionPane.showMessageDialog(rootPane, "Verifique su cedula o intente en DOCENTE O ADMINISTRADOR"); }
                 //mensaje que verifique su opcion 

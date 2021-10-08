@@ -51,7 +51,7 @@ public class Poliglota{
     }
     
     public boolean actualizar(){
-        if(conexion.noQuery("UPDATE poliglota SET pol_codigo = '"+ getPol_codigo() +"', pol_poliglota = '"+ getPol_poliglota() +"' WHERE pol_codigo = '"+ getPol_codigo() +"'") == null){
+        if(conexion.noQuery("UPDATE poliglota SET pol_poliglota = '"+ getPol_poliglota() +"' WHERE pol_codigo = '"+ getPol_codigo() +"'") == null){
             return true;
         }
         else

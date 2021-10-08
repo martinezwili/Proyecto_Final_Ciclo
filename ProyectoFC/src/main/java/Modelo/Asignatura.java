@@ -90,39 +90,25 @@ public class Asignatura {
     
     public boolean compparaeliminar() throws SQLException{
         boolean as = false;
-        ResultSet rs1 = conexion.query("SELECT doc_cedula FROM docente WHERE as1_codigo = '" + getAsig_codigo()+ "'");
+        ResultSet rs1 = conexion.query("SELECT asis_cedula FROM asistencia WHERE asig_codigo = '" + getAsig_codigo()+ "'");
         if(rs1.next()){
             as = true;
         }
         else
         {
-            ResultSet rs2 = conexion.query("SELECT doc_cedula FROM docente WHERE as2_codigo = '" + getAsig_codigo()+ "'");
+            ResultSet rs2 = conexion.query("SELECT not_codigo FROM notas WHERE asig_codigo = '" + getAsig_codigo()+ "'");
             if(rs2.next()){
-                as = true;
+                return true;
             }
             else
             {
-                ResultSet rs3 = conexion.query("SELECT doc_cedula FROM docente WHERE as3_codigo = '" + getAsig_codigo()+ "'");
-                if(rs2.next()){
-                    as = true;
+                ResultSet rs3 = conexion.query("SELECT relaasig_codigo FROM relacionasignaturas WHERE asig_codigo = '" + getAsig_codigo()+ "'");
+                if(rs3.next()){
+                    return true;
                 }
                 else
                 {
-                    ResultSet rs4 = conexion.query("SELECT relanot_codigo FROM relacionnotas WHERE asig_codigo = '" + getAsig_codigo()+ "'");
-                    if(rs2.next()){
-                        return true;
-                    }
-                    else
-                    {
-                        ResultSet rs5 = conexion.query("SELECT relaasig_codigo FROM relacioncursoasignatura WHERE asig_codigo = '" + getAsig_codigo()+ "'");
-                        if(rs2.next()){
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
+                    return false;
                 }
             }
         }

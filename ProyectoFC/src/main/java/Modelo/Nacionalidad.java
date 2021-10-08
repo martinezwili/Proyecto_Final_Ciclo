@@ -51,7 +51,7 @@ public class Nacionalidad {
     }
     
     public boolean actualizar(){
-        if(conexion.noQuery("UPDATE nacionalidad SET nac_codigo = '"+ getNac_codigo() +"', nac_nacionalidad = '"+ getNac_nacionalidad() +"' WHERE nac_codigo = '"+ getNac_codigo() +"'") == null){
+        if(conexion.noQuery("UPDATE nacionalidad SET nac_nacionalidad = '"+ getNac_nacionalidad() +"' WHERE nac_codigo = '"+ getNac_codigo() +"'") == null){
             return true;
         }
         else

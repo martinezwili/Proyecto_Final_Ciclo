@@ -194,11 +194,6 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                 cbcursoMouseClicked(evt);
             }
         });
-        cbcurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbcursoActionPerformed(evt);
-            }
-        });
 
         cbasignatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -381,10 +376,6 @@ public class DOCingresarnotas extends javax.swing.JFrame {
             jtablenotas.setModel(modelo1);
         } catch (SQLException ex) { System.out.println("error mostrar tabla asistencia"); }
     }//GEN-LAST:event_jtfnombreactividadKeyReleased
-
-    private void cbcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbcursoActionPerformed
 
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);

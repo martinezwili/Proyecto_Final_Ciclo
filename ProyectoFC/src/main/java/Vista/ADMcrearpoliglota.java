@@ -23,6 +23,7 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
+        this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\poliglota.png");
     }
     
     public void todo() throws SQLException{
@@ -61,6 +62,8 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         txtCodigo = new javax.swing.JTextField();
         txtPoliglota = new javax.swing.JTextField();
+        jlbcodigo = new javax.swing.JLabel();
+        jlbpoliglota = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -69,6 +72,8 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jtfbuscar4 = new javax.swing.JTextField();
         jlbbuscar4 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jlblogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,7 +125,7 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(jbtncrear)
                 .addGap(18, 18, 18)
                 .addComponent(jbtneliminar)
@@ -128,7 +133,7 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
                 .addComponent(jbtnmodificar)
                 .addGap(18, 18, 18)
                 .addComponent(jbtsalir)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(0, 102, 153));
@@ -155,26 +160,30 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 255, 255));
 
-        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCodigoFocusLost(evt);
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
             }
         });
 
-        txtPoliglota.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPoliglotaFocusLost(evt);
+        txtPoliglota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPoliglotaKeyReleased(evt);
             }
         });
 
@@ -183,18 +192,25 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPoliglota, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtPoliglota, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(txtCodigo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbpoliglota, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtPoliglota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPoliglota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbpoliglota, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 255));
@@ -232,7 +248,7 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 461, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,32 +287,46 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel7.setBackground(new java.awt.Color(204, 255, 255));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 17, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel1))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,95 +337,110 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtncrearActionPerformed
-        // excepcion de comprobacion de poliglota
+        //excepcion de comprobacion
         try{
-            //instanciar clase poliglota
+            // instanciar clase poliglota
             Poliglota pol = new Poliglota(txtCodigo.getText(), txtPoliglota.getText());
             //verificacion de campos vacios
             if(txtCodigo.getText().length() != 0 && txtPoliglota.getText().length() != 0){
-                //comprobacion de registrado
-                if(pol.comp() == false){
-                    //insertar poliglota
-                    if(pol.insertar()){
-                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                        //excepcion de mostrar y limpiar datos
-                        try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de poliglota"); }
-                    //mensaje de error al insertar datos
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
-                    //mensaje de comprobacion de codigo
-                } else { JOptionPane.showMessageDialog(rootPane, "codigo de poliglota ya registado verifique"); }
+                //validar validaciones
+                if(cumplirvalidaciones(txtCodigo.getText(), txtPoliglota.getText()) == true){
+                    //comprobacion de registrado
+                    if(pol.comp() == false){
+                        //insertar poliglota
+                        if(pol.insertar()){
+                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de poliglota"); }
+                        //mensaje de error al insertar datos
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
+                        //mensaje de comprobacion de codigo
+                    } else { JOptionPane.showMessageDialog(rootPane, "codigo de poliglota ya registado verifique"); }
+                }
             //mensaje de control de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden estar espacios vacios verifique"); }
         //mensaje error de excepcion de comprobacion
-        } catch (SQLException ex) { System.out.println("error comprobacion crear poliglota"); }
+        } catch (SQLException ex) { System.out.println("error comprobacion registrar poliglota"); }
     }//GEN-LAST:event_jbtncrearActionPerformed
 
     private void jbtneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtneliminarActionPerformed
         //excepcion de comprobar 
         try {
-            // TODO add your handling code here:
+            // instanciar clase poliglota
             Poliglota pol = new Poliglota(txtCodigo.getText(), null);
-            //comprobacion de registrado
-            if(pol.comp()){
-                //eliminar poliglota
-                if(pol.eliminar()){
-                    JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
-                    //excepcion de mostrar y limpiar datos
-                    try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de poliglota"); }
-                //mensaje de error que no se elimino poliglota
-                } else { JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente"); }
-                //mensaje de comprobacion de codigo
-            } else { JOptionPane.showMessageDialog(rootPane, "codigo de poliglota no registado verifique"); }
+             //verificacion de campos vacios
+            if(txtCodigo.getText().length() != 0 && txtPoliglota.getText().length() != 0){
+                //comprobacion de registrado
+                if(pol.comp()){
+                    //comprobacion de relacion para eliminar
+                    if(pol.compparaeliminar() == false){
+                        //eliminar poliglota
+                        if(pol.eliminar()){
+                            JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de poliglota"); }
+                        //mensaje de error que no se elimino poliglota
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente"); }
+                    //mensaje de comprobacion de relacion
+                    } else { JOptionPane.showMessageDialog(rootPane, "No se puede eliminar por que se esta usando"); }
+                    //mensaje de comprobacion de codigo
+                } else { JOptionPane.showMessageDialog(rootPane, "codigo de poliglota no registado verifique"); }
+            }
         //mensaje error de excepcion de comprobacion
-        } catch (SQLException ex) { System.out.println("error comprobacion crear poliglota"); }
+        } catch (SQLException ex) { System.out.println("error comprobacion registrar poliglota"); }
     }//GEN-LAST:event_jbtneliminarActionPerformed
 
     private void jbtnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnmodificarActionPerformed
-        // excepcion de comprobacion de poliglota
+        // excepcion de comprobacion de sexo
         try{
             //instanciar clase poliglota
             Poliglota pol = new Poliglota(txtCodigo.getText(), txtPoliglota.getText());
             //verificacion de campos vacios
             if(txtCodigo.getText().length() != 0 && txtPoliglota.getText().length() != 0){
-                //comprobacion de registrado
-                if(pol.comp()){
-                    //actualizar poliglota
-                    if(pol.actualizar()){
-                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                        //excepcion de mostrar y limpiar datos
-                        try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de poliglota"); }
-                    //mensaje de error al actualisar datos
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
-                    //mensaje de comprobacion de codigo
-                } else { JOptionPane.showMessageDialog(rootPane, "codigo de poliglota no registado verifique"); }
+                //validar validaciones
+                if(cumplirvalidaciones(txtCodigo.getText(), txtPoliglota.getText()) == true){
+                    //comprobacion de registrado
+                    if(pol.comp()){
+                        //actualizar poliglota
+                        if(pol.actualizar()){
+                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de poliglota"); }
+                        //mensaje de error al actualisar datos
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
+                        //mensaje de comprobacion de codigo
+                    } else { JOptionPane.showMessageDialog(rootPane, "codigo de poliglota no registado verifique"); }
+                }
             //mensaje de control de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden estar espacios vacios verifique"); }
         //mensaje error de excepcion de comprobacion
@@ -408,16 +453,6 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         String codigo = tablaPoliglota.getValueAt(filaa, 0).toString(); txtCodigo.setText(codigo);
         String pol = tablaPoliglota.getValueAt(filaa, 1).toString(); txtPoliglota.setText(pol);
     }//GEN-LAST:event_tablaPoliglotaMouseClicked
-
-    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
-        // TODO add your handling code here:
-        if(vali.validardijitos8(txtCodigo.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, solo 4 digitos"); }
-    }//GEN-LAST:event_txtCodigoFocusLost
-
-    private void txtPoliglotaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPoliglotaFocusLost
-        // TODO add your handling code here:
-        if(vali.validaNombreoApellido(txtPoliglota.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, solo 4 digitos"); }
-    }//GEN-LAST:event_txtPoliglotaFocusLost
 
     private void jbtsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtsalirActionPerformed
         // instanciar login
@@ -433,9 +468,36 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
                 modelo.addRow(new Object[]{rs.getString("pol_codigo"), rs.getString("pol_poliglota")});
             }
             tablaPoliglota.setModel(modelo);
-        } catch (SQLException ex) { System.out.println("error buscar administrador"); }
+        } catch (SQLException ex) { System.out.println("error buscar poliglota"); }
     }//GEN-LAST:event_jtfbuscar4KeyReleased
 
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        if(vali.validardijitos8(txtCodigo.getText())){ this.colocarImagen(this.jlbcodigo, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbcodigo, "src\\main\\java\\Imagenes\\V2.png"); }        
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
+    private void txtPoliglotaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPoliglotaKeyReleased
+        if(vali.validardijitos15(txtPoliglota.getText())){ this.colocarImagen(this.jlbpoliglota, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbpoliglota, "src\\main\\java\\Imagenes\\V2.png"); }        
+    }//GEN-LAST:event_txtPoliglotaKeyReleased
+
+    public boolean cumplirvalidaciones(String codigo, String poliglota){
+        String as = null;
+        boolean ab = false;
+        if(vali.validardijitos8(codigo) == true){
+            if(vali.validardijitos10(poliglota) == true){
+                as = null;
+            } else { as = "Verifique el poliglota";  }
+        } else { as = "Verifique el codigo";  }
+        
+        if(as == null){
+            ab = true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, as);
+        }
+        return ab;
+    }
+    
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);
         this.icono = new ImageIcon(
@@ -458,12 +520,16 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtncrear;
     private javax.swing.JButton jbtneliminar;
     private javax.swing.JButton jbtnmodificar;
     private javax.swing.JButton jbtsalir;
     private javax.swing.JLabel jlbbuscar4;
+    private javax.swing.JLabel jlbcodigo;
+    private javax.swing.JLabel jlblogo;
+    private javax.swing.JLabel jlbpoliglota;
     private javax.swing.JTextField jtfbuscar4;
     private javax.swing.JTable tablaPoliglota;
     private javax.swing.JTextField txtCodigo;

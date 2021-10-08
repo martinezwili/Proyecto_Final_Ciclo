@@ -23,7 +23,7 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         todo();
         this.colocarImagen(this.jlbbuscar, "src\\main\\java\\Imagenes\\buscar.png");
-        this.colocarImagen(this.lblimagen, "src\\main\\java\\Imagenes\\libro.png");
+        this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\libro.png");
     }
     
     public void todo() throws SQLException{
@@ -71,7 +71,8 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jtfbuscar = new javax.swing.JTextField();
         jlbbuscar = new javax.swing.JLabel();
-        lblimagen = new javax.swing.JLabel();
+        lblimagen = new javax.swing.JPanel();
+        jlblogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,7 +107,7 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -120,11 +121,11 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                 .addGap(55, 55, 55))
         );
 
@@ -259,27 +260,23 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtncrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jbtncrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jbtneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jbtnmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+            .addComponent(jbtsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(jbtncrear)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtneliminar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnmodificar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtsalir)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -314,7 +311,24 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lblimagen.setText("jLabel1");
+        lblimagen.setBackground(new java.awt.Color(255, 255, 204));
+
+        javax.swing.GroupLayout lblimagenLayout = new javax.swing.GroupLayout(lblimagen);
+        lblimagen.setLayout(lblimagenLayout);
+        lblimagenLayout.setHorizontalGroup(
+            lblimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblimagenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        lblimagenLayout.setVerticalGroup(
+            lblimagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblimagenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -326,19 +340,18 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblimagen, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblimagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 48, Short.MAX_VALUE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -348,40 +361,38 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)
-                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(lblimagen, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(53, 53, 53)
+                        .addComponent(lblimagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -394,17 +405,20 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
             Asignatura asig = new Asignatura(jtcodigo.getText(), jtfnombre.getText(), jtadescripcion.getText());
             //comprobacion de campos vacios
             if(jtcodigo.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtadescripcion.getText().length() != 0){
-                //comprobacion de que no existe asignatura
-                if(asig.comp() == false){
-                    //crear asignatura
-                    if(asig.insertar()){
-                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                        //captura la excepcion de mostrar y eliminar asignaturas
-                        try { todo(); } catch (SQLException ex) { System.out.println("error al mostrar y eliminar asignatura"); }
-                    //menasaje de error al crear asignatura
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
-                //mensaje de comprobacion de existencia de asignatura
-                } else { JOptionPane.showMessageDialog(rootPane, "Este codigo de asignatura ya esta registrado"); }
+                //validar validaciones
+                if(cumplirvalidaciones(jtcodigo.getText(), jtfnombre.getText(), jtadescripcion.getText()) == true){
+                    //comprobacion de que no existe asignatura
+                    if(asig.comp() == false){
+                        //crear asignatura
+                        if(asig.insertar()){
+                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+                            //captura la excepcion de mostrar y eliminar asignaturas
+                            try { todo(); } catch (SQLException ex) { System.out.println("error al mostrar y eliminar asignatura"); }
+                        //menasaje de error al crear asignatura
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
+                    //mensaje de comprobacion de existencia de asignatura
+                    } else { JOptionPane.showMessageDialog(rootPane, "Este codigo de asignatura ya esta registrado"); }
+                }
             //mensaje de comprobacion de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden aver espacios vacios verifique"); }
         //mensaje de captura de excepcion
@@ -437,17 +451,20 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
             Asignatura asig = new Asignatura(jtcodigo.getText(), jtfnombre.getText(), jtadescripcion.getText());
             //comprobacion de campos vacios
             if(jtcodigo.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtadescripcion.getText().length() != 0){
-                //comprobacion de codigo de asignatura
-                if(asig.comp()){
-                    //actualizar datos
-                    if(asig.actualizar()){
-                        JOptionPane.showMessageDialog(rootPane, "Actualizado exitosamente");
-                        //excepcion de mostrar y limpiar
-                        try { todo(); } catch (SQLException ex) { System.out.println("Error actualizar asignatura limpiar y mostrar"); }
-                    //mensaje de error al actualizar datos
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se Actualizo exitosamente"); }
-                //mensaje de comprobacion de codigo de asignatura
-                } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la asignatura"); }
+                //validar validaciones
+                if(cumplirvalidaciones(jtcodigo.getText(), jtfnombre.getText(), jtadescripcion.getText()) == true){
+                    //comprobacion de codigo de asignatura
+                    if(asig.comp()){
+                        //actualizar datos
+                        if(asig.actualizar()){
+                            JOptionPane.showMessageDialog(rootPane, "Actualizado exitosamente");
+                            //excepcion de mostrar y limpiar
+                            try { todo(); } catch (SQLException ex) { System.out.println("Error actualizar asignatura limpiar y mostrar"); }
+                        //mensaje de error al actualizar datos
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se Actualizo exitosamente"); }
+                    //mensaje de comprobacion de codigo de asignatura
+                    } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la asignatura"); }
+                }
             //mensaje de comprobacion de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden aver espacios vacios verifique"); }
         //mensaje de excepcion de codigo de asignatura
@@ -500,6 +517,27 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
         jtadescripcion.setText("");
     }
     
+    public boolean cumplirvalidaciones(String codigo, String asignatura, String descripcion){
+        String as = null;
+        boolean ab = false;
+        if(vali.validardijitos8(codigo) == true){
+            if(vali.validardijitos30(asignatura) == true){
+                if(vali.validardijitos200(descripcion) == true){
+                    as = null;
+                } else { as = "Verifique la descripcion";  }
+            } else { as = "Verifique el asignatura";  }
+        } else { as = "Verifique el codigo";  }
+        
+        if(as == null){
+            ab = true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, as);
+        }
+        return ab;
+    }
+    
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);
         this.icono = new ImageIcon(
@@ -532,12 +570,13 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
     private javax.swing.JButton jbtnmodificar;
     private javax.swing.JButton jbtsalir;
     private javax.swing.JLabel jlbbuscar;
+    private javax.swing.JLabel jlblogo;
     private javax.swing.JTable jtableasignatura;
     private javax.swing.JTextArea jtadescripcion;
     private javax.swing.JTextField jtcodigo;
     private javax.swing.JTextField jtfbuscar;
     private javax.swing.JTextField jtfnombre;
-    private javax.swing.JLabel lblimagen;
+    private javax.swing.JPanel lblimagen;
     private javax.swing.JLabel nombrelbl;
     // End of variables declaration//GEN-END:variables
 }

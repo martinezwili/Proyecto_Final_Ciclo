@@ -23,6 +23,7 @@ public class ADMcrearrango extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
+        this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\rango.png");
     }
     
     public void todo() throws SQLException{
@@ -61,6 +62,8 @@ public class ADMcrearrango extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         txtRango = new javax.swing.JTextField();
+        jlbcodigo = new javax.swing.JLabel();
+        jlbrango = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaRango = new javax.swing.JTable();
@@ -69,11 +72,13 @@ public class ADMcrearrango extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnCrear = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jtfbuscar4 = new javax.swing.JTextField();
         jlbbuscar4 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jlblogo = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,15 +156,15 @@ public class ADMcrearrango extends javax.swing.JFrame {
 
         jLabel5.setText("RANGO:");
 
-        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCodigoFocusLost(evt);
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
             }
         });
 
-        txtRango.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtRangoFocusLost(evt);
+        txtRango.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRangoKeyReleased(evt);
             }
         });
 
@@ -174,20 +179,30 @@ public class ADMcrearrango extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRango, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(txtRango, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlbrango, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jlbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRango, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtRango, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addComponent(jlbrango, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -217,15 +232,15 @@ public class ADMcrearrango extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(245, 245, 245))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(212, 212, 212))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 153));
@@ -265,13 +280,6 @@ public class ADMcrearrango extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setText("ELIMINAR");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,31 +287,34 @@ public class ADMcrearrango extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29))
+            .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btnCrear)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnActualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 204, 153));
@@ -320,7 +331,7 @@ public class ADMcrearrango extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jtfbuscar4)
+                .addComponent(jtfbuscar4, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jlbbuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -335,40 +346,64 @@ public class ADMcrearrango extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel7.setBackground(new java.awt.Color(255, 204, 153));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -386,27 +421,30 @@ public class ADMcrearrango extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // excepcion de comprobacion de rangoo
+        //excepcion de comprobacion
         try{
-            //instanciar clase rango
+            // instanciar clase rango
             Rango ran = new Rango(txtCodigo.getText(), txtRango.getText());
             //verificacion de campos vacios
             if(txtCodigo.getText().length() != 0 && txtRango.getText().length() != 0){
-                //comprobacion de registrado
-                if(ran.comp() == false){
-                    //insertar rango
-                    if(ran.insertar()){
-                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                        //excepcion de mostrar y limpiar datos
-                        try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de rango"); }
-                    //mensaje de error al insertar datos
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
-                    //mensaje de comprobacion de codigo
-                } else { JOptionPane.showMessageDialog(rootPane, "codigo de rango ya registado verifique"); }
+                //validar validaciones
+                if(cumplirvalidaciones(txtCodigo.getText(), txtRango.getText()) == true){
+                    //comprobacion de registrado
+                    if(ran.comp() == false){
+                        //insertar rango
+                        if(ran.insertar()){
+                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de rango"); }
+                        //mensaje de error al insertar datos
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
+                        //mensaje de comprobacion de codigo
+                    } else { JOptionPane.showMessageDialog(rootPane, "codigo de rango ya registado verifique"); }
+                }
             //mensaje de control de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden estar espacios vacios verifique"); }
         //mensaje error de excepcion de comprobacion
-        } catch (SQLException ex) { System.out.println("error comprobacion crear rango"); }
+        } catch (SQLException ex) { System.out.println("error comprobacion registrar rango"); }
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void tablaRangoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaRangoMouseClicked
@@ -419,44 +457,51 @@ public class ADMcrearrango extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         //excepcion de comprobar 
         try {
-            // TODO add your handling code here:
+            // instanciar clase rango
             Rango ran = new Rango(txtCodigo.getText(), null);
-            //comprobacion de registrado
-            if(ran.compparaeliminar() == false){
-                //comprobar codigo de rango
+             //verificacion de campos vacios
+            if(txtCodigo.getText().length() != 0 && txtRango.getText().length() != 0){
+                //comprobacion de registrado
                 if(ran.comp()){
-                    //eliminar rango
-                    if(ran.eliminar()){
-                        JOptionPane.showMessageDialog(rootPane, " Se eliminaron correctamente los datos");
-                        todo();
-                    //mensaje de error de datos no eliminados
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se eliminaron correctamente los datos"); }
-                //mensaje de codigo incorrecto
-                } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo de la rango"); }
-            //mensaje de que el rango tiene relacion
-            } else { JOptionPane.showMessageDialog(rootPane, " No se puede eliminar este rango por que esta en uso"); }
-        //mensaje de error producido
-        } catch (SQLException ex) { System.out.println("error al comprobar codigo de la rango 1"); }
+                    //comprobacion de relacion para eliminar
+                    if(ran.compparaeliminar() == false){
+                        //eliminar rango
+                        if(ran.eliminar()){
+                            JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de rango"); }
+                        //mensaje de error que no se elimino rango
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente"); }
+                    //mensaje de comprobacion de relacion
+                    } else { JOptionPane.showMessageDialog(rootPane, "No se puede eliminar por que se esta usando"); }
+                    //mensaje de comprobacion de codigo
+                } else { JOptionPane.showMessageDialog(rootPane, "codigo de rango no registado verifique"); }
+            }
+        //mensaje error de excepcion de comprobacion
+        } catch (SQLException ex) { System.out.println("error comprobacion registrar rango"); }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // excepcion de comprobacion de poliglota
+        // excepcion de comprobacion de sexo
         try{
             //instanciar clase rango
             Rango ran = new Rango(txtCodigo.getText(), txtRango.getText());
             //verificacion de campos vacios
             if(txtCodigo.getText().length() != 0 && txtRango.getText().length() != 0){
-                //comprobacion de registrado
-                if(ran.comp()){
-                    //actualizar rango
-                    if(ran.actualizar()){
-                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                        //excepcion de mostrar y limpiar datos
-                        try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de rango"); }
-                    //mensaje de error al actualisar datos
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
-                    //mensaje de comprobacion de codigo
-                } else { JOptionPane.showMessageDialog(rootPane, "codigo de rango no registado verifique"); }
+                //validar validaciones
+                if(cumplirvalidaciones(txtCodigo.getText(), txtRango.getText()) == true){
+                    //comprobacion de registrado
+                    if(ran.comp()){
+                        //actualizar rango
+                        if(ran.actualizar()){
+                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de rango"); }
+                        //mensaje de error al actualisar datos
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
+                        //mensaje de comprobacion de codigo
+                    } else { JOptionPane.showMessageDialog(rootPane, "codigo de rango no registado verifique"); }
+                }
             //mensaje de control de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden estar espacios vacios verifique"); }
         //mensaje error de excepcion de comprobacion
@@ -467,16 +512,6 @@ public class ADMcrearrango extends javax.swing.JFrame {
         // instanciar login
         this.dispose(); ADMmenu madm = new ADMmenu(); madm.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
-        // TODO add your handling code here:
-        if(vali.validardijitos8(txtCodigo.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, solo 4 digitos"); }
-    }//GEN-LAST:event_txtCodigoFocusLost
-
-    private void txtRangoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRangoFocusLost
-        // TODO add your handling code here:
-        if(vali.validaNombreoApellido(txtRango.getText()) == false){ JOptionPane.showMessageDialog(rootPane, "Verifique el codigo, ingrese solo letras"); }
-    }//GEN-LAST:event_txtRangoFocusLost
 
     private void jtfbuscar4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscar4KeyReleased
         try {
@@ -490,9 +525,36 @@ public class ADMcrearrango extends javax.swing.JFrame {
         } catch (SQLException ex) { System.out.println("error buscar administrador"); }
     }//GEN-LAST:event_jtfbuscar4KeyReleased
 
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        if(vali.validardijitos8(txtCodigo.getText())){ this.colocarImagen(this.jlbcodigo, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbcodigo, "src\\main\\java\\Imagenes\\V2.png"); }        
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
+    private void txtRangoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRangoKeyReleased
+        if(vali.validardijitos20(txtRango.getText())){ this.colocarImagen(this.jlbrango, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbrango, "src\\main\\java\\Imagenes\\V2.png"); }        
+    }//GEN-LAST:event_txtRangoKeyReleased
+
     public void limpiarCampos(){
         txtCodigo.setText("");
         txtRango.setText("");
+    }
+    
+    public boolean cumplirvalidaciones(String codigo, String rango){
+        String as = null;
+        boolean ab = false;
+        if(vali.validardijitos8(codigo) == true){
+            if(vali.validardijitos20(rango) == true){
+                as = null;
+            } else { as = "Verifique el rango";  }
+        } else { as = "Verifique el codigo";  }
+        
+        if(as == null){
+            ab = true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, as);
+        }
+        return ab;
     }
     
     private void colocarImagen(JLabel lbl, String ruta){
@@ -521,6 +583,7 @@ public class ADMcrearrango extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -533,6 +596,9 @@ public class ADMcrearrango extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JLabel jlbbuscar4;
+    private javax.swing.JLabel jlbcodigo;
+    private javax.swing.JLabel jlblogo;
+    private javax.swing.JLabel jlbrango;
     private javax.swing.JTextField jtfbuscar4;
     private javax.swing.JTable tablaRango;
     private javax.swing.JTextField txtCodigo;

@@ -28,11 +28,10 @@ public class Jornada {
         this.jor_jornada = jor_jornada;
     }
     
+    Conexionbd conexion = new Conexionbd();
+    
     public boolean insertar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "INSERT INTO jornada (jor_codigo, jor_jornada) VALUES ('" + getJor_codigo()+ "','" + getJor_jornada()+ "');";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("INSERT INTO jornada (jor_codigo, jor_jornada) VALUES ('" + getJor_codigo()+ "','" + getJor_jornada()+ "');") == null){
             return true;
         }
         else
@@ -42,10 +41,7 @@ public class Jornada {
     }
     
     public boolean eliminar(){
-        Conexionbd conexion = new Conexionbd();
-        String nsql = "DELETE FROM jornada WHERE jor_codigo = '" + getJor_codigo()+ "'";
-        
-        if(conexion.noQuery(nsql) == null){
+        if(conexion.noQuery("DELETE FROM jornada WHERE jor_codigo = '" + getJor_codigo()+ "'") == null){
             return true;
         }
         else
@@ -53,11 +49,9 @@ public class Jornada {
             return false;
         }
     }
-    
-    Conexionbd conexion = new Conexionbd();
-    
+        
     public boolean actualizar(){
-        if(conexion.noQuery("UPDATE jornada SET jor_codigo = '"+ getJor_codigo() +"', jor_jornada = '"+ getJor_jornada() +"' WHERE jor_codigo = '"+ getJor_codigo() +"'") == null){
+        if(conexion.noQuery("UPDATE jornada SET jor_jornada = '"+ getJor_jornada() +"' WHERE jor_codigo = '"+ getJor_codigo() +"'") == null){
             return true;
         }
         else

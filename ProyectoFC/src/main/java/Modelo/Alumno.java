@@ -114,7 +114,7 @@ public class Alumno {
             return false;
         }
     }
-    
+            
     public static boolean loginAL(String a, String b) throws SQLException{
         Conexionbd conexion = new Conexionbd();
         //sentencia para validar que sea un alumno
@@ -123,7 +123,7 @@ public class Alumno {
         ResultSet rs = conexion.query("SELECT alu_cedula FROM alumno WHERE alu_cedula = '" + a +"'");
         if(rs.next()){
             //sentencia para comprovar contrase;a
-            ResultSet rs2 = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "'");
+            ResultSet rs2 = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "' AND per_estado = '"+ "ACTIVO" +"'");
             if(rs2.next()){
                 as = true;
             }

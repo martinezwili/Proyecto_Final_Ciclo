@@ -23,6 +23,7 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
+        this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\sexo.png");
     }
     
     public void todo() throws SQLException{
@@ -59,6 +60,8 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         txtCodigo = new javax.swing.JTextField();
         txtSexo = new javax.swing.JTextField();
+        jlabelsexo = new javax.swing.JLabel();
+        jlbcodigo = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSexo = new javax.swing.JTable();
@@ -70,6 +73,8 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jtfbuscar4 = new javax.swing.JTextField();
         jlbbuscar4 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jlblogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,7 +88,7 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(66, 66, 66))
         );
@@ -108,13 +113,14 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel3)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,23 +132,42 @@ public class ADMcrearsexo extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
 
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
+            }
+        });
+
+        txtSexo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSexoKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtSexo, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(txtCodigo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(txtSexo))
-                .addContainerGap())
+                    .addComponent(jlabelsexo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlabelsexo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         tablaSexo.setModel(new javax.swing.table.DefaultTableModel(
@@ -169,7 +194,7 @@ public class ADMcrearsexo extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -226,7 +251,7 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(jbtncrear)
                 .addGap(18, 18, 18)
                 .addComponent(jbtneliminar)
@@ -234,7 +259,7 @@ public class ADMcrearsexo extends javax.swing.JFrame {
                 .addComponent(jbtnmodificar)
                 .addGap(18, 18, 18)
                 .addComponent(jbtsalir)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel10.setBackground(new java.awt.Color(0, 153, 153));
@@ -266,27 +291,45 @@ public class ADMcrearsexo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel7.setBackground(new java.awt.Color(0, 153, 153));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -296,15 +339,18 @@ public class ADMcrearsexo extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -312,7 +358,7 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,17 +375,20 @@ public class ADMcrearsexo extends javax.swing.JFrame {
             Sexo sex = new Sexo(txtCodigo.getText(), txtSexo.getText());
             //verificacion de campos vacios
             if(txtCodigo.getText().length() != 0 && txtSexo.getText().length() != 0){
-                //comprobacion de registrado
-                if(sex.comp() == false){
-                    //insertar sexo
-                    if(sex.insertar()){
-                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                        //excepcion de mostrar y limpiar datos
-                        try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de sexo"); }
-                    //mensaje de error al insertar datos
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
-                    //mensaje de comprobacion de codigo
-                } else { JOptionPane.showMessageDialog(rootPane, "codigo de sexo ya registado verifique"); }
+                //validar validaciones
+                if(cumplirvalidaciones(txtCodigo.getText(), txtSexo.getText()) == true){
+                    //comprobacion de registrado
+                    if(sex.comp() == false){
+                        //insertar sexo
+                        if(sex.insertar()){
+                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de sexo"); }
+                        //mensaje de error al insertar datos
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
+                        //mensaje de comprobacion de codigo
+                    } else { JOptionPane.showMessageDialog(rootPane, "codigo de sexo ya registado verifique"); }
+                }
             //mensaje de control de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden estar espacios vacios verifique"); }
         //mensaje error de excepcion de comprobacion
@@ -351,17 +400,24 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         try {
             // instanciar clase sexo
             Sexo sex = new Sexo(txtCodigo.getText(), null);
-            //comprobacion de registrado
-            if(sex.comp()){
-                //eliminar sexo
-                if(sex.eliminar()){
-                    JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
-                    //excepcion de mostrar y limpiar datos
-                    try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de sexo"); }
-                //mensaje de error que no se elimino poliglota
-                } else { JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente"); }
-                //mensaje de comprobacion de codigo
-            } else { JOptionPane.showMessageDialog(rootPane, "codigo de sexo no registado verifique"); }
+             //verificacion de campos vacios
+            if(txtCodigo.getText().length() != 0 && txtSexo.getText().length() != 0){
+                //comprobacion de registrado
+                if(sex.comp()){
+                    //comprobacion de relacion para eliminar
+                    if(sex.compparaeliminar() == false){
+                        //eliminar sexo
+                        if(sex.eliminar()){
+                            JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de sexo"); }
+                        //mensaje de error que no se elimino sexo
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se elimino exitosamente"); }
+                    //mensaje de comprobacion de relacion
+                    } else { JOptionPane.showMessageDialog(rootPane, "No se puede eliminar por que se esta usando"); }
+                    //mensaje de comprobacion de codigo
+                } else { JOptionPane.showMessageDialog(rootPane, "codigo de sexo no registado verifique"); }
+            }
         //mensaje error de excepcion de comprobacion
         } catch (SQLException ex) { System.out.println("error comprobacion registrar sexo"); }
     }//GEN-LAST:event_jbtneliminarActionPerformed
@@ -373,17 +429,20 @@ public class ADMcrearsexo extends javax.swing.JFrame {
             Sexo sex = new Sexo(txtCodigo.getText(), txtSexo.getText());
             //verificacion de campos vacios
             if(txtCodigo.getText().length() != 0 && txtSexo.getText().length() != 0){
-                //comprobacion de registrado
-                if(sex.comp()){
-                    //actualizar sexo
-                    if(sex.actualizar()){
-                        JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
-                        //excepcion de mostrar y limpiar datos
-                        try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de sexo"); }
-                    //mensaje de error al actualisar datos
-                    } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
-                    //mensaje de comprobacion de codigo
-                } else { JOptionPane.showMessageDialog(rootPane, "codigo de sexo no registado verifique"); }
+                //validar validaciones
+                if(cumplirvalidaciones(txtCodigo.getText(), txtSexo.getText()) == true){
+                    //comprobacion de registrado
+                    if(sex.comp()){
+                        //actualizar sexo
+                        if(sex.actualizar()){
+                            JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
+                            //excepcion de mostrar y limpiar datos
+                            try { todo(); } catch (SQLException ex) { System.out.println("error mostrar y limpiar datos de sexo"); }
+                        //mensaje de error al actualisar datos
+                        } else { JOptionPane.showMessageDialog(rootPane, "No se guardo exitosamente"); }
+                        //mensaje de comprobacion de codigo
+                    } else { JOptionPane.showMessageDialog(rootPane, "codigo de sexo no registado verifique"); }
+                }
             //mensaje de control de campos vacios
             } else { JOptionPane.showMessageDialog(rootPane, "No pueden estar espacios vacios verifique"); }
         //mensaje error de excepcion de comprobacion
@@ -414,6 +473,33 @@ public class ADMcrearsexo extends javax.swing.JFrame {
         } catch (SQLException ex) { System.out.println("error buscar sexo"); }
     }//GEN-LAST:event_jtfbuscar4KeyReleased
 
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        if(vali.validardijitos8(txtCodigo.getText())){ this.colocarImagen(this.jlbcodigo, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbcodigo, "src\\main\\java\\Imagenes\\V2.png"); }        
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
+    private void txtSexoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSexoKeyReleased
+        if(vali.validardijitos10(txtSexo.getText())){ this.colocarImagen(this.jlabelsexo, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlabelsexo, "src\\main\\java\\Imagenes\\V2.png"); }        
+    }//GEN-LAST:event_txtSexoKeyReleased
+
+    public boolean cumplirvalidaciones(String codigo, String sexo){
+        String as = null;
+        boolean ab = false;
+        if(vali.validardijitos8(codigo) == true){
+            if(vali.validardijitos10(sexo) == true){
+                as = null;
+            } else { as = "Verifique el sexo";  }
+        } else { as = "Verifique el codigo";  }
+        
+        if(as == null){
+            ab = true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, as);
+        }
+        return ab;
+    }
+    
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);
         this.icono = new ImageIcon(
@@ -436,12 +522,16 @@ public class ADMcrearsexo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtncrear;
     private javax.swing.JButton jbtneliminar;
     private javax.swing.JButton jbtnmodificar;
     private javax.swing.JButton jbtsalir;
+    private javax.swing.JLabel jlabelsexo;
     private javax.swing.JLabel jlbbuscar4;
+    private javax.swing.JLabel jlbcodigo;
+    private javax.swing.JLabel jlblogo;
     private javax.swing.JTextField jtfbuscar4;
     private javax.swing.JTable tablaSexo;
     private javax.swing.JTextField txtCodigo;

@@ -97,7 +97,7 @@ public class Administrador{
         ResultSet rs = conexion.query("SELECT adm_cedula FROM administrador WHERE adm_cedula = '" + a +"'");
         if(rs.next()){
             //sentencia para comprovar contrase;a
-            ResultSet rs2 = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "'");
+            ResultSet rs2 = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '" + a + "' and per_contraseña = '" + b + "' AND per_estado = '"+ "ACTIVO" +"'");
             if(rs2.next()){
                 as = true;
             }

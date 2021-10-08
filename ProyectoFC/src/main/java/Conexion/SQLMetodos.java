@@ -301,7 +301,7 @@ public class SQLMetodos {
     }
     
     public  ResultSet mtablepersona(String a){
-        ResultSet rs = conexion.query("SELECT per_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_contraseña FROM persona WHERE per_cedula = '"+ a +"'");
+        ResultSet rs = conexion.query("SELECT per_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_contraseña, per_estado FROM persona WHERE per_cedula = '"+ a +"'");
         return rs;
     }
     
@@ -472,8 +472,15 @@ public class SQLMetodos {
         return rs;
     }
     
-    public  ResultSet DOCcedula(String c){
-        ResultSet rs = conexion.query("SELECT doc_cedula FROM docente WHERE doc_cedula = '"+ c +"'");
-        return rs;
+    public static boolean compestado(String a) throws SQLException{
+        Conexionbd conexion = new Conexionbd();
+        ResultSet rs = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '"+ a +"' AND per_estado = 'INACTIVO'");
+        if(rs.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
