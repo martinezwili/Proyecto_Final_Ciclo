@@ -483,4 +483,16 @@ public class SQLMetodos {
             return false;
         }
     }
+    
+    public static boolean userDoc(String a ) throws SQLException{
+        Conexionbd conexion = new Conexionbd();
+        ResultSet rs = conexion.query("select docente.doc_cedula, persona.per_nombre, persona.per_apellido ,persona.per_telefono, persona.per_nacimiento, rango.ran_rango, direccion.dic_calle FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula INNER JOIN rango ON docente.ran_codigo=rango.ran_codigo INNER JOIN relacion ON relacion.rel_cedula='"+ a +"' INNER JOIN direccion ON relacion.dir_codigo=direccion.dir_codigo");
+        if(rs.next()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
