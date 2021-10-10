@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class DOCmodificarnotas extends javax.swing.JFrame {
@@ -345,7 +346,7 @@ public class DOCmodificarnotas extends javax.swing.JFrame {
                 String cedula = jtablenotas.getValueAt(i, 0).toString();
                 double notas = Double.parseDouble(jtablenotas.getValueAt(i,3).toString());
                 Notass nt = new Notass(null, cbactividades.getSelectedItem().toString(), curso, asignatura, cedula, notas);
-                nt.actualizar();
+                if(nt.actualizar()) { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas se actualizaron correctamente"); DefaultTableModel a = (DefaultTableModel)jtablenotas.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); } } else { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas no se actualizaron correctamente"); }
             } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
         }
     }//GEN-LAST:event_jbtnguardarActionPerformed

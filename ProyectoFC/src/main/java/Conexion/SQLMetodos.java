@@ -360,7 +360,7 @@ public class SQLMetodos {
     }
     
     public ResultSet mbuscarasignacion(String a) throws SQLException{
-        ResultSet rs = conexion.query("SELECT relaasig_codigo, asig_nombre, cur_nombre, doc_cedula, per_nombre, per_apellido FROM relacionasignaturas INNER JOIN asignatura ON asignatura.asig_codigo = relacionasignaturas.asig_codigo INNER JOIN curso ON curso.cur_codigo = relacionasignaturas.cur_codigo INNER JOIN persona ON persona.per_cedula = relacionasignaturas.doc_cedula WHERE curso.cur_nombre = '" + a + "'");
+        ResultSet rs = conexion.query("SELECT relaasig_codigo, asig_nombre, cur_nombre, doc_cedula, per_nombre, per_apellido FROM relacionasignaturas INNER JOIN asignatura ON asignatura.asig_codigo = relacionasignaturas.asig_codigo INNER JOIN curso ON curso.cur_codigo = relacionasignaturas.cur_codigo INNER JOIN persona ON persona.per_cedula = relacionasignaturas.doc_cedula WHERE curso.cur_nombre LIKE '" + a + "_%'");
         return rs;
     }
     
@@ -370,6 +370,11 @@ public class SQLMetodos {
     
     public  ResultSet buscardocentes(String a){
         ResultSet rs = conexion.query("SELECT doc_cedula, per_nombre, per_apellido FROM docente INNER JOIN persona ON docente.doc_cedula = persona.per_cedula AND persona.per_nombre LIKE '"+ a +"_%'");
+        return rs;
+    }
+    
+    public  ResultSet obtenerdocente(){
+        ResultSet rs = conexion.query("SELECT doc_cedula, per_nombre, per_apellido FROM docente INNER JOIN persona ON docente.doc_cedula = persona.per_cedula");
         return rs;
     }
     
@@ -484,15 +489,60 @@ public class SQLMetodos {
         }
     }
     
-    public static boolean userDoc(String a ) throws SQLException{
-        Conexionbd conexion = new Conexionbd();
-        ResultSet rs = conexion.query("select docente.doc_cedula, persona.per_nombre, persona.per_apellido ,persona.per_telefono, persona.per_nacimiento, rango.ran_rango, direccion.dic_calle FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula INNER JOIN rango ON docente.ran_codigo=rango.ran_codigo INNER JOIN relacion ON relacion.rel_cedula='"+ a +"' INNER JOIN direccion ON relacion.dir_codigo=direccion.dir_codigo");
-        if(rs.next()){
-            return true;
+    public String ADMcomcedula(String a) throws SQLException{
+        String as = null;
+        ResultSet rs = conexion.query("SELECT adm_cedula FROM administrador WHERE adm_cedula = '"+ a +"'");
+        if(rs.next()){  
+            as = "adm";
         }
         else
         {
-            return false;
+            ResultSet rs1 = conexion.query("SELECT alu_cedula FROM alumno WHERE alu_cedula = '"+ a +"'");
+            if(rs1.next()){  
+                as = "alu";
+            }
+            else
+            {
+                ResultSet rs2 = conexion.query("SELECT doc_cedula FROM docente WHERE doc_cedula = '"+ a +"'");
+                if(rs2.next()){  
+                    as = "doc";
+                }
+                else
+                {
+
+                }
+            }
         }
+        return as;
+    }
+    
+    public ResultSet matricula(String a) throws SQLException{
+        ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido, per_estado FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula AND alumno.cur_codigo = '"+ a +"'");
+        return rs;
+    }
+    
+    public  ResultSet buscaralumnomatricula(String a, String b){
+        ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido, per_estado FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula AND alumno.cur_codigo = '"+ a +"' AND persona.per_nombre LIKE '"+ b +"_%'");
+        return rs;
+    }
+    
+    
+    
+    
+    
+    //Buscar administrador
+    public  ResultSet fbuscaradministradoradm(String a, String b, String c, String d, String e){
+        ResultSet rs = conexion.query("SELECT DISTINCT adm_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_estado, adm_correo FROM administrador INNER JOIN persona ON persona.per_cedula = administrador.adm_cedula AND persona.per_cedula LIKE '"+ a +"_%' OR persona.per_cedula = administrador.adm_cedula AND persona.per_nombre LIKE '"+ b +"_%' OR persona.per_cedula = administrador.adm_cedula AND persona.per_apellido LIKE '"+ c +"_%' OR persona.per_cedula = administrador.adm_cedula AND persona.per_telefono LIKE '"+ d +"_%' OR persona.per_cedula = administrador.adm_cedula AND administrador.adm_correo LIKE '"+ e +"_%' ORDER BY persona.per_cedula");
+        return rs;
+    }
+          
+    public  ResultSet fbuscardocenteadm(String a, String b, String c, String d){
+        ResultSet rs = conexion.query("SELECT DISTINCT doc_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_estado FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula AND persona.per_cedula LIKE '"+ a +"_%' OR persona.per_cedula = docente.doc_cedula AND persona.per_nombre LIKE '"+ b +"_%' OR persona.per_cedula = docente.doc_cedula AND persona.per_apellido LIKE '"+ c +"_%' OR persona.per_cedula = docente.doc_cedula AND persona.per_telefono LIKE '"+ d +"_%' OR persona.per_cedula = docente.doc_cedula ORDER BY persona.per_cedula");
+        return rs;
+    }
+    
+    public  ResultSet fbuscaralumnoadm(String a, String b, String c, String d, String e){
+        ResultSet rs = conexion.query("SELECT DISTINCT alu_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_estado, alu_telrepresentante FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula AND persona.per_cedula LIKE '"+ a +"_%' OR persona.per_cedula = alumno.alu_cedula AND persona.per_nombre LIKE '"+ b +"_%' OR persona.per_cedula = alumno.alu_cedula AND persona.per_apellido LIKE '"+ c +"_%' OR persona.per_cedula = alumno.alu_cedula AND persona.per_telefono LIKE '"+ d +"_%' OR persona.per_cedula = alumno.alu_cedula AND alumno.alu_telrepresentante LIKE '"+ e +"_%' ORDER BY persona.per_cedula");
+        return rs;
     }
 }

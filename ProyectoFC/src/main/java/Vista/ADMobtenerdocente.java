@@ -18,7 +18,7 @@ public class ADMobtenerdocente extends javax.swing.JFrame {
         //metodo para mostar los datos en la tabla
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO"});
-        ResultSet rs = sqlm.mdocentes();
+        ResultSet rs = sqlm.obtenerdocente();
         while(rs.next()){
             modelo.addRow(new Object[]{rs.getString("doc_cedula"), rs.getString("per_nombre"), rs.getString("per_apellido")});
         }

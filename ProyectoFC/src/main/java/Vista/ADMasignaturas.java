@@ -5,8 +5,6 @@ import Modelo.*;
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -25,6 +23,7 @@ public class ADMasignaturas extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         todo();
+        this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlbcargar, "src\\main\\java\\Imagenes\\cargando.png");
         this.colocarImagen(this.lblimagen, "src\\main\\java\\Imagenes\\libro.png");
     }
@@ -89,7 +88,7 @@ public class ADMasignaturas extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jtfbuscarcursos = new javax.swing.JTextField();
-        jbtnbusca = new javax.swing.JButton();
+        jlbbuscar4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtabledatos = new javax.swing.JTable();
@@ -274,10 +273,9 @@ public class ADMasignaturas extends javax.swing.JFrame {
 
         jLabel4.setText("BUSCAR CURSO:");
 
-        jbtnbusca.setText("BUSCAR");
-        jbtnbusca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnbuscaActionPerformed(evt);
+        jtfbuscarcursos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfbuscarcursosKeyReleased(evt);
             }
         });
 
@@ -289,20 +287,21 @@ public class ADMasignaturas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jtfbuscarcursos, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnbusca)
-                .addContainerGap())
+                .addComponent(jtfbuscarcursos)
+                .addGap(18, 18, 18)
+                .addComponent(jlbbuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jtfbuscarcursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlbbuscar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jtfbuscarcursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(153, 255, 204));
@@ -349,13 +348,13 @@ public class ADMasignaturas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -409,18 +408,6 @@ public class ADMasignaturas extends javax.swing.JFrame {
         try { if(rca.eliminar()){ JOptionPane.showMessageDialog(rootPane, "Los datos se eliminaron exitosamente"); todo(); } else { JOptionPane.showMessageDialog(rootPane, "No se eliminaron exitosamente los datos"); } } catch (SQLException ex) { System.out.println("error eliminar asignacion"); }
     }//GEN-LAST:event_jbtneliminarActionPerformed
 
-    private void jbtnbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnbuscaActionPerformed
-              try {
-            DefaultTableModel modelo2 = new DefaultTableModel();
-            modelo2.setColumnIdentifiers(new Object[]{"CODIGO", "ASIGNATURA", "CURSO", "CEDULA", "NOMBRE", "APELLIDO"});
-            ResultSet rs2 = sqlm.mbuscarasignacion(jtfbuscarcursos.getText());
-            while(rs2.next()){
-                modelo2.addRow(new Object[]{rs2.getString("relaasig_codigo"), rs2.getString("asig_nombre"), rs2.getString("cur_nombre"), rs2.getString("doc_cedula"), rs2.getString("per_nombre"), rs2.getString("per_apellido")});
-            }
-            jtabledatos.setModel(modelo2);
-        } catch (SQLException ex) { System.out.println("error mostrar datos de busqueda"); }
-    }//GEN-LAST:event_jbtnbuscaActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        try {
             ADMobtenerdocente admod = new ADMobtenerdocente();
@@ -451,6 +438,18 @@ public class ADMasignaturas extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(vali.validardijitos8(jtfcodigo.getText())){ this.colocarImagen(this.codigolbl, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.codigolbl, "src\\main\\java\\Imagenes\\V2.png"); }        
     }//GEN-LAST:event_jtfcodigoKeyReleased
+
+    private void jtfbuscarcursosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarcursosKeyReleased
+        try {
+            DefaultTableModel modelo2 = new DefaultTableModel();
+            modelo2.setColumnIdentifiers(new Object[]{"CODIGO", "ASIGNATURA", "CURSO", "CEDULA", "NOMBRE", "APELLIDO"});
+            ResultSet rs2 = sqlm.mbuscarasignacion(jtfbuscarcursos.getText());
+            while(rs2.next()){
+                modelo2.addRow(new Object[]{rs2.getString("relaasig_codigo"), rs2.getString("asig_nombre"), rs2.getString("cur_nombre"), rs2.getString("doc_cedula"), rs2.getString("per_nombre"), rs2.getString("per_apellido")});
+            }
+            jtabledatos.setModel(modelo2);
+        } catch (SQLException ex) { System.out.println("error mostrar datos de busqueda"); }
+    }//GEN-LAST:event_jtfbuscarcursosKeyReleased
 
     public void limpiar(){
         jtfbuscarcursos.setText("");
@@ -488,8 +487,8 @@ public class ADMasignaturas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtnasignar;
-    private javax.swing.JButton jbtnbusca;
     private javax.swing.JButton jbtneliminar;
+    private javax.swing.JLabel jlbbuscar4;
     private javax.swing.JLabel jlbcargar;
     private javax.swing.JTable jtabledatos;
     private javax.swing.JTextField jtfbuscarcursos;

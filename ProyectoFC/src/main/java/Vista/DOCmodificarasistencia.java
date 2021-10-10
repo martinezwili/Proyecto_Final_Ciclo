@@ -346,7 +346,7 @@ public class DOCmodificarasistencia extends javax.swing.JFrame {
                         String cedula = jtableasistencia.getValueAt(i, 0).toString();
                         int faltas = Integer.valueOf(jtableasistencia.getValueAt(i,3).toString());
                         Asistencia asis = new Asistencia(null, curso, asignatura, cedula, Date.valueOf(fecha), faltas);
-                        asis.actualizar(); jcfecha.setDate(null); moscursos(); 
+                        if(asis.actualizar()){ JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas se modificaron correctamente"); jcfecha.setDate(null); moscursos(); DefaultTableModel a = (DefaultTableModel)jtableasistencia.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); } } else { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas no se modificaron correctamente"); }
                     } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
                 }
             } else { JOptionPane.showMessageDialog(rootPane, "Verifique la fecha"); }

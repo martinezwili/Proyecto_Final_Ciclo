@@ -580,6 +580,11 @@ public class ADMcreardocente extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("CEDULA:");
 
+        jtfcedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfcedulaFocusLost(evt);
+            }
+        });
         jtfcedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfcedulaKeyReleased(evt);
@@ -913,6 +918,12 @@ public class ADMcreardocente extends javax.swing.JFrame {
         this.dispose(); ADMmenu madm = new ADMmenu(); madm.setVisible(true);
     }//GEN-LAST:event_jbtnsalirActionPerformed
 
+    private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
+        try {
+            mostrarseleccionado(jtfcedula.getText());
+        } catch (SQLException ex) { System.out.println("error mostrar cedula repetida"); }
+    }//GEN-LAST:event_jtfcedulaFocusLost
+
     public void mostrarseleccionado(String a) throws SQLException{
         cbpoliglota.setSelectedItem(sqlm.mpoliglota(a));
         cbnacionalidad.setSelectedItem(sqlm.mnacionalidad(a));
@@ -991,6 +1002,26 @@ public class ADMcreardocente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, as);
         }
         return ab;
+    }
+    
+    public void cedulaingresada(String cedula) throws SQLException{
+        String tipo = sqlm.ADMcomcedula(cedula);
+        if(tipo.equals("doc")){
+            int r = JOptionPane.showConfirmDialog(rootPane, "esta cedula ya esta registrada desea ver");
+            if(r == 0){
+                mostrarseleccionado(cedula);
+            }
+        }else if(tipo.equals("alu")){
+            int r1 = JOptionPane.showConfirmDialog(rootPane, "esta cedula ya esta registrada desea ver");
+            if(r1 == 0){
+                this.dispose(); ADMcrearalumno calu = new ADMcrearalumno(); calu.setVisible(true); calu.mostrarseleccionado(cedula); 
+            }
+        }else if (tipo.equals("adm")){
+            int r2 = JOptionPane.showConfirmDialog(rootPane, "esta cedula ya esta registrada desea ver");
+            if(r2 == 0){
+                this.dispose(); ADMcrearadministrador cadm = new ADMcrearadministrador(); cadm.setVisible(true); cadm.mostrarseleccionado(cedula); 
+            }
+        }
     }
     
     private void colocarImagen(JLabel lbl, String ruta){

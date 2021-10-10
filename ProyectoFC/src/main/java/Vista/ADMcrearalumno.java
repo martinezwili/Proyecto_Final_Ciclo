@@ -8,8 +8,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -586,6 +584,11 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             }
         });
 
+        jtfcedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfcedulaFocusLost(evt);
+            }
+        });
         jtfcedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfcedulaKeyReleased(evt);
@@ -922,6 +925,12 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     private void jtfcomunaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcomunaKeyReleased
         if(vali.validardijitos20(jtfcomuna.getText())){ this.colocarImagen(this.jlbcomuna, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbcomuna, "src\\main\\java\\Imagenes\\V2.png"); }
     }//GEN-LAST:event_jtfcomunaKeyReleased
+
+    private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
+        try {
+            mostrarseleccionado(jtfcedula.getText());
+        } catch (SQLException ex) { System.out.println("eror mostrar datos de cedula registrada"); }
+    }//GEN-LAST:event_jtfcedulaFocusLost
     
     public void mostrarseleccionado(String a) throws SQLException{
         cbpoliglota.setSelectedItem(sqlm.mpoliglota(a));
@@ -1005,6 +1014,26 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, as);
         }
         return ab;
+    }
+    
+    public void cedulaingresada(String cedula) throws SQLException{
+        String tipo = sqlm.ADMcomcedula(cedula);
+        if(tipo.equals("alu")){
+            int r = JOptionPane.showConfirmDialog(rootPane, "esta cedula ya esta registrada desea ver");
+            if(r == 0){
+                mostrarseleccionado(cedula);
+            }
+        }else if(tipo.equals("adm")){
+            int r1 = JOptionPane.showConfirmDialog(rootPane, "esta cedula ya esta registrada desea ver");
+            if(r1 == 0){
+                this.dispose(); ADMcrearadministrador cadm = new ADMcrearadministrador(); cadm.setVisible(true); cadm.mostrarseleccionado(cedula); 
+            }
+        }else if (tipo.equals("doc")){
+            int r2 = JOptionPane.showConfirmDialog(rootPane, "esta cedula ya esta registrada desea ver");
+            if(r2 == 0){
+                this.dispose(); ADMcreardocente cdoc = new ADMcreardocente(); cdoc.setVisible(true); cdoc.mostrarseleccionado(cedula); 
+            }
+        }
     }
     
     private void colocarImagen(JLabel lbl, String ruta){

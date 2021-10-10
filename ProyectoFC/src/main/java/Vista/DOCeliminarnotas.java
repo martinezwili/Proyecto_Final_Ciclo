@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class DOCeliminarnotas extends javax.swing.JFrame {
@@ -361,9 +362,8 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
                 String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
                 String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
                 String cedula = jtablenotas.getValueAt(i, 0).toString();
-                double notas = Double.parseDouble(jtablenotas.getValueAt(i,3).toString());
-                Notass nt = new Notass(null, cbactividades.getSelectedItem().toString(), curso, asignatura, cedula, notas);
-                nt.actualizar();
+                Notass nt = new Notass(null, cbactividades.getSelectedItem().toString(), curso, asignatura, null, null);
+                if(nt.eliminar()){ JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas se eliminaron correctamente"); DefaultTableModel a = (DefaultTableModel)jtablenotas.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); } } else { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas no se eliminaron correctamente"); }
             } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
         }
     }//GEN-LAST:event_jbtnguardarActionPerformed

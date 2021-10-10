@@ -333,7 +333,7 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                         String cedula = jtableasistencia.getValueAt(i, 0).toString();
                         int faltas = Integer.valueOf(jtableasistencia.getValueAt(i,3).toString()); 
                         Asistencia asis = new Asistencia(codigo, curso, asignatura, cedula, Date.valueOf(fecha), faltas); 
-                        asis.insertar(); jcfecha.setDate(null); moscursos();
+                        if(asis.insertar()) { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas se ingresaron correctamente"); jcfecha.setDate(null); moscursos(); DefaultTableModel a = (DefaultTableModel)jtableasistencia.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }} else { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas no se ingresaron correctamente"); }
                     } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
                 }
             } else { JOptionPane.showMessageDialog(rootPane, "Esta fecha ya esta registrada"); }

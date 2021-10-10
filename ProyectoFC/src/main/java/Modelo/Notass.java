@@ -112,4 +112,17 @@ public class Notass {
         ResultSet rs = conexion.query("SELECT not_codigo FROM notas WHERE not_codigo = '" + codigo + "'");
         if(rs.next()){ return true; }else { return false; }
     }
+    
+    public static boolean comactividad(String a) throws SQLException{
+        Conexionbd conexion = new Conexionbd();
+        ResultSet rs = conexion.query("SELECT not_codigo FROM notas WHERE not_nombre = '" + a + "'");
+        if(rs.next()){ return true; }else { return false; }
+    }
+    
+    public static boolean comnotaalumno(String c, String cu, String as, String no) throws SQLException{
+        Conexionbd conexion = new Conexionbd();
+        ResultSet rs = conexion.query("SELECT not_codigo FROM notas WHERE alu_cedula = '" + c + "' AND asig_codigo = '" + as + "' AND cur_codigo = '" + cu + "' AND not_nombre = '" + no + "'");
+        if(rs.next()){ return true; }else { return false; }
+        
+    }
 }

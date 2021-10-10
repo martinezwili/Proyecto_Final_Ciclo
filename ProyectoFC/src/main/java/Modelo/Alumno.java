@@ -138,4 +138,14 @@ public class Alumno {
         }
         return as;
     }
+    
+    public boolean matricula(){
+        if(conexion.noQuery("UPDATE alumno SET cur_codigo = '"+ getCur_codigo() +"' WHERE alu_cedula = '"+ getAlu_cedula()+"'") == null){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
