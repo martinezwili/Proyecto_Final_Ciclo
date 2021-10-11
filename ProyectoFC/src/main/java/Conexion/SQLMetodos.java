@@ -578,11 +578,19 @@ public class SQLMetodos {
         return rs;
     }
      
-     public ResultSet reporteAsistencia(String curso, String asignatura){
+    public ResultSet reporteAsistencia(String curso, String asignatura){
         String sql = ("select asig_nombre,SUM(asi_faltas) from asistencia INNER JOIN asignatura on asistencia.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=asistencia.cur_codigo  WHERE asistencia.cur_codigo='"+curso+"' and asistencia.asig_codigo='"+asignatura+"'");
         ResultSet rs = conexion.query(sql);
         return rs;
-     }
+    }
+    
+    public ResultSet reporteNotas(String curso, String asignatura){
+        String sql = ("select avg(not_nota) as NOTAS,asig_nombre from notas INNER JOIN asignatura on notas.asig_codigo=asignatura.asig_codigo WHERE notas.asig_codigo='"+asignatura+"' and notas.cur_codigo='"+curso+"'");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+   }
+    
+    //fiin
      
     public static boolean validarnacimiento(Date nacimi){
         SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");

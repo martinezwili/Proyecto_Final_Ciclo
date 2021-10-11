@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class DOCreporteasistencia extends javax.swing.JFrame {
     SQLMetodos sqlm = new SQLMetodos();
+    
     public DOCreporteasistencia() throws SQLException {
         initComponents();
         todo();
@@ -26,6 +27,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     
     public void todo() throws SQLException{
         moscursos();
+        mosasignatura();
     }
     
     public void moscursos() throws SQLException{
