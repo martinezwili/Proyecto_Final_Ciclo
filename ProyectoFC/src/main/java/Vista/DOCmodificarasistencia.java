@@ -20,12 +20,15 @@ public class DOCmodificarasistencia extends javax.swing.JFrame {
     private Icon icono;
 
     public DOCmodificarasistencia() throws SQLException {
-        initComponents(); setLocationRelativeTo(null); moscursos();
+        initComponents(); setLocationRelativeTo(null); todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlbcargar, "src\\main\\java\\Imagenes\\cargando.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\asislogomd.png");
     }
-    
+    public void todo() throws SQLException{
+        moscursos();
+        mosasignatura();
+    }
     public void moscursos() throws SQLException{
         cbcurso.removeAllItems(); ResultSet rs = sqlm.DOCcurso(Login.docente);
         while(rs.next()){ cbcurso.addItem(rs.getString(1)); }

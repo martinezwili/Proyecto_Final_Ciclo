@@ -172,6 +172,11 @@ public class ADMcrearnacionalidad extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(204, 204, 255));
 
+        jtfbuscar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfbuscar4ActionPerformed(evt);
+            }
+        });
         jtfbuscar4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfbuscar4KeyReleased(evt);
@@ -483,6 +488,10 @@ public class ADMcrearnacionalidad extends javax.swing.JFrame {
         } catch (SQLException ex) { System.out.println("error comprobacion crear nacionalidad"); }
     }//GEN-LAST:event_jbtnmodificarActionPerformed
 
+    private void jtfbuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfbuscar4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfbuscar4ActionPerformed
+
     public void limpiarCampos(){
         txtCodigo.setText("");
         txtNacionalidad.setText("");
@@ -526,7 +535,6 @@ public class ADMcrearnacionalidad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -539,7 +547,6 @@ public class ADMcrearnacionalidad extends javax.swing.JFrame {
     private javax.swing.JLabel jlbbuscar4;
     private javax.swing.JLabel jlbcodigo;
     private javax.swing.JLabel jlblogo;
-    private javax.swing.JLabel jlblogo1;
     private javax.swing.JLabel jlbnacionalidad;
     private javax.swing.JTextField jtfbuscar4;
     private javax.swing.JTable tablaNacionalidad;

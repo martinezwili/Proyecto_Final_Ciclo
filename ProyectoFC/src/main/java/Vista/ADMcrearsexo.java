@@ -264,6 +264,11 @@ public class ADMcrearsexo extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(0, 153, 153));
 
+        jtfbuscar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfbuscar4ActionPerformed(evt);
+            }
+        });
         jtfbuscar4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfbuscar4KeyReleased(evt);
@@ -480,6 +485,10 @@ public class ADMcrearsexo extends javax.swing.JFrame {
     private void txtSexoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSexoKeyReleased
         if(vali.validardijitos10(txtSexo.getText())){ this.colocarImagen(this.jlabelsexo, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlabelsexo, "src\\main\\java\\Imagenes\\V2.png"); }        
     }//GEN-LAST:event_txtSexoKeyReleased
+
+    private void jtfbuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfbuscar4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfbuscar4ActionPerformed
 
     public boolean cumplirvalidaciones(String codigo, String sexo){
         String as = null;

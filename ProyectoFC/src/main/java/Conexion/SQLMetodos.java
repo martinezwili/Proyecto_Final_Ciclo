@@ -177,10 +177,29 @@ public class SQLMetodos {
         ResultSet rs = conexion.query(sql);
         return rs;
     }
+    //PARA REPORTES DEL ALUMNO
+    public  ResultSet mReporteAlumno(){
+        String sql = ("SELECT alu_cedula, per_nombre, per_apellido,per_telefono,per_nacimiento,dic_calle, alu_telrepresentante FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN relacion ON relacion.rel_cedula = persona.per_cedula INNER JOIN direccion ON direccion.dir_codigo= relacion.dir_codigo ");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }  
+    public  ResultSet mReporteAsigAlumno(){
+        String sql = ("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN alumno ON alumno.cur_codigo= curso.cur_codigo");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    } 
+    public  ResultSet mReporteAsisAlumno(){
+        String sql = ("SELECT asig_nombre,per_nombre,asi_faltas FROM asistencia INNER JOIN asignatura ON  asignatura.asig_codigo= asistencia.asig_codigo INNER JOIN docente ON relacionasignaturas.doc_cedula=docente.doc_cedula INNER JOIN asistencia ON curso.cur_codigo=asistencia.cur_codigo INNER JOIN persona ON persona.doc_cedula=docente.doc_cedula ");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    } 
+     public  ResultSet mReporteNotasAlumno(){
+        String sql = ("SELECT  ");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    } 
     
-       
-    
-    
+    //Finaliza Reporte del Alumno
     
     
     public  String mnacionalidad(String a) throws SQLException{

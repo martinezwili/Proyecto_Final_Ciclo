@@ -21,20 +21,26 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
     private Icon icono;
     
     public DOCingresarasistencia() throws SQLException {
-        initComponents(); setLocationRelativeTo(null); moscursos();
+        initComponents(); setLocationRelativeTo(null); todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\asislogorg.png");
     }
-    
+    public void todo() throws SQLException{
+        moscursos();
+        mosasignatura();
+    }
     public void moscursos() throws SQLException{
         cbcurso.removeAllItems(); ResultSet rs = sqlm.DOCcurso(Login.docente);
         while(rs.next()){ cbcurso.addItem(rs.getString(1)); }
     }
     
-    public void mosasignatura() throws SQLException{
+     public void mosasignatura() throws SQLException{
         String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
-        cbasignatura.removeAllItems(); ResultSet rs = sqlm.DOCasignaturas(Login.docente, curso);
-        while(rs.next()){ cbasignatura.addItem(rs.getString(1)); }
+        cbasignatura.removeAllItems();
+        ResultSet rs = sqlm.DOCasignaturas(Login.docente, curso);
+        while(rs.next()){
+            cbasignatura.addItem(rs.getString(1));
+        }
     } 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -95,11 +101,21 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                 cbcursoMouseReleased(evt);
             }
         });
+        cbcurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbcursoActionPerformed(evt);
+            }
+        });
 
         cbasignatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbasignatura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 cbasignaturaMouseReleased(evt);
+            }
+        });
+        cbasignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbasignaturaActionPerformed(evt);
             }
         });
 
@@ -365,6 +381,14 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
             jtableasistencia.setModel(modelo1);
         } catch (SQLException ex) { System.out.println("error mostrar tabla asistencia"); }
     }//GEN-LAST:event_cbasignaturaMouseReleased
+
+    private void cbcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbcursoActionPerformed
+
+    private void cbasignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbasignaturaActionPerformed
+        
+    }//GEN-LAST:event_cbasignaturaActionPerformed
 
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);

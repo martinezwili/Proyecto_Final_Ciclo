@@ -413,6 +413,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="jtfbuscar4">
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfbuscar4ActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfbuscar4KeyReleased"/>
               </Events>
             </Component>
