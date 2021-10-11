@@ -571,6 +571,19 @@ public class SQLMetodos {
     
     //Finaliza Reporte del Alumno
     
+     //reportes docente
+     public  ResultSet Reportedocente(String cedula){
+        String sql = ("SELECT doc_cedula, per_nombre, per_apellido,per_telefono,per_nacimiento,dic_calle, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula INNER JOIN relacion ON relacion.rel_cedula = persona.per_cedula INNER JOIN direccion ON direccion.dir_codigo= relacion.dir_codigo INNER JOIN rango ON docente.ran_codigo=rango.ran_codigo WHERE persona.per_cedula='"+ cedula +"'");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
+     
+     public ResultSet reporteAsistencia(String curso, String asignatura){
+        String sql = ("select asig_nombre,SUM(asi_faltas) from asistencia INNER JOIN asignatura on asistencia.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=asistencia.cur_codigo  WHERE asistencia.cur_codigo='"+curso+"' and asistencia.asig_codigo='"+asignatura+"'");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+     }
+     
     public static boolean validarnacimiento(Date nacimi){
         SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date fac = new Date();

@@ -1,11 +1,49 @@
 package Vista;
 
+import Conexion.SQLMetodos;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 public class DOCreporteasistencia extends javax.swing.JFrame {
-
-    public DOCreporteasistencia() {
+    SQLMetodos sqlm = new SQLMetodos();
+    public DOCreporteasistencia() throws SQLException {
         initComponents();
+        todo();
     }
-
+    
+    public void mostrarDatos() throws SQLException{
+        DefaultTableModel modelo1 = new DefaultTableModel();
+        modelo1.setColumnIdentifiers(new Object[]{"ASIGNATURA", "TOTAL FALTAS"});
+        ResultSet rs = sqlm.reporteAsistencia(cbcurso.getItemAt(WIDTH), cbAsig.getItemAt(WIDTH));
+        while (rs.next()) {
+            modelo1.addRow(new Object[]{rs.getString("asig_nombre"), rs.getString("asis_faltas")});
+        }
+        DOCreporteasistencia.tablaReporte.setModel(modelo1);
+    }
+    
+    public void todo() throws SQLException{
+        moscursos();
+    }
+    
+    public void moscursos() throws SQLException{
+        cbcurso.removeAllItems();
+        ResultSet rs = sqlm.DOCcurso(Login.docente);
+        while(rs.next()){
+            cbcurso.addItem(rs.getString(1));
+        }
+    }
+    
+    public void mosasignatura() throws SQLException{
+        String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
+        cbAsig.removeAllItems();
+        ResultSet rs = sqlm.DOCasignaturas(Login.docente, curso);
+        while(rs.next()){
+            cbAsig.addItem(rs.getString(1));
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -13,7 +51,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAlumnos = new javax.swing.JTable();
+        tablaReporte = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -21,7 +59,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         cbcurso = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbAsig = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -35,7 +73,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaReporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -46,7 +84,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                 "ASIGNATURA", "TOTAL FALTAS"
             }
         ));
-        jScrollPane1.setViewportView(tablaAlumnos);
+        jScrollPane1.setViewportView(tablaReporte);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("LISTA ASIGNATURAS");
@@ -100,7 +138,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
 
         jLabel3.setText("ASIGNATURA:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbAsig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -117,7 +155,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbcurso, 0, 131, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbAsig, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -130,7 +168,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbAsig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(cbcurso)
@@ -150,7 +188,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +274,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -311,16 +349,20 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DOCreporteasistencia().setVisible(true);
+                try {
+                    new DOCreporteasistencia().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DOCreporteasistencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cbAsig;
     private javax.swing.JComboBox<String> cbcurso;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -338,6 +380,6 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbbuscar4;
     private javax.swing.JTextField jtfbuscar4;
-    private javax.swing.JTable tablaAlumnos;
+    public static javax.swing.JTable tablaReporte;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,6 +39,7 @@ public class DOCmenu extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
+        bntReportedoc = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,7 +138,7 @@ public class DOCmenu extends javax.swing.JFrame {
 
         jTextField12.setEditable(false);
         jTextField12.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jTextField12.setText("                     ASISTENTCIA");
+        jTextField12.setText("                     ASISTENCIA");
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField12ActionPerformed(evt);
@@ -192,6 +193,13 @@ public class DOCmenu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bntReportedoc.setText("REPORTE USER");
+        bntReportedoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntReportedocActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -210,8 +218,11 @@ public class DOCmenu extends javax.swing.JFrame {
                         .addGap(225, 225, 225)
                         .addComponent(jLabel12))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jButton2)))
+                        .addGap(133, 133, 133)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(bntReportedoc, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -228,9 +239,11 @@ public class DOCmenu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(bntReportedoc)
+                .addGap(11, 11, 11)
                 .addComponent(jButton2)
-                .addGap(65, 65, 65))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,7 +263,14 @@ public class DOCmenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            DOCreporteasistencia acces = new DOCreporteasistencia();
+            acces.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(DOCmenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -311,6 +331,17 @@ public class DOCmenu extends javax.swing.JFrame {
             dociasis.setVisible(true);
         } catch (SQLException ex) { System.out.println("error menu docente a asistencia"); }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void bntReportedocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntReportedocActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            DOCreporteuser acces = new DOCreporteuser();
+            acces.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(DOCmenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bntReportedocActionPerformed
    
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);
@@ -325,6 +356,7 @@ public class DOCmenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NOEDITABLE;
+    private javax.swing.JButton bntReportedoc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
