@@ -13,7 +13,7 @@ public class Conexionbd {
     Statement st;
     ResultSet rs;
     
-    public static String url = "jdbc:mysql://localhost:3306/sistemaescolar4";
+    public static String url = "jdbc:mysql://localhost:3306/sistema";
     public static String usuario = "root";
     public static String contraseña = "12345sql";
     

@@ -564,4 +564,12 @@ public class SQLMetodos {
         ResultSet rs = conexion.query("SELECT DISTINCT alu_cedula, per_nombre, per_apellido, per_telefono, per_nacimiento, per_estado, alu_telrepresentante FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula AND persona.per_cedula LIKE '"+ a +"_%' OR persona.per_cedula = alumno.alu_cedula AND persona.per_nombre LIKE '"+ b +"_%' OR persona.per_cedula = alumno.alu_cedula AND persona.per_apellido LIKE '"+ c +"_%' OR persona.per_cedula = alumno.alu_cedula AND persona.per_telefono LIKE '"+ d +"_%' OR persona.per_cedula = alumno.alu_cedula AND alumno.alu_telrepresentante LIKE '"+ e +"_%' ORDER BY persona.per_cedula");
         return rs;
     }
+    
+    //reportes docente
+    
+    public ResultSet userDoc(){
+        String sql = ("SELECT doc_cedula, per_nombre, per_apellido,per_telefono,per_nacimiento,dic_calle, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula INNER JOIN relacion ON relacion.rel_cedula = persona.per_cedula INNER JOIN direccion ON direccion.dir_codigo= relacion.dir_codigo INNER JOIN rango ON docente.ran_codigo=rango.ran_codigo ");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    }
 }
