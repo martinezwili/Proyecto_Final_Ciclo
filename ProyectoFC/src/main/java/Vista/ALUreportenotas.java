@@ -1,24 +1,11 @@
 package Vista;
 
-import Conexion.SQLMetodos;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.table.DefaultTableModel;
-
 public class ALUreportenotas extends javax.swing.JFrame {
-     SQLMetodos sqml = new SQLMetodos();
+
     public ALUreportenotas() {
         initComponents();
     }
-    public void mostrar() throws SQLException{
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new Object[]{"ASIGNATURAS","TOTAL DE NOTAS "});
-        ResultSet rs = sqml.mReporteAsigAlumno();
-        while(rs.next()){
-            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("not_notas")});
-        }
-        tablaRNotas.setModel(modelo);
-    };
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,7 +14,7 @@ public class ALUreportenotas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaRNotas = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -42,7 +29,7 @@ public class ALUreportenotas extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("LISTA ASIGNATURAS");
 
-        tablaRNotas.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -53,7 +40,7 @@ public class ALUreportenotas extends javax.swing.JFrame {
                 "ASIGNATURAS", "TOTAL DE NOTAS"
             }
         ));
-        jScrollPane1.setViewportView(tablaRNotas);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -205,6 +192,6 @@ public class ALUreportenotas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaRNotas;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

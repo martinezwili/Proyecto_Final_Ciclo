@@ -5,33 +5,19 @@
  */
 package Vista;
 
-import Conexion.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author byron
  */
 public class ALUReporteAsistencia extends javax.swing.JFrame {
-         SQLMetodos sqml = new SQLMetodos();
-   
-    public ALUReporteAsistencia() throws SQLException {
+
+    /**
+     * Creates new form ReporteAsistenciaEstudiante
+     */
+    public ALUReporteAsistencia() {
         initComponents();
-        mostrarDatos();
     }
-    public void mostrarDatos() throws SQLException{
-         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new Object[]{"Asignatura","Docente","Numero de faltas"});
-        ResultSet rs = sqml.mReporteAsisAlumno();
-        while(rs.next()){
-            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("per_nombre"),rs.getString("asi_faltas")});
-        }
-        jTableRasistenciaA.setModel(modelo);
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +29,7 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableRasistenciaA = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -51,29 +37,24 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
-        jTableRasistenciaA.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Asignatura", "Docente", "Numero de faltas"
+                "Codigo", "Nombre"
             }
         ));
-        jScrollPane1.setViewportView(jTableRasistenciaA);
+        jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 255));
         jLabel1.setText("REPORTE ASISTENCIA");
 
         jButton1.setText("SALIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,12 +100,6 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-        ALUmenu al = new ALUmenu();
-        al.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -142,24 +117,20 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ALUReporteAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteAsistenciaEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ALUReporteAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteAsistenciaEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ALUReporteAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteAsistenciaEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ALUReporteAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReporteAsistenciaEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new ALUReporteAsistencia().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ALUReporteAsistencia.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new ReporteAsistenciaEstudiante().setVisible(true);
             }
         });
     }
@@ -169,6 +140,6 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableRasistenciaA;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

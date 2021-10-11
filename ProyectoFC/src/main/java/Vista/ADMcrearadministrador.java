@@ -7,8 +7,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -21,7 +19,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
     Validaciones vali = new Validaciones();
     private ImageIcon imagen;
     private Icon icono;
-    
+        
     public ADMcrearadministrador() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
@@ -429,12 +427,6 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
         jtftelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtftelefonoKeyReleased(evt);
-            }
-        });
-
-        jcanacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jcanacimientoKeyReleased(evt);
             }
         });
 
@@ -868,10 +860,6 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
         if(vali.ValidarTelefono(jtftelefono.getText())){ this.colocarImagen(this.jlbtelefono, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbtelefono, "src\\main\\java\\Imagenes\\V2.png"); }        
     }//GEN-LAST:event_jtftelefonoKeyReleased
 
-    private void jcanacimientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcanacimientoKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcanacimientoKeyReleased
-
     private void jtfcorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcorreoKeyReleased
         if(vali.validarcorreo(jtfcorreo.getText())){ this.colocarImagen(this.jlbcorreo, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbcorreo, "src\\main\\java\\Imagenes\\V2.png"); }
     }//GEN-LAST:event_jtfcorreoKeyReleased
@@ -893,11 +881,9 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfcomunaKeyReleased
 
     private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
-        try {
-            cedulaingresada(jtfcedula.getText());
-        } catch (SQLException ex) {System.out.println("error mostrar cedula validacion administrador"); }
+        try { cedulaingresada(jtfcedula.getText()); } catch (SQLException ex) {System.out.println("error mostrar cedula validacion administrador"); }
     }//GEN-LAST:event_jtfcedulaFocusLost
-
+    
     public void mostrarseleccionado(String a) throws SQLException{
         cbpoliglota.setSelectedItem(sqlm.mpoliglota(a));
         cbnacionalidad.setSelectedItem(sqlm.mnacionalidad(a));
@@ -944,27 +930,30 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
         rdbtninactivo.setSelected(false);
         todo();   
     }
-    
+       
     public boolean cumplirvalidaciones(String cedula, String nombre, String apellido, String telefono, String correo, String contra, String estado){
         String as = null;
         boolean ab = false;
         if(vali.validarCedula(cedula) == true){
             if(vali.ValidarTelefono(telefono) == true){
-                if(vali.validaNombreoApellido(nombre) == true){
-                    if(vali.validaNombreoApellido(apellido) == true){
-                        if(vali.validarcorreo(correo) == true){
-                            if(vali.validaContraseña(contra) == true){
-                                if(vali.validarestado(estado) == true){
-                                    if(vali.validardijitos8(jtfcodigo.getText()) == true){
-                                        if(vali.validardijitos50(jtfcalle.getText()) == true){
-                                            if(vali.validardijitos20(jtfcomuna.getText()) == true){ } else { as = "Verifique la comuna"; }
-                                        } else { as = "Verifique la calle"; }
-                                    } else { as = "Verifique el codigo de la casa"; }
-                                } else { as = "Verifique el estado"; }
-                            } else { as = "Verifique la contraseña"; }
-                        } else { as = "Verifique el correo"; }
-                    } else { as = "Verifique el apellido";  }
-                } else { as = "Verifique el nombre";  }
+                if(SQLMetodos.validarnacimiento(jcanacimiento.getDate()) == true){
+                    this.colocarImagen(this.jlbnacimiento, "src\\main\\java\\Imagenes\\V1.png"); 
+                    if(vali.validaNombreoApellido(nombre) == true){
+                        if(vali.validaNombreoApellido(apellido) == true){
+                            if(vali.validarcorreo(correo) == true){
+                                if(vali.validaContraseña(contra) == true){
+                                    if(vali.validarestado(estado) == true){
+                                        if(vali.validardijitos8(jtfcodigo.getText()) == true){
+                                            if(vali.validardijitos50(jtfcalle.getText()) == true){
+                                                if(vali.validardijitos20(jtfcomuna.getText()) == true){ } else { as = "Verifique la comuna"; }
+                                            } else { as = "Verifique la calle"; }
+                                        } else { as = "Verifique el codigo de la casa"; }
+                                    } else { as = "Verifique el estado"; }
+                                } else { as = "Verifique la contraseña"; }
+                            } else { as = "Verifique el correo"; }
+                        } else { as = "Verifique el apellido";  }
+                    } else { as = "Verifique el nombre";  }
+                } else { this.colocarImagen(this.jlbnacimiento, "src\\main\\java\\Imagenes\\V2.png"); as = "Verifique la fecha de nacimiento";  }
             } else { as = "Verifique el telefono";  }
         } else { as = "Verifique la cedula";  }
         

@@ -918,9 +918,6 @@
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jcnacimiento">
-              <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jcnacimientoKeyReleased"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jtftelefono">
               <Events>

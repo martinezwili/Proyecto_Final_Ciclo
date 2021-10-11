@@ -26,8 +26,6 @@ public class DOCmodificarnotas extends javax.swing.JFrame {
     
     public void todo() throws SQLException{
         moscursos();
-        mosasignatura();
-        mosactividades();
     }
     
     public void moscursos() throws SQLException{

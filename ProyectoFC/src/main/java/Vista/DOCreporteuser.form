@@ -123,13 +123,13 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtCedula" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="txtNombre" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="txtApellido" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="txtTelefono" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="txtNacimiento" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="txtDireccion" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="txtRango" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="jTextField1" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="jTextField2" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="jTextField3" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="jTextField4" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="jTextField5" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="jTextField6" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="jTextField7" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -141,37 +141,37 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtRango" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -179,7 +179,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="txtCedula">
+            <Component class="javax.swing.JTextField" name="jTextField1">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -191,9 +191,9 @@
                 <Property name="text" type="java.lang.String" value="NOMBRES:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNombre">
+            <Component class="javax.swing.JTextField" name="jTextField2">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtApellido">
+            <Component class="javax.swing.JTextField" name="jTextField3">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
@@ -205,9 +205,9 @@
                 <Property name="text" type="java.lang.String" value="TELEFONO:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtTelefono">
+            <Component class="javax.swing.JTextField" name="jTextField4">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNacimiento">
+            <Component class="javax.swing.JTextField" name="jTextField5">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -219,9 +219,9 @@
                 <Property name="text" type="java.lang.String" value="DIRECCION:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtDireccion">
+            <Component class="javax.swing.JTextField" name="jTextField6">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtRango">
+            <Component class="javax.swing.JTextField" name="jTextField7">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
@@ -257,9 +257,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="SALIR"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

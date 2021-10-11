@@ -1,8 +1,9 @@
 package Conexion;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SQLMetodos {
     
@@ -177,29 +178,10 @@ public class SQLMetodos {
         ResultSet rs = conexion.query(sql);
         return rs;
     }
-    //PARA REPORTES DEL ALUMNO
-    public  ResultSet mReporteAlumno(){
-        String sql = ("SELECT alu_cedula, per_nombre, per_apellido,per_telefono,per_nacimiento,dic_calle, alu_telrepresentante FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN relacion ON relacion.rel_cedula = persona.per_cedula INNER JOIN direccion ON direccion.dir_codigo= relacion.dir_codigo ");
-        ResultSet rs = conexion.query(sql);
-        return rs;
-    }  
-    public  ResultSet mReporteAsigAlumno(){
-        String sql = ("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN alumno ON alumno.cur_codigo= curso.cur_codigo");
-        ResultSet rs = conexion.query(sql);
-        return rs;
-    } 
-    public  ResultSet mReporteAsisAlumno(){
-        String sql = ("SELECT asig_nombre,per_nombre,asi_faltas FROM asistencia INNER JOIN asignatura ON  asignatura.asig_codigo= asistencia.asig_codigo INNER JOIN docente ON relacionasignaturas.doc_cedula=docente.doc_cedula INNER JOIN asistencia ON curso.cur_codigo=asistencia.cur_codigo INNER JOIN persona ON persona.doc_cedula=docente.doc_cedula ");
-        ResultSet rs = conexion.query(sql);
-        return rs;
-    } 
-     public  ResultSet mReporteNotasAlumno(){
-        String sql = ("SELECT  ");
-        ResultSet rs = conexion.query(sql);
-        return rs;
-    } 
     
-    //Finaliza Reporte del Alumno
+       
+    
+    
     
     
     public  String mnacionalidad(String a) throws SQLException{
@@ -509,7 +491,7 @@ public class SQLMetodos {
     }
     
     public String ADMcomcedula(String a) throws SQLException{
-        String as = null;
+        String as = "--";
         ResultSet rs = conexion.query("SELECT adm_cedula FROM administrador WHERE adm_cedula = '"+ a +"'");
         if(rs.next()){  
             as = "adm";
@@ -565,11 +547,63 @@ public class SQLMetodos {
         return rs;
     }
     
-    //reportes docente
-    
-    public ResultSet userDoc(){
-        String sql = ("SELECT doc_cedula, per_nombre, per_apellido,per_telefono,per_nacimiento,dic_calle, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula INNER JOIN relacion ON relacion.rel_cedula = persona.per_cedula INNER JOIN direccion ON direccion.dir_codigo= relacion.dir_codigo INNER JOIN rango ON docente.ran_codigo=rango.ran_codigo ");
+    //PARA REPORTES DEL ALUMNO
+    public  ResultSet mReporteAlumno(String cedula){
+        String sql = ("SELECT alu_cedula, per_nombre, per_apellido,per_telefono,per_nacimiento,dic_calle, alu_telrepresentante FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN relacion ON relacion.rel_cedula = persona.per_cedula INNER JOIN direccion ON direccion.dir_codigo= relacion.dir_codigo WHERE alu_cedula = '"+ cedula +"'");
         ResultSet rs = conexion.query(sql);
         return rs;
+    }  
+    public  ResultSet mReporteAsigAlumno(String cedula){
+        String sql = ("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN alumno ON alumno.cur_codigo= curso.cur_codigo WHERE alu_cedula = '"+ cedula +"'");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    } 
+    public  ResultSet mReporteAsisAlumno(){
+        String sql = ("SELECT asig_nombre,per_nombre,asi_faltas FROM asistencia INNER JOIN asignatura ON  asignatura.asig_codigo= asistencia.asig_codigo INNER JOIN docente ON relacionasignaturas.doc_cedula=docente.doc_cedula INNER JOIN asistencia ON curso.cur_codigo=asistencia.cur_codigo INNER JOIN persona ON persona.doc_cedula=docente.doc_cedula ");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    } 
+     public  ResultSet mReporteNotasAlumno(){
+        String sql = ("SELECT  ");
+        ResultSet rs = conexion.query(sql);
+        return rs;
+    } 
+    
+    //Finaliza Reporte del Alumno
+    
+    public static boolean validarnacimiento(Date nacimi){
+        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date fac = new Date();
+        String ff = f1.format(fac);
+        String a = ff.substring(0, 4);
+        int ao = Integer.valueOf(a);
+        
+        String nac = f1.format(nacimi);
+        String anac = nac.substring(0, 4);
+        int aanac = Integer.valueOf(anac);
+        
+        if(ao > aanac){ return true; } else { return false; }
+    }
+    
+    public static boolean validarfechaasistencia(Date fecha){
+        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date fac = new Date();
+        String ff = f1.format(fac);
+        String a = ff.substring(0, 4);
+        String m = ff.substring(5, 7);
+        String d = ff.substring(8, 10);
+        int aa = Integer.valueOf(a);
+        int ma = Integer.valueOf(m);
+        int da = Integer.valueOf(d);
+        
+        String ff2 = f1.format(fecha);
+        String a2 = ff2.substring(0, 4);
+        String m2 = ff2.substring(5, 7);
+        String d2 = ff2.substring(8, 10);
+        int aa2 = Integer.valueOf(a2);
+        int ma2 = Integer.valueOf(m2);
+        int da2 = Integer.valueOf(d2);
+        
+        if(aa == aa2 && ma == ma2 && da == da2){ return true; } else { return false; }
     }
 }

@@ -544,12 +544,6 @@ public class ADMcreardocente extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("F.DE NACIMIENTO:");
 
-        jcnacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jcnacimientoKeyReleased(evt);
-            }
-        });
-
         jtftelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtftelefonoKeyReleased(evt);
@@ -894,10 +888,6 @@ public class ADMcreardocente extends javax.swing.JFrame {
         if(vali.ValidarTelefono(jtftelefono.getText())){ this.colocarImagen(this.telefonolbl, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.telefonolbl, "src\\main\\java\\Imagenes\\V2.png"); }        
     }//GEN-LAST:event_jtftelefonoKeyReleased
 
-    private void jcnacimientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcnacimientoKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcnacimientoKeyReleased
-
     private void jtfcontraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcontraKeyReleased
         if(vali.validaContraseña(jtfcontra.getText())){ this.colocarImagen(this.contraseñalbl, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.contraseñalbl, "src\\main\\java\\Imagenes\\V2.png"); }
     }//GEN-LAST:event_jtfcontraKeyReleased
@@ -920,8 +910,8 @@ public class ADMcreardocente extends javax.swing.JFrame {
 
     private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
         try {
-            mostrarseleccionado(jtfcedula.getText());
-        } catch (SQLException ex) { System.out.println("error mostrar cedula repetida"); }
+            cedulaingresada(jtfcedula.getText());
+        } catch (SQLException ex) {System.out.println("error mostrar cedula validacion docente"); }
     }//GEN-LAST:event_jtfcedulaFocusLost
 
     public void mostrarseleccionado(String a) throws SQLException{
@@ -978,19 +968,22 @@ public class ADMcreardocente extends javax.swing.JFrame {
         boolean ab = false;
         if(vali.validarCedula(cedula) == true){
             if(vali.ValidarTelefono(telefono) == true){
-                if(vali.validaNombreoApellido(nombre) == true){
-                    if(vali.validaNombreoApellido(apellido) == true){
-                        if(vali.validaContraseña(contra) == true){
-                            if(vali.validarestado(estado) == true){
-                                if(vali.validardijitos8(jtfcodigo.getText()) == true){
-                                    if(vali.validardijitos50(jtfcalle.getText()) == true){
-                                        if(vali.validardijitos20(jtfcomuna.getText()) == true){ } else { as = "Verifique la comuna"; }
-                                    } else { as = "Verifique la calle"; }
-                                } else { as = "Verifique el codigo de la casa"; }
-                            } else { as = "Verifique el estado"; }
-                        } else { as = "Verifique la contraseña"; }
-                    } else { as = "Verifique el apellido";  }
-                } else { as = "Verifique el nombre";  }
+                if(SQLMetodos.validarnacimiento(jcnacimiento.getDate()) == true){
+                    this.colocarImagen(this.nacimientolbl, "src\\main\\java\\Imagenes\\V1.png");
+                    if(vali.validaNombreoApellido(nombre) == true){
+                        if(vali.validaNombreoApellido(apellido) == true){
+                            if(vali.validaContraseña(contra) == true){
+                                if(vali.validarestado(estado) == true){
+                                    if(vali.validardijitos8(jtfcodigo.getText()) == true){
+                                        if(vali.validardijitos50(jtfcalle.getText()) == true){
+                                            if(vali.validardijitos20(jtfcomuna.getText()) == true){ } else { as = "Verifique la comuna"; }
+                                        } else { as = "Verifique la calle"; }
+                                    } else { as = "Verifique el codigo de la casa"; }
+                                } else { as = "Verifique el estado"; }
+                            } else { as = "Verifique la contraseña"; }
+                        } else { as = "Verifique el apellido";  }
+                    } else { as = "Verifique el nombre";  }
+                } else { this.colocarImagen(this.nacimientolbl, "src\\main\\java\\Imagenes\\V2.png"); as = "Verifique la fecha de nacimiento";  }
             } else { as = "Verifique el telefono";  }
         } else { as = "Verifique la cedula";  }
         

@@ -1,14 +1,14 @@
 package Vista;
 
-import Conexion.*;
+import Conexion.SQLMetodos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class ALUreporteasignaturas extends javax.swing.JFrame {
-     SQLMetodos sqml = new SQLMetodos();
+
+    SQLMetodos sqml = new SQLMetodos();
+    
     public ALUreporteasignaturas() throws SQLException {
         initComponents();
         mostrar();
@@ -18,11 +18,11 @@ public class ALUreporteasignaturas extends javax.swing.JFrame {
     public void mostrar() throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(new Object[]{"ASIGNATURAS"});
-        ResultSet rs = sqml.mReporteAsigAlumno();
+        ResultSet rs = sqml.mReporteAsigAlumno(Login.alumno);
         while(rs.next()){
             modelo.addRow(new Object[]{rs.getString("asig_nombre")});
         }
-        tablereporteAsig.setModel(modelo);
+        jtableasignaturas.setModel(modelo);
     };
 
     @SuppressWarnings("unchecked")
@@ -34,7 +34,7 @@ public class ALUreporteasignaturas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablereporteAsig = new javax.swing.JTable();
+        jtableasignaturas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -63,7 +63,7 @@ public class ALUreporteasignaturas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tablereporteAsig.setModel(new javax.swing.table.DefaultTableModel(
+        jtableasignaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -74,7 +74,7 @@ public class ALUreporteasignaturas extends javax.swing.JFrame {
                 "ASIGNATURAS"
             }
         ));
-        jScrollPane1.setViewportView(tablereporteAsig);
+        jScrollPane1.setViewportView(jtableasignaturas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -150,45 +150,6 @@ public class ALUreporteasignaturas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ALUreporteasignaturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ALUreporteasignaturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ALUreporteasignaturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ALUreporteasignaturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new ALUreporteasignaturas().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ALUreporteasignaturas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -197,6 +158,6 @@ public class ALUreporteasignaturas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablereporteAsig;
+    private javax.swing.JTable jtableasignaturas;
     // End of variables declaration//GEN-END:variables
 }

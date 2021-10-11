@@ -21,26 +21,20 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
     private Icon icono;
     
     public DOCingresarasistencia() throws SQLException {
-        initComponents(); setLocationRelativeTo(null); todo();
+        initComponents(); setLocationRelativeTo(null); moscursos();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\asislogorg.png");
     }
-    public void todo() throws SQLException{
-        moscursos();
-        mosasignatura();
-    }
+    
     public void moscursos() throws SQLException{
         cbcurso.removeAllItems(); ResultSet rs = sqlm.DOCcurso(Login.docente);
         while(rs.next()){ cbcurso.addItem(rs.getString(1)); }
     }
     
-     public void mosasignatura() throws SQLException{
+    public void mosasignatura() throws SQLException{
         String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
-        cbasignatura.removeAllItems();
-        ResultSet rs = sqlm.DOCasignaturas(Login.docente, curso);
-        while(rs.next()){
-            cbasignatura.addItem(rs.getString(1));
-        }
+        cbasignatura.removeAllItems(); ResultSet rs = sqlm.DOCasignaturas(Login.docente, curso);
+        while(rs.next()){ cbasignatura.addItem(rs.getString(1)); }
     } 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -101,21 +95,11 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                 cbcursoMouseReleased(evt);
             }
         });
-        cbcurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbcursoActionPerformed(evt);
-            }
-        });
 
         cbasignatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbasignatura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 cbasignaturaMouseReleased(evt);
-            }
-        });
-        cbasignatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbasignaturaActionPerformed(evt);
             }
         });
 
@@ -332,27 +316,29 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
     private void jbtnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnregistrarActionPerformed
         try {
             // TODO add your handling code here:
-            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd"); String fecha = f.format(jcfecha.getDate());
-            String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString()); 
-            String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
-            String codigo = null, coming = null;
-            
-            if(Asistencia.comprobarpararegistrar(Date.valueOf(fecha), curso, asignatura) == false){
-                for(int i = 0 ; i < jtableasistencia.getRowCount(); i++){
-                    try {
-                        do{
-                            for(int e = 0 ; e < jtableasistencia.getRowCount() ; e ++ ){
-                                Random rs = new Random(); Random rss = new Random(123);
-                                codigo = String.valueOf(rs.nextInt(99999999-1+1) + 25);
-                            }
-                        }while(Asistencia.comcodigo(codigo) == true);
-                        String cedula = jtableasistencia.getValueAt(i, 0).toString();
-                        int faltas = Integer.valueOf(jtableasistencia.getValueAt(i,3).toString()); 
-                        Asistencia asis = new Asistencia(codigo, curso, asignatura, cedula, Date.valueOf(fecha), faltas); 
-                        if(asis.insertar()) { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas se ingresaron correctamente"); jcfecha.setDate(null); moscursos(); DefaultTableModel a = (DefaultTableModel)jtableasistencia.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }} else { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas no se ingresaron correctamente"); }
-                    } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
-                }
-            } else { JOptionPane.showMessageDialog(rootPane, "Esta fecha ya esta registrada"); }
+            if(SQLMetodos.validarfechaasistencia(jcfecha.getDate())){
+                SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd"); String fecha = f.format(jcfecha.getDate());
+                String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString()); 
+                String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
+                String codigo = null, coming = null;
+
+                if(Asistencia.comprobarpararegistrar(Date.valueOf(fecha), curso, asignatura) == false){
+                    for(int i = 0 ; i < jtableasistencia.getRowCount(); i++){
+                        try {
+                            do{
+                                for(int e = 0 ; e < jtableasistencia.getRowCount() ; e ++ ){
+                                    Random rs = new Random(); Random rss = new Random(123);
+                                    codigo = String.valueOf(rs.nextInt(99999999-1+1) + 25);
+                                }
+                            }while(Asistencia.comcodigo(codigo) == true);
+                            String cedula = jtableasistencia.getValueAt(i, 0).toString();
+                            int faltas = Integer.valueOf(jtableasistencia.getValueAt(i,3).toString()); 
+                            Asistencia asis = new Asistencia(codigo, curso, asignatura, cedula, Date.valueOf(fecha), faltas); 
+                            if(asis.insertar()) { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas se ingresaron correctamente"); jcfecha.setDate(null); moscursos(); DefaultTableModel a = (DefaultTableModel)jtableasistencia.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }} else { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas no se ingresaron correctamente"); }
+                        } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
+                    }
+                } else { JOptionPane.showMessageDialog(rootPane, "Esta fecha ya esta registrada"); }
+            } else { JOptionPane.showMessageDialog(rootPane, "No se puede guardar la asistencia por que la fecha no es la actual"); }
         } catch (SQLException ex) { System.out.println("error registrar asistencia"); }
     }//GEN-LAST:event_jbtnregistrarActionPerformed
 
@@ -381,14 +367,6 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
             jtableasistencia.setModel(modelo1);
         } catch (SQLException ex) { System.out.println("error mostrar tabla asistencia"); }
     }//GEN-LAST:event_cbasignaturaMouseReleased
-
-    private void cbcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbcursoActionPerformed
-
-    private void cbasignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbasignaturaActionPerformed
-        
-    }//GEN-LAST:event_cbasignaturaActionPerformed
 
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);

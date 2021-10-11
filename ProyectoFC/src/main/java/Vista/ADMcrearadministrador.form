@@ -732,9 +732,6 @@
               </Events>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jcanacimiento">
-              <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jcanacimientoKeyReleased"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="jtfcontras">
               <Events>

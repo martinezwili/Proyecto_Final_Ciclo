@@ -248,11 +248,6 @@ public class ADMcrearcurso extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(204, 255, 204));
 
-        jtfbuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfbuscarActionPerformed(evt);
-            }
-        });
         jtfbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfbuscarKeyReleased(evt);
@@ -502,10 +497,6 @@ public class ADMcrearcurso extends javax.swing.JFrame {
         if(vali.validardijitos10(textnCurso.getText())){ this.colocarImagen(this.jlbcurso, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbcurso, "src\\main\\java\\Imagenes\\V2.png"); }
     }//GEN-LAST:event_textnCursoKeyReleased
 
-    private void jtfbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfbuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfbuscarActionPerformed
-
     public void limpiar(){
         textcodigoc.setText("");
         textnCurso.setText("");
@@ -550,6 +541,8 @@ public class ADMcrearcurso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -563,6 +556,8 @@ public class ADMcrearcurso extends javax.swing.JFrame {
     private javax.swing.JLabel jlbbuscar;
     private javax.swing.JLabel jlbcodigo;
     private javax.swing.JLabel jlbcurso;
+    private javax.swing.JLabel jlblogo;
+    private javax.swing.JLabel jlblogo1;
     private javax.swing.JLabel jlblogo2;
     private javax.swing.JTextField jtfbuscar;
     private javax.swing.JTable tablaCurso;
