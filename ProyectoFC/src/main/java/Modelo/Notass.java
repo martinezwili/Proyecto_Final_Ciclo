@@ -73,7 +73,7 @@ public class Notass {
         this.conexion = conexion;
     }
 
-    
+   
 
     Conexionbd conexion = new Conexionbd();
     

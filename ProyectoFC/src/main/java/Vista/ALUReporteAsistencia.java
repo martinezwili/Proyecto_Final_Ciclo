@@ -5,18 +5,35 @@
  */
 package Vista;
 
+import Conexion.SQLMetodos;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author byron
  */
 public class ALUReporteAsistencia extends javax.swing.JFrame {
-
+    SQLMetodos sqml = new SQLMetodos();
     /**
      * Creates new form ReporteAsistenciaEstudiante
      */
-    public ALUReporteAsistencia() {
+    public ALUReporteAsistencia() throws SQLException {
         initComponents();
+        mostrar();
     }
+    public void mostrar() throws SQLException{
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"Asignatura","Docente","Numero de faltas"});
+        ResultSet rs = sqml.mReporteAsisAlumno(Login.alumno);
+        while(rs.next()){
+            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("per_nombre"),rs.getString("asi_faltas")});
+        }
+        jTable1.setModel(modelo);
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,13 +56,13 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre"
+                "Asignatura", "Docente", "Numero de falta"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -117,20 +134,24 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReporteAsistenciaEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ALUReporteAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReporteAsistenciaEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ALUReporteAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReporteAsistenciaEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ALUReporteAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReporteAsistenciaEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ALUReporteAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReporteAsistenciaEstudiante().setVisible(true);
+                try {
+                    new ALUReporteAsistencia().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ALUReporteAsistencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

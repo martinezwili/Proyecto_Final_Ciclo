@@ -60,6 +60,11 @@ public class ALUmenu extends javax.swing.JFrame {
         jTextField1.setText("                         NOTAS");
 
         jButton2.setText("VER REPORTE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("VER NOTAS");
 
@@ -205,12 +210,20 @@ public class ALUmenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //try {
+        try {
             this.dispose();  ALUReporteAsistencia al = new ALUReporteAsistencia();  al.setVisible(true);
-        /*} catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(ALUmenu.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            this.dispose();  ALUreportenotas al = new ALUreportenotas();  al.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ALUmenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
