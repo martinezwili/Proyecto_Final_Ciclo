@@ -110,6 +110,11 @@ public class ALUreportenotas extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 153));
 
         jButton1.setText("SALIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -198,11 +203,15 @@ public class ALUreportenotas extends javax.swing.JFrame {
     private void cbasignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbasignaturaActionPerformed
         
     }//GEN-LAST:event_cbasignaturaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose(); ALUmenu am = new ALUmenu(); am.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
      public void mostrar() throws SQLException{
         String curso = sqml.obtenerCurso(cbasignatura.getSelectedItem().toString());
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(new Object[]{"Trabajo","Nota"});
-        ResultSet rs = sqml.mReporteNotasAlumno(curso);
+        ResultSet rs = sqml.mReporteNotasAlumno(Login.alumno);
         while(rs.next()){
             modelo.addRow(new Object[]{rs.getString("not_nombre"),rs.getString("not_nota")});
         }

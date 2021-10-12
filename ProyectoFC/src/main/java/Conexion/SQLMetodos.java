@@ -558,14 +558,15 @@ public class SQLMetodos {
         ResultSet rs = conexion.query(sql);
         return rs;
     } 
-    public  ResultSet mReporteAsisAlumno(String cedula){
-        String sql = ("SELECT asig_nombre ,asi_faltas FROM asistencia INNER JOIN asignatura ON  asignatura.asig_codigo= asistencia.asig_codigo INNER JOIN persona ON relacionasignaturas.doc_cedula=persona.per_cedula INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo  INNER JOIN alumno ON alumno.cur_codigo=curso.cur_codigo   ");
+     public  ResultSet mReporteNotasAlumno(String cedula){
+        String sql = ("SELECT not_nombre,not_nota FROM notas INNER JOIN asignatura ON asignatura.asig_codigo=notas.asig_codigo INNER JOIN alumno ON alumno.cur_codigo=notas.cur_codigo WHERE notas.alu_cedula='"+cedula+"'");
         ResultSet rs = conexion.query(sql);
         return rs;
     } 
-    public  ResultSet mReporteNotasAlumno(String cedula){
-        String sql = ("SELECT not_nombre,not_nota FROM notas INNER JOIN asignatura ON asignatura.asig_codigo=notas.asig_codigo INNER JOIN alumno ON alumno.cur_codigo=notas.cur_codigo ");
+    public  ResultSet mReporteAsisAlumno(String cedula){
+        String sql = ("select asig_nombre,SUM(asi_faltas) AS asi_faltas FROM asistencia INNER JOIN asignatura ON asistencia.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=asistencia.cur_codigo  WHERE asistencia.alu_cedula='"+cedula+"'");
         ResultSet rs = conexion.query(sql);
+        
         return rs;
     } 
     public  ResultSet CoboAsigAlumno(String cedula){
@@ -632,6 +633,8 @@ public class SQLMetodos {
         
         if(aa == aa2 && ma == ma2 && da == da2){ return true; } else { return false; }
     }
+
+   
 
     
 }

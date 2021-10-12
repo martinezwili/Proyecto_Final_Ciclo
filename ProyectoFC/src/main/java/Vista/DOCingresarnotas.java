@@ -31,6 +31,7 @@ public class DOCingresarnotas extends javax.swing.JFrame {
     
     public void todo() throws SQLException{
         moscursos();
+        mosasignatura();
     }
     
     public void moscursos() throws SQLException{
@@ -323,7 +324,7 @@ public class DOCingresarnotas extends javax.swing.JFrame {
         try {
             String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
             DefaultTableModel modelo1 = new DefaultTableModel();
-            modelo1.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "FALTAS"});
+            modelo1.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "NOTAS"});
             ResultSet rs1 = sqlm.buscarasislistadoestudiantes(curso, jtfbuscar4.getText());
             while(rs1.next()){
                 modelo1.addRow(new Object[]{rs1.getString("alu_cedula"), rs1.getString("per_nombre"), rs1.getString("per_apellido")});

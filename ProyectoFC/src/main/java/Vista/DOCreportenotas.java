@@ -19,6 +19,7 @@ public class DOCreportenotas extends javax.swing.JFrame {
     
     public void todo() throws SQLException{
         moscursos();
+         mosasignatura();
     }
     
     public void moscursos() throws SQLException{

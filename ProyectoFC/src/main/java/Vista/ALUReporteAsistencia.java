@@ -27,10 +27,10 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
     }
     public void mostrar() throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new Object[]{"Asignatura","Docente","Numero de faltas"});
+        modelo.setColumnIdentifiers(new Object[]{"Asignatura","Faltas"});
         ResultSet rs = sqml.mReporteAsisAlumno(Login.alumno);
         while(rs.next()){
-            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("per_nombre"),rs.getString("asi_faltas")});
+            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("asi_faltas")});
         }
         jTable1.setModel(modelo);
     };
@@ -56,13 +56,13 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Asignatura", "Docente", "Numero de falta"
+                "Asignatura", "Faltas"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -72,6 +72,11 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
         jLabel1.setText("REPORTE ASISTENCIA");
 
         jButton1.setText("SALIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,6 +121,10 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose(); ALUmenu am = new ALUmenu(); am.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
