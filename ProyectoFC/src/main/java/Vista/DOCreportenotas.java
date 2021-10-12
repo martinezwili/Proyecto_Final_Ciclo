@@ -1,10 +1,12 @@
 package Vista;
 
 import Conexion.SQLMetodos;
+import static Vista.DOCreporteasistencia.tablaReporte;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class DOCreportenotas extends javax.swing.JFrame {
     SQLMetodos sqlm = new SQLMetodos();
@@ -220,6 +222,11 @@ public class DOCreportenotas extends javax.swing.JFrame {
         );
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -302,6 +309,22 @@ public class DOCreportenotas extends javax.swing.JFrame {
         } catch (SQLException ex) { System.out.println("ERROR"); }
     }//GEN-LAST:event_cbcursoMouseClicked
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        DOCmenu acces = new DOCmenu();
+        acces.setVisible(true);
+    }//GEN-LAST:event_btnSalirActionPerformed
+    
+    public void mostrar() throws SQLException{
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"ASIGNATURA","TOTAL FALTAS"});
+        ResultSet rs = sqlm.reporteAsistencia(cbcurso.getSelectedItem().toString(),cbasig.getSelectedItem().toString());
+        while(rs.next()){
+            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("SUM(not_nota)")});
+        }
+        tablaReporte.setModel(modelo);
+    };
     /**
      * @param args the command line arguments
      */

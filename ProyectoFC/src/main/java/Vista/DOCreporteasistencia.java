@@ -12,17 +12,8 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     
     public DOCreporteasistencia() throws SQLException {
         initComponents();
+        mostrar();
         todo();
-    }
-    
-    public void mostrarDatos() throws SQLException{
-        DefaultTableModel modelo1 = new DefaultTableModel();
-        modelo1.setColumnIdentifiers(new Object[]{"ASIGNATURA", "TOTAL FALTAS"});
-        ResultSet rs = sqlm.reporteAsistencia(cbcurso.getItemAt(WIDTH), cbAsig.getItemAt(WIDTH));
-        while (rs.next()) {
-            modelo1.addRow(new Object[]{rs.getString("asig_nombre"), rs.getString("asis_faltas")});
-        }
-        DOCreporteasistencia.tablaReporte.setModel(modelo1);
     }
     
     public void todo() throws SQLException{
@@ -46,6 +37,16 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
             cbAsig.addItem(rs.getString(1));
         }
     }
+    
+    public void mostrar() throws SQLException{
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"ASIGNATURA","TOTAL FALTAS"});
+        ResultSet rs = sqlm.reporteAsistencia(cbcurso.getSelectedItem().toString(),cbAsig.getSelectedItem().toString());
+        while(rs.next()){
+            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("SUM(asi_faltas)")});
+        }
+        tablaReporte.setModel(modelo);
+    };
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -243,6 +244,11 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
         );
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -319,6 +325,13 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        DOCmenu ac = new DOCmenu();
+        ac.setVisible(true);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
         /**
      * @param args the command line arguments

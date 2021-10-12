@@ -590,7 +590,7 @@ public class SQLMetodos {
     }
     
     public ResultSet reporteNotas(String curso, String asignatura){
-        String sql = ("select avg(not_nota) as NOTAS,asig_nombre from notas INNER JOIN asignatura on notas.asig_codigo=asignatura.asig_codigo WHERE notas.asig_codigo='"+asignatura+"' and notas.cur_codigo='"+curso+"'");
+        String sql = ("select asig_nombre,avg(not_nota) from notas INNER JOIN asignatura on notas.asig_codigo=asignatura.asig_codigo WHERE notas.asig_codigo='"+asignatura+"' and notas.cur_codigo='"+curso+"'");
         ResultSet rs = conexion.query(sql);
         return rs;
    }
