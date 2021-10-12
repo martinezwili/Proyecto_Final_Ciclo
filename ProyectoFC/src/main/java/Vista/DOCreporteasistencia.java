@@ -13,12 +13,7 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     public DOCreporteasistencia() throws SQLException {
         initComponents();
         mostrar();
-        todo();
-    }
-    
-    public void todo() throws SQLException{
         moscursos();
-        mosasignatura();
     }
     
     public void moscursos() throws SQLException{
@@ -28,20 +23,11 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
             cbcurso.addItem(rs.getString(1));
         }
     }
-    
-    public void mosasignatura() throws SQLException{
-        String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
-        cbAsig.removeAllItems();
-        ResultSet rs = sqlm.DOCasignaturas(Login.docente, curso);
-        while(rs.next()){
-            cbAsig.addItem(rs.getString(1));
-        }
-    }
-    
-    public void mostrar() throws SQLException{
+
+    public void mostrar() throws SQLException{        
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(new Object[]{"ASIGNATURA","TOTAL FALTAS"});
-        ResultSet rs = sqlm.reporteAsistencia(cbcurso.getSelectedItem().toString(),cbAsig.getSelectedItem().toString());
+        ResultSet rs = sqlm.reporteAsistencia(cbcurso.getSelectedItem().toString());
         while(rs.next()){
             modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("SUM(asi_faltas)")});
         }
@@ -61,8 +47,6 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         cbcurso = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        cbAsig = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -139,43 +123,24 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
 
         cbcurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel3.setText("ASIGNATURA:");
-
-        cbAsig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbcurso, 0, 131, Short.MAX_VALUE)
-                    .addComponent(cbAsig, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(cbcurso, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cbAsig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(cbcurso)
-                        .addGap(49, 49, 49))))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbcurso)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         jLabel5.setText("BUSCAR POR:");
@@ -375,12 +340,10 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> cbAsig;
     private javax.swing.JComboBox<String> cbcurso;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

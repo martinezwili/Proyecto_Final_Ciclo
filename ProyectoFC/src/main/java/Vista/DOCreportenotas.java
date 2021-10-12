@@ -319,10 +319,10 @@ public class DOCreportenotas extends javax.swing.JFrame {
     
     public void mostrar() throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new Object[]{"ASIGNATURA","TOTAL FALTAS"});
-        ResultSet rs = sqlm.reporteAsistencia(cbcurso.getSelectedItem().toString(),cbasig.getSelectedItem().toString());
+        modelo.setColumnIdentifiers(new Object[]{"ASIGNATURA","PROMEDIO"});
+        ResultSet rs = sqlm.reporteNotas(cbcurso.getSelectedItem().toString(),cbasig.getSelectedItem().toString());
         while(rs.next()){
-            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("SUM(not_nota)")});
+            modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("avg(not_nota)")});
         }
         tablaReporte.setModel(modelo);
     };
