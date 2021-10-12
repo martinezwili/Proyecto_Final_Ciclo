@@ -100,6 +100,11 @@ public class DOCmenu extends javax.swing.JFrame {
         });
 
         jButton8.setText("REPORTE GENERAL");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -342,6 +347,17 @@ public class DOCmenu extends javax.swing.JFrame {
             Logger.getLogger(DOCmenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bntReportedocActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            DOCreportenotas acces = new DOCreportenotas();
+            acces.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(DOCmenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
    
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);

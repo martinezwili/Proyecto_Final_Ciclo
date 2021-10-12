@@ -17,7 +17,6 @@ public class DOCreportenotas extends javax.swing.JFrame {
     
     public void todo() throws SQLException{
         moscursos();
-        mosasignatura();
     }
     
     public void moscursos() throws SQLException{
@@ -125,6 +124,11 @@ public class DOCreportenotas extends javax.swing.JFrame {
         jLabel2.setText("CURSO:");
 
         cbcurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbcurso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbcursoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -290,6 +294,13 @@ public class DOCreportenotas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbcursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbcursoMouseClicked
+        // TODO add your handling code here:
+        try {
+            mosasignatura();
+        } catch (SQLException ex) { System.out.println("ERROR"); }
+    }//GEN-LAST:event_cbcursoMouseClicked
 
     /**
      * @param args the command line arguments
