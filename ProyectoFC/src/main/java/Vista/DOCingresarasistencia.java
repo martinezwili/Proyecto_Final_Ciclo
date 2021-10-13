@@ -58,7 +58,7 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
         jlbbuscar4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtableasistencia = new javax.swing.JTable();
+        jtableasistencia1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jlblogo = new javax.swing.JLabel();
 
@@ -219,7 +219,7 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(149, 179, 149));
 
-        jtableasistencia.setModel(new javax.swing.table.DefaultTableModel(
+        jtableasistencia1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -230,7 +230,7 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                 "CEDULA", "NOMBRE", "APELLIDO", "FALTAS"
             }
         ));
-        jScrollPane2.setViewportView(jtableasistencia);
+        jScrollPane2.setViewportView(jtableasistencia1);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -334,24 +334,25 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                 SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd"); String fecha = f.format(jcfecha.getDate());
                 String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString()); 
                 String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
-                String codigo = null, coming = null;
+                String codigo = null, coming = null; int c = 0;
 
                 if(Asistencia.comprobarpararegistrar(Date.valueOf(fecha), curso, asignatura) == false){
-                    for(int i = 0 ; i < jtableasistencia.getRowCount(); i++){
+                    for(int i = 0 ; i < jtableasistencia1.getRowCount(); i++){
                         try {
                             do{
-                                for(int e = 0 ; e < jtableasistencia.getRowCount() ; e ++ ){
+                                for(int e = 0 ; e < jtableasistencia1.getRowCount() ; e ++ ){
                                     Random rs = new Random(); Random rss = new Random(123);
                                     codigo = String.valueOf(rs.nextInt(99999999-1+1) + 25);
                                 }
                             }while(Asistencia.comcodigo(codigo) == true);
-                            String cedula = jtableasistencia.getValueAt(i, 0).toString();
-                            int faltas = Integer.valueOf(jtableasistencia.getValueAt(i,3).toString()); 
+                            String cedula = jtableasistencia1.getValueAt(i, 0).toString();
+                            int faltas = Integer.valueOf(jtableasistencia1.getValueAt(i,3).toString()); 
                             Asistencia asis = new Asistencia(codigo, curso, asignatura, cedula, Date.valueOf(fecha), faltas); 
-                            if(asis.insertar()) { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas se ingresaron correctamente"); jcfecha.setDate(null); moscursos(); DefaultTableModel a = (DefaultTableModel)jtableasistencia.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }} else { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas no se ingresaron correctamente"); }
+                            if(asis.insertar()){ c++; }
                         } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
                     }
                 } else { JOptionPane.showMessageDialog(rootPane, "Esta fecha ya esta registrada"); }
+                if(jtableasistencia1.getRowCount() == c) { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas se ingresaron correctamente"); jcfecha.setDate(null); moscursos(); DefaultTableModel a = (DefaultTableModel)jtableasistencia1.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }} else { JOptionPane.showMessageDialog(rootPane, "La asistencia y todas las faltas no se ingresaron correctamente"); }
             } else { JOptionPane.showMessageDialog(rootPane, "No se puede guardar la asistencia por que la fecha no es la actual"); }
         } catch (SQLException ex) { System.out.println("error registrar asistencia"); }
     }//GEN-LAST:event_jbtnregistrarActionPerformed
@@ -363,7 +364,7 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
             modelo1.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "FALTAS"});
             ResultSet rs1 = sqlm.buscarasislistadoestudiantes(curso, jtfbuscar4.getText());
             while(rs1.next()){ modelo1.addRow(new Object[]{rs1.getString("alu_cedula"), rs1.getString("per_nombre"), rs1.getString("per_apellido")}); }
-            jtableasistencia.setModel(modelo1);
+            jtableasistencia1.setModel(modelo1);
         } catch (SQLException ex) { System.out.println("error buscar administrador"); }
     }//GEN-LAST:event_jtfbuscar4KeyReleased
 
@@ -378,7 +379,7 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
             modelo1.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "FALTAS"});
             ResultSet rs1 = sqlm.DOCasislistadoestudiantes(curso);
             while(rs1.next()){ modelo1.addRow(new Object[]{rs1.getString("alu_cedula"), rs1.getString("per_nombre"), rs1.getString("per_apellido"), "0"}); }
-            jtableasistencia.setModel(modelo1);
+            jtableasistencia1.setModel(modelo1);
         } catch (SQLException ex) { System.out.println("error mostrar tabla asistencia"); }
     }//GEN-LAST:event_cbasignaturaMouseReleased
 
@@ -413,7 +414,7 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jcfecha;
     private javax.swing.JLabel jlbbuscar4;
     private javax.swing.JLabel jlblogo;
-    private javax.swing.JTable jtableasistencia;
+    private javax.swing.JTable jtableasistencia1;
     private javax.swing.JTextField jtfbuscar4;
     // End of variables declaration//GEN-END:variables
 }

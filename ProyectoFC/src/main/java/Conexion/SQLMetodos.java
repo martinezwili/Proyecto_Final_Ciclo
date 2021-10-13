@@ -559,7 +559,7 @@ public class SQLMetodos {
     } 
     
     public  ResultSet mReporteNotasAlumno(String asig, String cedula){
-        ResultSet rs = conexion.query("SELECT not_nombre, not_nota FROM notas INNER JOIN alumno ON alumno.cur_codigo=notas.cur_codigo WHERE notas.asig_codigo = '"+ asig +"' AND notas.alu_cedula='"+cedula+"'");
+        ResultSet rs = conexion.query("SELECT DISTINCT not_nombre, not_nota FROM notas INNER JOIN alumno ON alumno.cur_codigo=notas.cur_codigo WHERE notas.asig_codigo = '"+ asig +"' AND notas.alu_cedula='"+cedula+"'");
         return rs;
     } 
     
@@ -575,7 +575,7 @@ public class SQLMetodos {
     }
     
     public  ResultSet mReporteNotasAlumnoBuscar(String asig, String cedula, String a){
-        ResultSet rs = conexion.query("SELECT not_nombre, not_nota FROM notas INNER JOIN alumno ON alumno.cur_codigo=notas.cur_codigo WHERE notas.asig_codigo = '"+ asig +"' AND notas.alu_cedula = '"+ cedula +"' AND not_nombre LIKE '"+ a +"_%'");
+        ResultSet rs = conexion.query("SELECT DISTINCT not_nombre, not_nota FROM notas INNER JOIN alumno ON alumno.cur_codigo=notas.cur_codigo WHERE notas.asig_codigo = '"+ asig +"' AND notas.alu_cedula = '"+ cedula +"' AND not_nombre LIKE '"+ a +"_%'");
         return rs;
     } 
         

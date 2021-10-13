@@ -21,6 +21,7 @@ public class DOCingresarnotas extends javax.swing.JFrame {
     public DOCingresarnotas() throws SQLException {
         initComponents();
         todo();
+        setLocationRelativeTo(null);
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\notlogorg.png");
     }
@@ -346,6 +347,7 @@ public class DOCingresarnotas extends javax.swing.JFrame {
     private void jbtnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnguardarActionPerformed
         try {
             // TODO add your handling code here:
+            int c = 0;
             if(Notass.comactividad(jtfnombreactividad.getText()) == false){
                 for(int i = 0 ; i < jtablenotas.getRowCount(); i++){
                     try {
@@ -363,11 +365,12 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                         double notas = Double.parseDouble(jtablenotas.getValueAt(i,3).toString());
                         if(Notass.comnotaalumno(cedula, curso, asignatura, jtfnombreactividad.getText()) == false){
                             Notass nt = new Notass(codigo, jtfnombreactividad.getText(), curso, asignatura, cedula, notas);
-                            if(nt.insertar()) { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas se guardaron correctamente"); DefaultTableModel a = (DefaultTableModel)jtablenotas.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }} else { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas no se guardaron correctamente"); }
+                            if(nt.insertar()){ c++; }
                         } else { JOptionPane.showMessageDialog(rootPane, "EL alumno ya tiene una nota en esa actividad"); }
                     } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
                 }
             } else { JOptionPane.showMessageDialog(rootPane, "Esta actividad ya existe"); }
+            if(jtablenotas.getRowCount() == c) { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas se guardaron correctamente"); DefaultTableModel a = (DefaultTableModel)jtablenotas.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }} else { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas no se guardaron correctamente"); }
         } catch (SQLException ex) { System.out.println("error comprobar actividad"); }
     }//GEN-LAST:event_jbtnguardarActionPerformed
 

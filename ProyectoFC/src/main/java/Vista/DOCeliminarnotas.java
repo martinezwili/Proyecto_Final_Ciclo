@@ -21,6 +21,7 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
     public DOCeliminarnotas() throws SQLException {
         initComponents();
         todo();
+        setLocationRelativeTo(null);
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogoel, "src\\main\\java\\Imagenes\\notlogoeli.png");
     }

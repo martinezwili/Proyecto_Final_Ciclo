@@ -354,6 +354,7 @@ public class DOCmodificarnotas extends javax.swing.JFrame {
 
     private void jbtnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnguardarActionPerformed
         // TODO add your handling code here:
+        int c = 0;
         for(int i = 0 ; i < jtablenotas.getRowCount(); i++){
             try {
                 String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
@@ -361,9 +362,10 @@ public class DOCmodificarnotas extends javax.swing.JFrame {
                 String cedula = jtablenotas.getValueAt(i, 0).toString();
                 double notas = Double.parseDouble(jtablenotas.getValueAt(i,3).toString());
                 Notass nt = new Notass(null, cbactividades.getSelectedItem().toString(), curso, asignatura, cedula, notas);
-                if(nt.actualizar()) { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas se actualizaron correctamente"); DefaultTableModel a = (DefaultTableModel)jtablenotas.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); } } else { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas no se actualizaron correctamente"); }
+                if(nt.actualizar()) { c++; }
             } catch (SQLException ex) { System.out.println("error jtable a base de datos"); }
         }
+        if(jtablenotas.getRowCount() == c) { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas se actualizaron correctamente"); DefaultTableModel a = (DefaultTableModel)jtablenotas.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); } } else { JOptionPane.showMessageDialog(rootPane, "La actividad y todas las notas no se actualizaron correctamente"); }
     }//GEN-LAST:event_jbtnguardarActionPerformed
 
     private void jbtnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnsalirActionPerformed
