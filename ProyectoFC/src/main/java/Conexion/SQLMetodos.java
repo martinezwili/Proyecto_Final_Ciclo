@@ -588,8 +588,8 @@ public class SQLMetodos {
         return rs;
     }
      
-    public ResultSet reporteAsistencia(String curso){
-        ResultSet rs = conexion.query("select asig_nombre,SUM(asi_faltas) from asistencia INNER JOIN asignatura on asistencia.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=asistencia.cur_codigo  WHERE asistencia.cur_codigo='"+curso+"'");
+    public ResultSet reporteAsistencia(String curso, String asignatura){
+        ResultSet rs = conexion.query("select asistencia.alu_cedula,per_nombre,per_apellido,asi_faltas FROM alumno inner join persona on persona.per_cedula=alumno.alu_cedula inner join asistencia on alumno.alu_cedula = asistencia.alu_cedula inner join asignatura on asignatura.asig_codigo=asistencia.asig_codigo where asistencia.cur_codigo='"+curso+"' and asignatura.asig_codigo='"+asignatura+"'");
         return rs;
     }
     
