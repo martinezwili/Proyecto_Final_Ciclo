@@ -58,6 +58,10 @@ public class DOCreportenotas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(103, 159, 225));
+
+        jPanel3.setBackground(new java.awt.Color(103, 159, 225));
+
         jtablereportenotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -97,6 +101,8 @@ public class DOCreportenotas extends javax.swing.JFrame {
                 .addGap(165, 165, 165))
         );
 
+        jPanel4.setBackground(new java.awt.Color(103, 159, 225));
+
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel1.setText("REPORTE NOTAS");
 
@@ -116,6 +122,8 @@ public class DOCreportenotas extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel8.setBackground(new java.awt.Color(103, 159, 225));
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +148,8 @@ public class DOCreportenotas extends javax.swing.JFrame {
                 .addComponent(btnSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2.setBackground(new java.awt.Color(103, 159, 225));
 
         jLabel5.setText("BUSCAR POR ASIGNATURA:");
 
@@ -177,6 +187,8 @@ public class DOCreportenotas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(103, 159, 225));
+
         jLabel2.setText("CURSO:");
 
         cbcurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -213,6 +225,8 @@ public class DOCreportenotas extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        jPanel7.setBackground(new java.awt.Color(103, 159, 225));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);

@@ -58,6 +58,10 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(62, 160, 173));
+
+        jPanel3.setBackground(new java.awt.Color(62, 160, 173));
+
         tablaReporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -97,6 +101,8 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                 .addGap(165, 165, 165))
         );
 
+        jPanel4.setBackground(new java.awt.Color(62, 160, 173));
+
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel1.setText("REPORTE ASISTENCIA");
 
@@ -116,6 +122,8 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel5.setBackground(new java.awt.Color(62, 160, 173));
 
         jLabel2.setText("CURSO:");
 
@@ -154,6 +162,8 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel2.setBackground(new java.awt.Color(62, 160, 173));
+
         jLabel5.setText("BUSCAR POR ASIGNATURA:");
 
         jtfbuscar4.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -190,6 +200,8 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel7.setBackground(new java.awt.Color(62, 160, 173));
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -206,6 +218,8 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
                 .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel8.setBackground(new java.awt.Color(62, 160, 173));
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {

@@ -80,6 +80,8 @@ public class ADMcrearsexo extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("SEXO CREAR / MODIFICAR / ELIMINAR");
 

@@ -67,6 +67,10 @@ public class DOCmodificarasistencia extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel4.setBackground(new java.awt.Color(221, 218, 127));
+
+        jPanel7.setBackground(new java.awt.Color(221, 218, 127));
+
         jtableasistencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -97,6 +101,8 @@ public class DOCmodificarasistencia extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel10.setBackground(new java.awt.Color(221, 218, 127));
+
         jtfbuscar4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfbuscar4KeyReleased(evt);
@@ -123,6 +129,8 @@ public class DOCmodificarasistencia extends javax.swing.JFrame {
                     .addComponent(jtfbuscar4))
                 .addContainerGap())
         );
+
+        jPanel6.setBackground(new java.awt.Color(221, 218, 127));
 
         jbtnguardar.setText("MODIFICAR");
         jbtnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +166,8 @@ public class DOCmodificarasistencia extends javax.swing.JFrame {
                     .addComponent(jbtnsalir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel5.setBackground(new java.awt.Color(221, 218, 127));
 
         jLabel4.setText("CURSO:");
 
@@ -233,6 +243,8 @@ public class DOCmodificarasistencia extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel8.setBackground(new java.awt.Color(221, 218, 127));
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("MODIFICAR ASISTENCIA.");
 
@@ -251,6 +263,8 @@ public class DOCmodificarasistencia extends javax.swing.JFrame {
                 .addGap(0, 15, Short.MAX_VALUE)
                 .addComponent(jLabel3))
         );
+
+        jPanel1.setBackground(new java.awt.Color(221, 218, 127));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

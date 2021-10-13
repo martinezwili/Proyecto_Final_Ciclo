@@ -50,6 +50,10 @@ public class ALUreporteuser extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(186, 235, 94));
+
+        jPanel3.setBackground(new java.awt.Color(186, 235, 94));
+
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 204, 255));
         jLabel3.setText(" ALUMNO / ESTUDIANTE");
@@ -70,6 +74,8 @@ public class ALUreporteuser extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel4.setBackground(new java.awt.Color(186, 235, 94));
 
         jLabel11.setText("CEDULA:");
 
@@ -162,6 +168,8 @@ public class ALUreporteuser extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel5.setBackground(new java.awt.Color(186, 235, 94));
+
         jButton1.setText("SALIR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +193,8 @@ public class ALUreporteuser extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel12.setBackground(new java.awt.Color(186, 235, 94));
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);

@@ -84,6 +84,10 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(76, 178, 228));
+
+        jPanel5.setBackground(new java.awt.Color(76, 178, 228));
+
         jLabel5.setText("ASIGNATURA:");
 
         cbcurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -150,6 +154,8 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
+        jPanel6.setBackground(new java.awt.Color(76, 178, 228));
+
         jbtnguardar.setText("ELIMINAR");
         jbtnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +191,8 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
                 .addGap(67, 67, 67))
         );
 
+        jPanel10.setBackground(new java.awt.Color(76, 178, 228));
+
         jtfbuscar4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfbuscar4KeyReleased(evt);
@@ -212,6 +220,8 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel11.setBackground(new java.awt.Color(76, 178, 228));
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -228,6 +238,8 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
                 .addComponent(jlblogoel, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel7.setBackground(new java.awt.Color(76, 178, 228));
 
         jtablenotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -258,6 +270,8 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel8.setBackground(new java.awt.Color(76, 178, 228));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("ELIMINAR NOTAS");

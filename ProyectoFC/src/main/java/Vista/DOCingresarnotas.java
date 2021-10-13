@@ -75,6 +75,10 @@ public class DOCingresarnotas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(218, 114, 69));
+
+        jPanel7.setBackground(new java.awt.Color(218, 114, 69));
+
         jtablenotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -105,6 +109,8 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel10.setBackground(new java.awt.Color(218, 114, 69));
+
         jtfbuscar4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfbuscar4KeyReleased(evt);
@@ -132,6 +138,8 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel1.setBackground(new java.awt.Color(218, 114, 69));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,6 +156,8 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                 .addComponent(jlblogo, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel6.setBackground(new java.awt.Color(218, 114, 69));
 
         jbtnguardar.setText("GUARDAR");
         jbtnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +193,8 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                     .addComponent(jbtnsalir))
                 .addGap(67, 67, 67))
         );
+
+        jPanel5.setBackground(new java.awt.Color(218, 114, 69));
 
         jLabel4.setText("CURSO:");
 
@@ -246,6 +258,8 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                 .addComponent(jtfnombreactividad)
                 .addContainerGap())
         );
+
+        jPanel4.setBackground(new java.awt.Color(218, 114, 69));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("INGRESAR NOTAS.");
