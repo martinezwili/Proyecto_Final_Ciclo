@@ -306,6 +306,11 @@ public class LGregistraradministrador extends javax.swing.JFrame {
 
         jLabel23.setText("CONTRASEÑA:");
 
+        jtfcedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfcedulaFocusLost(evt);
+            }
+        });
         jtfcedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfcedulaKeyReleased(evt);
@@ -327,12 +332,6 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         jtftelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtftelefonoKeyReleased(evt);
-            }
-        });
-
-        jcanacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jcanacimientoKeyReleased(evt);
             }
         });
 
@@ -692,10 +691,6 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         if(vali.ValidarTelefono(jtftelefono.getText())){ this.colocarImagen(this.jlbtelefono, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbtelefono, "src\\main\\java\\Imagenes\\V2.png"); }
     }//GEN-LAST:event_jtftelefonoKeyReleased
 
-    private void jcanacimientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcanacimientoKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcanacimientoKeyReleased
-
     private void jtfcontrasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcontrasKeyReleased
         if(vali.validaContraseña(jtfcontras.getText())){ this.colocarImagen(this.jlbcontras, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbcontras, "src\\main\\java\\Imagenes\\V2.png"); }
     }//GEN-LAST:event_jtfcontrasKeyReleased
@@ -716,6 +711,10 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         if(vali.validardijitos8(jtfcodigo.getText())){ this.colocarImagen(this.jlbcodigo, "src\\main\\java\\Imagenes\\V1.png"); }else{ this.colocarImagen(this.jlbcodigo, "src\\main\\java\\Imagenes\\V2.png"); }
     }//GEN-LAST:event_jtfcodigoKeyReleased
 
+    private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
+        try { if(sqlm.cedularg(jtfcedula.getText())){  JOptionPane.showMessageDialog(rootPane, "Cedula registrada verifique"); } } catch (SQLException ex) {System.out.println("error mostrar cedula validacion administrador"); }
+    }//GEN-LAST:event_jtfcedulaFocusLost
+
     //limpiar los jtext file cuando se guarde la informacion
     public void limpiar(){
         try {
@@ -727,9 +726,12 @@ public class LGregistraradministrador extends javax.swing.JFrame {
             jtfcontras.setText("");
             jtfcedula.setText("");
             jtfcodigo.setText("");
-            jtfcalle.setText("");
             jtfcomuna.setText("");
             jcanacimiento.setDate(null);
+            cbformacion.setSelectedItem("");
+            cbnacionalidad.setSelectedItem("");
+            cbpoliglota.setSelectedItem("");
+            cbsexo.setSelectedItem("");
             todo();
         } catch (SQLException ex) { System.out.println("Error limpiesa de datos"); }
     }
@@ -739,21 +741,24 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         boolean ab = false;
         if(vali.validarCedula(cedula) == true){
             if(vali.ValidarTelefono(telefono) == true){
-                if(vali.validaNombreoApellido(nombre) == true){
-                    if(vali.validaNombreoApellido(apellido) == true){
-                        if(vali.validarcorreo(correo) == true){
-                            if(vali.validaContraseña(contra) == true){
-                                if(vali.validarestado(estado) == true){
-                                    if(vali.validardijitos8(jtfcodigo.getText()) == true){
-                                        if(vali.validardijitos50(jtfcalle.getText()) == true){
-                                            if(vali.validardijitos20(jtfcomuna.getText()) == true){ } else { as = "Verifique la comuna"; }
-                                        } else { as = "Verifique la calle"; }
-                                    } else { as = "Verifique el codigo de la casa"; }
-                                } else { as = "Verifique el estado"; }
-                            } else { as = "Verifique la contraseña"; }
-                        } else { as = "Verifique el correo"; }
-                    } else { as = "Verifique el apellido";  }
-                } else { as = "Verifique el nombre";  }
+                if(SQLMetodos.validarnacimiento(jcanacimiento.getDate()) == true){
+                    this.colocarImagen(this.jlbnacimiento, "src\\main\\java\\Imagenes\\V1.png"); 
+                    if(vali.validaNombreoApellido(nombre) == true){
+                        if(vali.validaNombreoApellido(apellido) == true){
+                            if(vali.validarcorreo(correo) == true){
+                                if(vali.validaContraseña(contra) == true){
+                                    if(vali.validarestado(estado) == true){
+                                        if(vali.validardijitos8(jtfcodigo.getText()) == true){
+                                            if(vali.validardijitos50(jtfcalle.getText()) == true){
+                                                if(vali.validardijitos20(jtfcomuna.getText()) == true){ } else { as = "Verifique la comuna"; }
+                                            } else { as = "Verifique la calle"; }
+                                        } else { as = "Verifique el codigo de la casa"; }
+                                    } else { as = "Verifique el estado"; }
+                                } else { as = "Verifique la contraseña"; }
+                            } else { as = "Verifique el correo"; }
+                        } else { as = "Verifique el apellido";  }
+                    } else { as = "Verifique el nombre";  }
+                } else { this.colocarImagen(this.jlbnacimiento, "src\\main\\java\\Imagenes\\V2.png"); as = "Verifique la fecha de nacimiento";  }
             } else { as = "Verifique el telefono";  }
         } else { as = "Verifique la cedula";  }
         

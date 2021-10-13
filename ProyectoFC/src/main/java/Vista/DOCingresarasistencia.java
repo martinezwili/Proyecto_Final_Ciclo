@@ -64,6 +64,10 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel3.setBackground(new java.awt.Color(149, 179, 149));
+
+        jPanel4.setBackground(new java.awt.Color(149, 179, 149));
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("REGISTRAR ASISTENCIA..");
 
@@ -82,6 +86,8 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                 .addGap(0, 15, Short.MAX_VALUE)
                 .addComponent(jLabel3))
         );
+
+        jPanel5.setBackground(new java.awt.Color(149, 179, 149));
 
         jLabel4.setText("CURSO:");
 
@@ -145,6 +151,8 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel6.setBackground(new java.awt.Color(149, 179, 149));
+
         jbtnregistrar.setText("REGISTRAR");
         jbtnregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +188,8 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel10.setBackground(new java.awt.Color(149, 179, 149));
+
         jtfbuscar4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfbuscar4KeyReleased(evt);
@@ -206,6 +216,8 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                     .addComponent(jtfbuscar4))
                 .addContainerGap())
         );
+
+        jPanel7.setBackground(new java.awt.Color(149, 179, 149));
 
         jtableasistencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -236,6 +248,8 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1.setBackground(new java.awt.Color(149, 179, 149));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
