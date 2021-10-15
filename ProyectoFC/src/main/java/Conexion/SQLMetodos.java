@@ -533,27 +533,27 @@ public class SQLMetodos {
     }  
     
     public  ResultSet mReporteAsigAlumno(String cedula){
-        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN alumno ON alumno.cur_codigo= curso.cur_codigo WHERE alu_cedula = '"+ cedula +"'");
+        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN matricula ON matricula.cur_codigo= curso.cur_codigo WHERE alu_cedula = '"+ cedula +"'");
         return rs;
     } 
     
     public  ResultSet mReporteNotasAlumno(String asig, String cedula){
-        ResultSet rs = conexion.query("SELECT DISTINCT not_nombre, not_nota FROM notas INNER JOIN alumno ON alumno.cur_codigo=notas.cur_codigo WHERE notas.asig_codigo = '"+ asig +"' AND notas.alu_cedula='"+cedula+"'");
+        ResultSet rs = conexion.query("SELECT DISTINCT not_nombre, not_nota FROM notas  INNER JOIN asignatura ON notas.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=notas.cur_codigo WHERE notas.asig_codigo = '"+ asig +"' AND notas.alu_cedula='"+cedula+"'");
         return rs;
     } 
     
     public  ResultSet mReporteAsisAlumno(String cedula,String asignatura){
-        ResultSet rs = conexion.query("select asi_faltas,asi_fecha FROM asistencia INNER JOIN asignatura ON asistencia.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=asistencia.cur_codigo  WHERE asistencia.alu_cedula='"+cedula+"'AND asistencia.asig_codigo='"+asignatura+"'");
+        ResultSet rs = conexion.query("select asig_nombre, asi_faltas,asi_fecha FROM asistencia INNER JOIN asignatura ON asistencia.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=asistencia.cur_codigo WHERE asistencia.alu_cedula='"+cedula+"'AND asistencia.asig_codigo='"+asignatura+"'");
         return rs;
     } 
     
     public  ResultSet CoboAsigAlumno(String cedula){
-        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN alumno ON alumno.cur_codigo= curso.cur_codigo WHERE alu_cedula = '"+ cedula +"'");
+        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN matricula ON matricula.cur_codigo= curso.cur_codigo WHERE alu_cedula = '"+ cedula +"'");
         return rs;
     }
     
     public  ResultSet mReporteNotasAlumnoBuscar(String asig, String cedula, String a){
-        ResultSet rs = conexion.query("SELECT DISTINCT not_nombre, not_nota FROM notas INNER JOIN alumno ON alumno.cur_codigo=notas.cur_codigo WHERE notas.asig_codigo = '"+ asig +"' AND notas.alu_cedula = '"+ cedula +"' AND not_nombre LIKE '"+ a +"_%'");
+        ResultSet rs = conexion.query("SELECT DISTINCT not_nombre, not_nota FROM notas  INNER JOIN asignatura ON notas.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=notas.cur_codigo WHERE notas.asig_codigo = '"+ asig +"' AND notas.alu_cedula = '"+ cedula +"' AND not_nombre LIKE '"+ a +"_%'");
         return rs;
     } 
         
@@ -575,8 +575,8 @@ public class SQLMetodos {
         return rs;
     }
     
-    public ResultSet reporteAsistenciabuscar(String curso, String a){
-        ResultSet rs = conexion.query("select asig_nombre,SUM(asi_faltas) from asistencia INNER JOIN asignatura on asistencia.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=asistencia.cur_codigo  WHERE asistencia.cur_codigo='"+curso+"' AND asig_nombre LIKE '"+ a +"_%'");
+    public ResultSet reporteAsistenciabuscar(String curso, String asignatura, String b){
+        ResultSet rs = conexion.query("select asistencia.alu_cedula,per_nombre,per_apellido,asi_faltas FROM alumno inner join persona on persona.per_cedula=alumno.alu_cedula inner join asistencia on alumno.alu_cedula = asistencia.alu_cedula inner join asignatura on asignatura.asig_codigo=asistencia.asig_codigo where asistencia.cur_codigo='"+curso+"' and asignatura.asig_codigo='"+asignatura+"'AND alumno.alu_cedula LIKE '"+ b +"_%' OR persona.per_nombre LIKE '"+ b +"_%' OR persona.per_apellido LIKE '"+ b +"_%'");
         return rs;
     }
     

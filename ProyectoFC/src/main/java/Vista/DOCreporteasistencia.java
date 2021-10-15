@@ -354,11 +354,12 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     private void jtfbuscar4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscar4KeyReleased
         try {
             String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
+            String asignatura = sqlm.obtenerasignatura(cbAsig.getSelectedItem().toString());
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new Object[]{"ASIGNATURA","TOTAL FALTAS"});
-            ResultSet rs = sqlm.reporteAsistenciabuscar(curso, jtfbuscar4.getText());
+            modelo.setColumnIdentifiers(new Object[]{"CEDULA","NOMBRE","APELLIDO","FALTAS"});
+            ResultSet rs = sqlm.reporteAsistenciabuscar(curso, asignatura, jtfbuscar4.getText());
             while(rs.next()){
-                modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("SUM(asi_faltas)")});
+                modelo.addRow(new Object[]{rs.getString("asistencia.alu_cedula"),rs.getString("per_nombre"),rs.getString("per_apellido"),rs.getString("asi_faltas")});
             }
             tablaReporte.setModel(modelo);
         } catch (SQLException ex) { System.out.println("error mostrar reporte notas alumno"); }
