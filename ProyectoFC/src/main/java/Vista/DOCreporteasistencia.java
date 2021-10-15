@@ -4,6 +4,8 @@ import Conexion.SQLMetodos;
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -18,7 +20,6 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     public DOCreporteasistencia() throws SQLException {
         initComponents();
         moscursos();
-        mosAsig();
         setLocationRelativeTo(null);
         this.colocarImagen(this.jlbcargar, "src\\main\\java\\Imagenes\\cargando.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\lista-de-asistentes.png");
@@ -35,10 +36,10 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     
     public void mosAsig() throws SQLException{
         String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
-        cbcurso.removeAllItems();
+        cbAsig.removeAllItems();
         ResultSet rs = sqlm.DOCasignaturas(Login.docente, curso);
         while(rs.next()){
-            cbcurso.addItem(rs.getString(1));
+            cbAsig.addItem(rs.getString(1));
         }
     }
 
@@ -140,6 +141,11 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
         jLabel2.setText("CURSO:");
 
         cbcurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbcurso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbcursoMouseClicked(evt);
+            }
+        });
 
         jlbcargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -362,6 +368,12 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose(); DOCmenu ac = new DOCmenu(); ac.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void cbcursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbcursoMouseClicked
+        try {
+            mosAsig();
+        } catch (SQLException ex) { System.out.println("error mostrar asignaturas"); }
+    }//GEN-LAST:event_cbcursoMouseClicked
     
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);
