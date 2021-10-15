@@ -741,7 +741,7 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         boolean ab = false;
         if(vali.validarCedula(cedula) == true){
             if(vali.ValidarTelefono(telefono) == true){
-                if(SQLMetodos.validarnacimiento(jcanacimiento.getDate()) == true){
+                if(vali.validarnacimiento(jcanacimiento.getDate()) == true){
                     this.colocarImagen(this.jlbnacimiento, "src\\main\\java\\Imagenes\\V1.png"); 
                     if(vali.validaNombreoApellido(nombre) == true){
                         if(vali.validaNombreoApellido(apellido) == true){

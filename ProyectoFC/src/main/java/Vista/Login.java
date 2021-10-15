@@ -222,7 +222,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         Persona pers = new Persona(jtfcedula.getText(), null, null, null, null, null, null, null);
         Docente doc = new Docente(jtfcedula.getText(), null, null, null, null);
-        Alumno alu = new Alumno(jtfcedula.getText(), null, null, null, null, null);
+        Alumno alu = new Alumno(jtfcedula.getText(), null, null, null, null);
         Administrador adm = new Administrador(jtfcedula.getText(), null, null, null);
         //excepcion de comprobacion de cedula
         try {

@@ -35,10 +35,10 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
     
     public void mosAsig() throws SQLException{
         String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
-        cbAsig.removeAllItems();
+        cbcurso.removeAllItems();
         ResultSet rs = sqlm.DOCasignaturas(Login.docente, curso);
         while(rs.next()){
-            cbAsig.addItem(rs.getString(1));
+            cbcurso.addItem(rs.getString(1));
         }
     }
 
@@ -331,18 +331,13 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-        this.dispose(); DOCmenu ac = new DOCmenu(); ac.setVisible(true);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     private void jlbcargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbcargarMouseClicked
         try {
             String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
             String asignatura = sqlm.obtenerasignatura(cbAsig.getSelectedItem().toString());
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{"CEDULA","NOMBRE","APELLIDO","FALTAS"});
-            ResultSet rs = sqlm.reporteAsistencia(curso,asignatura);
+            ResultSet rs = sqlm.reporteAsistencia(curso, asignatura);
             while(rs.next()){
                 modelo.addRow(new Object[]{rs.getString("asistencia.alu_cedula"),rs.getString("per_nombre"),rs.getString("per_apellido"),rs.getString("asi_faltas")});
             }
@@ -362,6 +357,11 @@ public class DOCreporteasistencia extends javax.swing.JFrame {
             tablaReporte.setModel(modelo);
         } catch (SQLException ex) { System.out.println("error mostrar reporte notas alumno"); }
     }//GEN-LAST:event_jtfbuscar4KeyReleased
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose(); DOCmenu ac = new DOCmenu(); ac.setVisible(true);
+    }//GEN-LAST:event_btnSalirActionPerformed
     
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);

@@ -34,7 +34,6 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         mosnacionalidad();
         mospoliglota();
         mossexo();
-        mcurso();
         mmodalidad();
         mosalumno();
         limpiar();
@@ -80,21 +79,13 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         }
     }
     
-    public void mcurso() throws SQLException{
-        cbcurso.removeAllItems();
-        ResultSet rs = sqlm.mcbboxCurso();
-        while(rs.next()){
-            cbcurso.addItem(rs.getString(1));
-        }
-    }
-    
     public void mosalumno() throws SQLException{
         //mostrar informacion de la tabla administradorr
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "TELEFONO REPRESENTANTE", "CURSO", "MODALIDAD", "JORNADA"});
+        modelo.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "TELEFONO REPRESENTANTE", "MODALIDAD", "JORNADA"});
         ResultSet rs = sqlm.mjtableAlumno();
         while(rs.next()){
-            modelo.addRow(new Object[]{rs.getString("alu_cedula"), rs.getString("per_nombre"), rs.getString("per_apellido"), rs.getString("alu_telrepresentante"), rs.getString("cur_nombre"), rs.getString("mod_modalidad"), rs.getString("jor_jornada")});
+            modelo.addRow(new Object[]{rs.getString("alu_cedula"), rs.getString("per_nombre"), rs.getString("per_apellido"), rs.getString("alu_telrepresentante"), rs.getString("mod_modalidad"), rs.getString("jor_jornada")});
         }
         jtablealumno.setModel(modelo);
     }
@@ -121,8 +112,6 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         cbjornada = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
-        cbcurso = new javax.swing.JComboBox<>();
-        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         cbmodalidad = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
@@ -177,13 +166,13 @@ public class ADMcrearalumno extends javax.swing.JFrame {
 
         jtablealumno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "CEDULA", "NOMBRE", "APELLIDO", "TELEFONO REPRESENTANTE", "CURSO", "MODALIDAD", "JORNADA"
+                "CEDULA", "NOMBRE", "APELLIDO", "TELEFONO REPRESENTANTE", "MODALIDAD", "JORNADA"
             }
         ));
         jtablealumno.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -279,11 +268,6 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("JORNADA:");
 
-        cbcurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setText("CURSO:");
-
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("MODALIDAD:");
 
@@ -307,24 +291,22 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             .addGroup(contenedorLayout.createSequentialGroup()
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenedorLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(21, Short.MAX_VALUE)
                         .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbjornada, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbsexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbpoliglota, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbnacionalidad, javax.swing.GroupLayout.Alignment.TRAILING, 0, 137, Short.MAX_VALUE)
-                            .addComponent(cbmodalidad, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbcurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cbmodalidad, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                        .addContainerGap(62, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel19)
                         .addGap(18, 18, 18)
                         .addComponent(rbtnactivo)
@@ -357,13 +339,10 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbcurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnactivo)
                     .addComponent(jLabel19)
-                    .addComponent(rdbtninactivo)))
+                    .addComponent(rdbtninactivo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(82, 82, 164));
@@ -715,7 +694,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(28, 28, 28)
                         .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -758,7 +737,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
             String nacimiento = f.format(jcanacimiento.getDate());
             //se emvia datos por parametros a metodos en clase SQLMetodos
-            String rs1 = sqlm.obtenerpoliglota(cbpoliglota.getSelectedItem().toString()), rs2 = sqlm.obtenernacionalidad(cbnacionalidad.getSelectedItem().toString()), rs3 = sqlm.obtenersexo(cbsexo.getSelectedItem().toString()), rs4 = sqlm.obtenerjornada(cbjornada.getSelectedItem().toString()); String rs5 = sqlm.obtenermodalidad(cbmodalidad.getSelectedItem().toString()); String rs6 = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
+            String rs1 = sqlm.obtenerpoliglota(cbpoliglota.getSelectedItem().toString()), rs2 = sqlm.obtenernacionalidad(cbnacionalidad.getSelectedItem().toString()), rs3 = sqlm.obtenersexo(cbsexo.getSelectedItem().toString()), rs4 = sqlm.obtenerjornada(cbjornada.getSelectedItem().toString()); String rs5 = sqlm.obtenermodalidad(cbmodalidad.getSelectedItem().toString());
             //instanciar clases direccion
             Direccion dir = new Direccion(jtfcodigo.getText(), jtfcalle.getText(), jtfcomuna.getText());
             //instanciar relacion
@@ -766,7 +745,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             // instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar alumno
-            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, rs6, jtfcedula.getText());
+            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, jtfcedula.getText());
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtftelefonorepresentante.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -820,7 +799,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             if(rbtnactivo.isSelected() == true){ estado = "ACTIVO"; } else if (rdbtninactivo.isSelected() == true){ estado = "INACTIVO"; }
             
             //se emvia datos por parametros a metodos en clase SQLMetodos
-            String rs1 = sqlm.obtenerpoliglota(cbpoliglota.getSelectedItem().toString()), rs2 = sqlm.obtenernacionalidad(cbnacionalidad.getSelectedItem().toString()), rs3 = sqlm.obtenersexo(cbsexo.getSelectedItem().toString()), rs4 = sqlm.obtenerjornada(cbjornada.getSelectedItem().toString()); String rs5 = sqlm.obtenermodalidad(cbmodalidad.getSelectedItem().toString()); String rs6 = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
+            String rs1 = sqlm.obtenerpoliglota(cbpoliglota.getSelectedItem().toString()), rs2 = sqlm.obtenernacionalidad(cbnacionalidad.getSelectedItem().toString()), rs3 = sqlm.obtenersexo(cbsexo.getSelectedItem().toString()), rs4 = sqlm.obtenerjornada(cbjornada.getSelectedItem().toString()); String rs5 = sqlm.obtenermodalidad(cbmodalidad.getSelectedItem().toString());
             //instanciar direccion
             Direccion dir = new Direccion(jtfcodigo.getText(), jtfcalle.getText(), jtfcomuna.getText());
             //instanciar relacion
@@ -828,7 +807,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             //instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), estado, jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar alumno
-            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, rs6, jtfcedula.getText());
+            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, jtfcedula.getText());
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtftelefonorepresentante.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -871,10 +850,10 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     private void jtfbuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarKeyReleased
         try {
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "TELEFONO REPRESENTANTE", "CURSO", "MODALIDAD", "JORNADA"});
+            modelo.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "TELEFONO REPRESENTANTE", "MODALIDAD", "JORNADA"});
             ResultSet rs = sqlm.buscaralumno(jtfbuscar.getText());
             while(rs.next()){
-                modelo.addRow(new Object[]{rs.getString("alu_cedula"), rs.getString("per_nombre"), rs.getString("per_apellido"), rs.getString("alu_telrepresentante"), rs.getString("cur_nombre"), rs.getString("mod_modalidad"), rs.getString("jor_jornada")});
+                modelo.addRow(new Object[]{rs.getString("alu_cedula"), rs.getString("per_nombre"), rs.getString("per_apellido"), rs.getString("alu_telrepresentante"), rs.getString("mod_modalidad"), rs.getString("jor_jornada")});
             }
             jtablealumno.setModel(modelo);
         } catch (SQLException ex) { System.out.println("error buscar alumno"); }
@@ -928,7 +907,6 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         cbsexo.setSelectedItem(sqlm.msexo(a));
         cbjornada.setSelectedItem(sqlm.mjornadaalu(a));
         cbmodalidad.setSelectedItem(sqlm.mmodalidad(a));
-        cbcurso.setSelectedItem(sqlm.mcursoalu(a));
         
         jtftelefonorepresentante.setText(sqlm.mtelefonorepresentante(a));
         
@@ -967,7 +945,6 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         cbnacionalidad.setSelectedItem("");
         cbsexo.setSelectedItem("");
         cbmodalidad.setSelectedItem("");
-        cbcurso.setSelectedItem("");
         cbjornada.setSelectedItem("");  
         rbtnactivo.setSelected(false);
         rdbtninactivo.setSelected(false); 
@@ -978,7 +955,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
         boolean ab = false;
         if(vali.validarCedula(cedula) == true){
             if(vali.ValidarTelefono(telefono) == true){
-                if(SQLMetodos.validarnacimiento(jcanacimiento.getDate()) == true){
+                if(vali.validarnacimiento(jcanacimiento.getDate()) == true){
                     this.colocarImagen(this.jlbnacimiento, "src\\main\\java\\Imagenes\\V1.png");
                     if(vali.validaNombreoApellido(nombre) == true){
                         if(vali.validaNombreoApellido(apellido) == true){
@@ -1042,7 +1019,6 @@ public class ADMcrearalumno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btngrupo;
-    private javax.swing.JComboBox<String> cbcurso;
     private javax.swing.JComboBox<String> cbjornada;
     private javax.swing.JComboBox<String> cbmodalidad;
     private javax.swing.JComboBox<String> cbnacionalidad;
@@ -1057,7 +1033,6 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;

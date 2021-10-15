@@ -1,6 +1,9 @@
 package Modelo;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,4 +73,47 @@ public class Validaciones {
     public boolean validarestado(String estado){
         if(estado.equals("ACTIVO") || estado.equals("INACTIVO")){ return true; } else { return false; }
     }
+    
+    public static boolean validarnacimiento(Date nacimi){
+        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date fac = new Date();
+        String ff = f1.format(fac);
+        String a = ff.substring(0, 4);
+        int ao = Integer.valueOf(a);
+        
+        String nac = f1.format(nacimi);
+        String anac = nac.substring(0, 4);
+        int aanac = Integer.valueOf(anac);
+        
+        if(ao > aanac){ return true; } else { return false; }
+    }
+    
+    public static boolean validarfechaasistencia(Date fecha){
+        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date fac = new Date();
+        String ff = f1.format(fac);
+        String a = ff.substring(0, 4);
+        String m = ff.substring(5, 7);
+        String d = ff.substring(8, 10);
+        int aa = Integer.valueOf(a);
+        int ma = Integer.valueOf(m);
+        int da = Integer.valueOf(d);
+        
+        String ff2 = f1.format(fecha);
+        String a2 = ff2.substring(0, 4);
+        String m2 = ff2.substring(5, 7);
+        String d2 = ff2.substring(8, 10);
+        int aa2 = Integer.valueOf(a2);
+        int ma2 = Integer.valueOf(m2);
+        int da2 = Integer.valueOf(d2);
+        
+        if(aa == aa2 && ma == ma2 && da == da2){ return true; } else { return false; }
+    }
+    
+    public String obtenerfecha(){
+        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date fac = new Date();
+        String ff = f1.format(fac);
+        return ff;
+    } 
 }

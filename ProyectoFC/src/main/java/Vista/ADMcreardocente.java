@@ -968,7 +968,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
         boolean ab = false;
         if(vali.validarCedula(cedula) == true){
             if(vali.ValidarTelefono(telefono) == true){
-                if(SQLMetodos.validarnacimiento(jcnacimiento.getDate()) == true){
+                if(vali.validarnacimiento(jcnacimiento.getDate()) == true){
                     this.colocarImagen(this.nacimientolbl, "src\\main\\java\\Imagenes\\V1.png");
                     if(vali.validaNombreoApellido(nombre) == true){
                         if(vali.validaNombreoApellido(apellido) == true){

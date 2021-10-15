@@ -10,56 +10,47 @@ public class SQLMetodos {
     Conexionbd conexion = new Conexionbd();
     
     public  ResultSet mcbboxnacionalidad(){
-        String sql = ("SELECT nac_nacionalidad FROM nacionalidad");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT nac_nacionalidad FROM nacionalidad");
         return rs;
     }
     
     public  ResultSet mcbboxpoliglota(){
-        String sql = ("SELECT pol_poliglota FROM poliglota");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT pol_poliglota FROM poliglota");
         return rs;
     }
     
     public  ResultSet mcbboxsexo(){
-        String sql = ("SELECT sex_sexo FROM sexo");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT sex_sexo FROM sexo");
         return rs;
     }
     
     public  ResultSet mcbboxformacion(){
-        String sql = ("SELECT for_nivel FROM formacion");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT for_nivel FROM formacion");
         return rs;
     }
     
     public  ResultSet mcbboxrango(){
-        String sql = ("SELECT ran_rango FROM rango");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT ran_rango FROM rango");
         return rs;
     }
     
     public  ResultSet mcbboxjornada(){
-        String sql = ("SELECT jor_jornada FROM jornada");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT jor_jornada FROM jornada");
         return rs;
     }
     
     public  ResultSet mcbboxasignatura(){
-        String sql = ("SELECT asig_nombre FROM asignatura");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura");
         return rs;
     }
     
     public  ResultSet mcbboxCurso(){
-        String sql = ("SELECT cur_nombre FROM curso");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT cur_nombre FROM curso");
         return rs;
     }
     
     public  ResultSet mcbboxmodalidad(){
-        String sql = ("SELECT mod_modalidad FROM modalidad");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT mod_modalidad FROM modalidad");
         return rs;
     }
        
@@ -68,8 +59,7 @@ public class SQLMetodos {
     
        
     public  String obtenernacionalidad(String a) throws SQLException{
-        String sql = ("SELECT nac_codigo FROM nacionalidad WHERE nac_nacionalidad = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT nac_codigo FROM nacionalidad WHERE nac_nacionalidad = '" + a + "'");
         String nacionalidad = null;
         while(rs.next()){
             nacionalidad = rs.getString("nac_codigo");
@@ -78,8 +68,7 @@ public class SQLMetodos {
     }
     
     public  String obtenerpoliglota(String a) throws SQLException{
-        String sql = ("SELECT pol_codigo FROM poliglota WHERE pol_poliglota = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT pol_codigo FROM poliglota WHERE pol_poliglota = '" + a + "'");
         String poliglota = null;
         while(rs.next()){
             poliglota = rs.getString("pol_codigo");
@@ -88,8 +77,7 @@ public class SQLMetodos {
     }
     
     public  String obtenersexo(String a) throws SQLException{
-        String sql = ("SELECT sex_codigo FROM sexo WHERE sex_sexo = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT sex_codigo FROM sexo WHERE sex_sexo = '" + a + "'");
         String sexo = null;
         while(rs.next()){
              sexo = rs.getString("sex_codigo");
@@ -98,8 +86,7 @@ public class SQLMetodos {
     }
     
     public  String obtenerformacion(String a) throws SQLException{
-        String sql = ("SELECT for_codigo FROM formacion WHERE for_nivel = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT for_codigo FROM formacion WHERE for_nivel = '" + a + "'");
         String formacion = null;
         while(rs.next()){
             formacion = rs.getString("for_codigo");
@@ -108,8 +95,7 @@ public class SQLMetodos {
     }
     
     public  String obtenerrango(String a) throws SQLException{
-        String sql = ("SELECT ran_codigo FROM rango WHERE ran_rango = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT ran_codigo FROM rango WHERE ran_rango = '" + a + "'");
         String rango = null;
         while(rs.next()){
             rango = rs.getString("ran_codigo");
@@ -118,8 +104,7 @@ public class SQLMetodos {
     }
     
     public  String obtenerjornada(String a) throws SQLException{
-        String sql = ("SELECT jor_codigo FROM jornada WHERE jor_jornada = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT jor_codigo FROM jornada WHERE jor_jornada = '" + a + "'");
         String jornada = null;
         while(rs.next()){
              jornada = rs.getString("jor_codigo");
@@ -128,8 +113,7 @@ public class SQLMetodos {
     }
     
     public  String obtenerasignatura(String a) throws SQLException{
-        String sql = ("SELECT asig_codigo FROM asignatura WHERE asig_nombre = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT asig_codigo FROM asignatura WHERE asig_nombre = '" + a + "'");
         String asignatura = null;
         while(rs.next()){
             asignatura = rs.getString("asig_codigo");
@@ -138,8 +122,7 @@ public class SQLMetodos {
     }
     
     public  String obtenermodalidad(String a) throws SQLException{
-        String sql = ("SELECT mod_codigo FROM modalidad WHERE mod_modalidad = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT mod_codigo FROM modalidad WHERE mod_modalidad = '" + a + "'");
         String modalidad = null;
         while(rs.next()){
             modalidad = rs.getString("mod_codigo");
@@ -148,8 +131,7 @@ public class SQLMetodos {
     }
     
     public  String obtenerCurso(String a) throws SQLException{
-        String sql = ("SELECT cur_codigo FROM curso WHERE cur_nombre = '" + a + "'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT cur_codigo FROM curso WHERE cur_nombre = '" + a + "'");
         String curso = null;
         while(rs.next()){
             curso = rs.getString("cur_codigo");
@@ -162,20 +144,17 @@ public class SQLMetodos {
     
     
     public  ResultSet mjtableadministrador(){
-        String sql = ("SELECT adm_cedula, per_nombre, per_apellido, adm_correo FROM persona INNER JOIN administrador ON persona.per_cedula = administrador.per_cedula");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT adm_cedula, per_nombre, per_apellido, adm_correo FROM persona INNER JOIN administrador ON persona.per_cedula = administrador.per_cedula");
         return rs;
     }
     
     public  ResultSet mjtabledocente(){
-        String sql = ("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.per_cedula INNER JOIN rango ON rango.ran_codigo = docente.ran_codigo");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.per_cedula INNER JOIN rango ON rango.ran_codigo = docente.ran_codigo");
         return rs;
     }
     
     public  ResultSet mjtableAlumno(){
-        String sql = ("SELECT alu_cedula, per_nombre, per_apellido, alu_telrepresentante, cur_nombre, mod_modalidad, jor_jornada FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN curso ON curso.cur_codigo = alumno.cur_codigo INNER JOIN modalidad ON modalidad.mod_codigo = alumno.mod_codigo INNER JOIN jornada ON jornada.jor_codigo = alumno.jor_codigo");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido, alu_telrepresentante, mod_modalidad, jor_jornada FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN modalidad ON modalidad.mod_codigo = alumno.mod_codigo INNER JOIN jornada ON jornada.jor_codigo = alumno.jor_codigo");
         return rs;
     }
     
@@ -385,7 +364,7 @@ public class SQLMetodos {
     }
     
     public  ResultSet buscaralumno(String a){
-        ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido, alu_telrepresentante, cur_nombre, mod_modalidad, jor_jornada FROM alumno INNER JOIN persona ON alumno.alu_cedula = persona.per_cedula AND persona.per_nombre LIKE '"+ a +"_%' INNER JOIN curso ON curso.cur_codigo = alumno.cur_codigo INNER JOIN modalidad ON modalidad.mod_codigo = alumno.mod_codigo INNER JOIN jornada ON jornada.jor_codigo = alumno.jor_codigo");
+        ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido, alu_telrepresentante, mod_modalidad, jor_jornada FROM alumno INNER JOIN persona ON alumno.alu_cedula = persona.per_cedula AND persona.per_nombre LIKE '"+ a +"_%' INNER JOIN modalidad ON modalidad.mod_codigo = alumno.mod_codigo INNER JOIN jornada ON jornada.jor_codigo = alumno.jor_codigo");
         return rs;
     }
     
@@ -440,7 +419,7 @@ public class SQLMetodos {
     }
     
     public  ResultSet buscarasislistadoestudiantes(String c, String b){
-        ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula AND alumno.cur_codigo = '"+ c +"' AND persona.per_apellido LIKE '"+ b +"_%' ORDER BY persona.per_apellido");
+        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN matricula ON  matricula.alu_cedula = alumno.alu_cedula AND matricula.cur_codigo = '"+ c +"' WHERE persona.per_nombre LIKE '"+ b +"_%' OR persona.per_apellido LIKE '"+ b +"_%' ORDER BY persona.per_apellido");
         return rs;
     }
     
@@ -464,7 +443,7 @@ public class SQLMetodos {
     }
     
     public  ResultSet DOCasislistadoestudiantes(String c){
-        ResultSet rs = conexion.query("SELECT alu_cedula, per_nombre, per_apellido FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula AND alumno.cur_codigo = '"+ c +"' ORDER BY persona.per_apellido");
+        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN matricula ON  matricula.alu_cedula = alumno.alu_cedula AND matricula.cur_codigo = '"+ c +"' ORDER BY persona.per_apellido");
         return rs;
     }
     
@@ -582,8 +561,7 @@ public class SQLMetodos {
     
      //reportes docente
      public  ResultSet Reportedocente(String cedula){
-        String sql = ("SELECT doc_cedula, per_nombre, per_apellido,per_telefono,per_nacimiento,dic_calle, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula INNER JOIN relacion ON relacion.rel_cedula = persona.per_cedula INNER JOIN direccion ON direccion.dir_codigo= relacion.dir_codigo INNER JOIN rango ON docente.ran_codigo=rango.ran_codigo WHERE persona.per_cedula='"+ cedula +"'");
-        ResultSet rs = conexion.query(sql);
+        ResultSet rs = conexion.query("SELECT doc_cedula, per_nombre, per_apellido,per_telefono,per_nacimiento,dic_calle, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula INNER JOIN relacion ON relacion.rel_cedula = persona.per_cedula INNER JOIN direccion ON direccion.dir_codigo= relacion.dir_codigo INNER JOIN rango ON docente.ran_codigo=rango.ran_codigo WHERE persona.per_cedula='"+ cedula +"'");
         return rs;
     }
      
@@ -608,44 +586,8 @@ public class SQLMetodos {
     }
     
     //fiin
-     
-    public static boolean validarnacimiento(Date nacimi){
-        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date fac = new Date();
-        String ff = f1.format(fac);
-        String a = ff.substring(0, 4);
-        int ao = Integer.valueOf(a);
-        
-        String nac = f1.format(nacimi);
-        String anac = nac.substring(0, 4);
-        int aanac = Integer.valueOf(anac);
-        
-        if(ao > aanac){ return true; } else { return false; }
-    }
     
-    public static boolean validarfechaasistencia(Date fecha){
-        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date fac = new Date();
-        String ff = f1.format(fac);
-        String a = ff.substring(0, 4);
-        String m = ff.substring(5, 7);
-        String d = ff.substring(8, 10);
-        int aa = Integer.valueOf(a);
-        int ma = Integer.valueOf(m);
-        int da = Integer.valueOf(d);
-        
-        String ff2 = f1.format(fecha);
-        String a2 = ff2.substring(0, 4);
-        String m2 = ff2.substring(5, 7);
-        String d2 = ff2.substring(8, 10);
-        int aa2 = Integer.valueOf(a2);
-        int ma2 = Integer.valueOf(m2);
-        int da2 = Integer.valueOf(d2);
-        
-        if(aa == aa2 && ma == ma2 && da == da2){ return true; } else { return false; }
-    }
-
-   public boolean cedularg(String a) throws SQLException{
+    public boolean cedularg(String a) throws SQLException{
         ResultSet rs = conexion.query("SELECT per_cedula FROM persona WHERE per_cedula = '"+ a +"'");
         if(rs.next()){
             return true;
@@ -654,5 +596,26 @@ public class SQLMetodos {
         {
             return false;
         }
-    }    
+    }
+    
+   //Matricula
+    public  ResultSet matriculaAlumno(){
+        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido, per_estado FROM persona INNER JOIN alumno ON alumno.alu_cedula = persona.per_cedula");
+        return rs;
+    }
+   
+    public  ResultSet matriculaAlumnobuscar(String a){
+        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido, per_estado FROM persona INNER JOIN alumno ON alumno.alu_cedula = persona.per_cedula WHERE alumno.alu_cedula LIKE '"+ a +"_%' OR persona.per_nombre LIKE '"+ a +"_%' OR persona.per_apellido LIKE '"+ a +"_%'");
+        return rs;
+    }
+    
+    public  ResultSet historialmatriculaAlumno(){
+        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido, per_estado, cur_nombre, mat_fecha  FROM persona INNER JOIN alumno ON persona.per_cedula = alumno.alu_cedula INNER JOIN matricula ON matricula.alu_cedula = alumno.alu_cedula INNER JOIN curso ON matricula.cur_codigo = curso.cur_codigo");
+        return rs;
+    }
+   
+    public  ResultSet historialmatriculaAlumnobuscar(String a){
+        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido, per_estado, cur_nombre, mat_fecha  FROM persona INNER JOIN alumno ON persona.per_cedula = alumno.alu_cedula INNER JOIN matricula ON matricula.alu_cedula = alumno.alu_cedula INNER JOIN curso ON matricula.cur_codigo = curso.cur_codigo WHERE alumno.alu_cedula LIKE '"+ a +"_%' OR persona.per_nombre LIKE '"+ a +"_%' OR persona.per_apellido LIKE '"+ a +"_%'");
+        return rs;
+    }
 }

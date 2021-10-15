@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class DOCingresarasistencia extends javax.swing.JFrame {
 
     SQLMetodos sqlm = new SQLMetodos();
+    Validaciones vali = new Validaciones();
     private ImageIcon imagen;
     private Icon icono;
     
@@ -330,7 +331,7 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
     private void jbtnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnregistrarActionPerformed
         try {
             // TODO add your handling code here:
-            if(SQLMetodos.validarfechaasistencia(jcfecha.getDate())){
+            if(vali.validarfechaasistencia(jcfecha.getDate())){
                 SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd"); String fecha = f.format(jcfecha.getDate());
                 String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString()); 
                 String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());

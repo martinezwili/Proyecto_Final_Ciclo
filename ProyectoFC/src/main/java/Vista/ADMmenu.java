@@ -277,7 +277,7 @@ public class ADMmenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        try { this.dispose(); ADMmatricula admm = new ADMmatricula(); admm.setVisible(true); } catch (SQLException ex) { System.out.println("error pasar menu de administrador a matricula"); }
+        try { this.dispose(); ADMatricula admm = new ADMatricula(); admm.setVisible(true); } catch (SQLException ex) { System.out.println("error pasar menu de administrador a matricula"); }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -287,7 +287,7 @@ public class ADMmenu extends javax.swing.JFrame {
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         this.dispose(); ADMbuscar admb = new ADMbuscar(); admb.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
-
+    
     private void colocarImagen(JLabel lbl, String ruta){
         this.imagen = new ImageIcon(ruta);
         this.icono = new ImageIcon(

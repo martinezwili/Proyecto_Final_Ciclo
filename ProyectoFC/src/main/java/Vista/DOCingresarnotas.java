@@ -391,11 +391,9 @@ public class DOCingresarnotas extends javax.swing.JFrame {
         try {
             String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
             DefaultTableModel modelo1 = new DefaultTableModel();
-            modelo1.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", jtfnombreactividad.getText()});
+            modelo1.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "FALTAS"});
             ResultSet rs1 = sqlm.DOCasislistadoestudiantes(curso);
-            while(rs1.next()){
-                modelo1.addRow(new Object[]{rs1.getString("alu_cedula"), rs1.getString("per_nombre"), rs1.getString("per_apellido")});
-            }
+            while(rs1.next()){ modelo1.addRow(new Object[]{rs1.getString("alu_cedula"), rs1.getString("per_nombre"), rs1.getString("per_apellido"), "0"}); }
             jtablenotas.setModel(modelo1);
         } catch (SQLException ex) { System.out.println("error mostrar tabla asistencia"); }
     }//GEN-LAST:event_jtfnombreactividadKeyReleased
