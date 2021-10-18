@@ -571,7 +571,7 @@ public class SQLMetodos {
     }
     
     public ResultSet reporteNotas(String docente, String curso){
-        ResultSet rs = conexion.query("select asig_nombre, avg(not_nota) from notas INNER JOIN asignatura on notas.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=notas.cur_codigo INNER JOIN relacionasignaturas ON relacionasignaturas.cur_codigo = curso.cur_codigo WHERE relacionasignaturas.doc_cedula = '"+ docente +"' AND relacionasignaturas.cur_codigo = '"+ curso +"'");
+        ResultSet rs = conexion.query("select asig_nombre, avg(not_nota) from notas INNER JOIN asignatura on notas.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=notas.cur_codigo INNER JOIN relacionasignaturas ON relacionasignaturas.cur_codigo = curso.cur_codigo AND relacionasignaturas.asig_codigo = asignatura.asig_codigo WHERE relacionasignaturas.doc_cedula = '"+ docente +"' AND relacionasignaturas.cur_codigo = '"+ curso +"'");
         return rs;
     }
     
