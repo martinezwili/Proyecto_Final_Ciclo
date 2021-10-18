@@ -1,17 +1,18 @@
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Administrador{
-    private String adm_cedula, adm_correo, for_codigo, adm_per_cedula;
+public class Administrador extends Persona{
+    private String adm_cedula, adm_correo, for_codigo;
 
-    public Administrador(String adm_cedula, String adm_correo, String for_codigo, String adm_per_cedula) {
+    public Administrador(String adm_cedula, String adm_correo, String for_codigo, String per_cedula, String per_nombre, String per_apellido, String per_telefono, String per_contraseña, String per_estado, String rel_cedula, Date per_nacimiento) {
+        super(per_cedula, per_nombre, per_apellido, per_telefono, per_contraseña, per_estado, rel_cedula, per_nacimiento);
         this.adm_cedula = adm_cedula;
         this.adm_correo = adm_correo;
         this.for_codigo = for_codigo;
-        this.adm_per_cedula = adm_per_cedula;
     }
 
     public String getAdm_cedula() {
@@ -38,18 +39,10 @@ public class Administrador{
         this.for_codigo = for_codigo;
     }
 
-    public String getAdm_per_cedula() {
-        return adm_per_cedula;
-    }
-
-    public void setAdm_per_cedula(String adm_per_cedula) {
-        this.adm_per_cedula = adm_per_cedula;
-    }
-
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        if(conexion.noQuery("INSERT INTO administrador (adm_cedula, adm_correo, for_codigo, per_cedula) VALUES ('" + getAdm_cedula()+ "','" + getAdm_correo()+ "','" + getFor_codigo()+ "','" + getAdm_per_cedula() + "');") == null){
+        if(conexion.noQuery("INSERT INTO administrador (adm_cedula, adm_correo, for_codigo) VALUES ('" + getAdm_cedula()+ "','" + getAdm_correo()+ "','" + getFor_codigo()+ "');") == null){
             return true;
         }
         else

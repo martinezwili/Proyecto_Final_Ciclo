@@ -16,9 +16,21 @@ public class DOCreporteuser extends javax.swing.JFrame {
     
     public DOCreporteuser() throws SQLException {
         initComponents();
+        noeditable();
         mostrarDatos();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\profesor2.png");
+    }
+    
+    public void noeditable(){
+        txtCedula.setEditable(false);
+        txtNombre.setEditable(false);
+        txtApellido.setEditable(false);
+        txtDireccion.setEditable(false);
+        txtNacimiento.setEditable(false);
+        txtRango.setEditable(false);
+        txtTelefono.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")

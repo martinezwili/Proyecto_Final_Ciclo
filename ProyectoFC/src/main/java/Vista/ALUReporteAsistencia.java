@@ -19,6 +19,7 @@ public class ALUReporteAsistencia extends javax.swing.JFrame {
         initComponents();
         mosAsig();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\lista-de-asistentes.png");
         this.colocarImagen(this.jlbcargar, "src\\main\\java\\Imagenes\\cargando.png");
     }

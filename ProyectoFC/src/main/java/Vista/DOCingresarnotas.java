@@ -22,6 +22,7 @@ public class DOCingresarnotas extends javax.swing.JFrame {
         initComponents();
         todo();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\notlogorg.png");
     }
@@ -347,8 +348,10 @@ public class DOCingresarnotas extends javax.swing.JFrame {
     private void jbtnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnguardarActionPerformed
         try {
             // TODO add your handling code here:
+            String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
+            String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
             int c = 0;
-            if(Notass.comactividad(jtfnombreactividad.getText()) == false){
+            if(Notass.comactividad(jtfnombreactividad.getText(), curso, asignatura) == false){
                 for(int i = 0 ; i < jtablenotas.getRowCount(); i++){
                     try {
                         String codigo = null;
@@ -359,8 +362,6 @@ public class DOCingresarnotas extends javax.swing.JFrame {
                                 codigo = String.valueOf(rs.nextInt(99999999-1+1) + 25);
                             }
                         }while(Notass.comcodigo(codigo) == true);
-                        String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
-                        String asignatura = sqlm.obtenerasignatura(cbasignatura.getSelectedItem().toString());
                         String cedula = jtablenotas.getValueAt(i, 0).toString();
                         double notas = Double.parseDouble(jtablenotas.getValueAt(i,3).toString());
                         if(Notass.comnotaalumno(cedula, curso, asignatura, jtfnombreactividad.getText()) == false){
@@ -391,7 +392,7 @@ public class DOCingresarnotas extends javax.swing.JFrame {
         try {
             String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
             DefaultTableModel modelo1 = new DefaultTableModel();
-            modelo1.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", "FALTAS"});
+            modelo1.setColumnIdentifiers(new Object[]{"CEDULA", "NOMBRE", "APELLIDO", jtfnombreactividad.getText()});
             ResultSet rs1 = sqlm.DOCasislistadoestudiantes(curso);
             while(rs1.next()){ modelo1.addRow(new Object[]{rs1.getString("alu_cedula"), rs1.getString("per_nombre"), rs1.getString("per_apellido"), "0"}); }
             jtablenotas.setModel(modelo1);

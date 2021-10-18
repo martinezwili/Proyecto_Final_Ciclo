@@ -113,9 +113,9 @@ public class Notass {
         if(rs.next()){ return true; }else { return false; }
     }
     
-    public static boolean comactividad(String a) throws SQLException{
+    public static boolean comactividad(String n, String c, String a) throws SQLException{
         Conexionbd conexion = new Conexionbd();
-        ResultSet rs = conexion.query("SELECT not_codigo FROM notas WHERE not_nombre = '" + a + "'");
+        ResultSet rs = conexion.query("SELECT not_codigo FROM notas WHERE not_nombre = '" + n + "' AND cur_codigo = '"+ c +"' AND asig_codigo = '"+ a +"' ");
         if(rs.next()){ return true; }else { return false; }
     }
     

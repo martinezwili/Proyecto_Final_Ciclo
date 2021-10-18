@@ -22,7 +22,11 @@ public class DOCingresarasistencia extends javax.swing.JFrame {
     private Icon icono;
     
     public DOCingresarasistencia() throws SQLException {
-        initComponents(); setLocationRelativeTo(null); moscursos();mosasignatura();
+        initComponents(); 
+        setLocationRelativeTo(null);
+        this.setResizable(false);
+        moscursos();
+        mosasignatura();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\asislogorg.png");
     }

@@ -21,6 +21,7 @@ public class ADMcrearsexo extends javax.swing.JFrame {
     public ADMcrearsexo() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\sexo.png");

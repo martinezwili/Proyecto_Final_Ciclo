@@ -22,7 +22,9 @@ public class ADMasignaturas extends javax.swing.JFrame {
     public ADMasignaturas() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
+        jtfcedula.setEditable(false);
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlbcargar, "src\\main\\java\\Imagenes\\cargando.png");
         this.colocarImagen(this.lblimagen, "src\\main\\java\\Imagenes\\libro.png");

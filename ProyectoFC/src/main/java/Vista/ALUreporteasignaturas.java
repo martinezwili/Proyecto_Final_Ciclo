@@ -19,6 +19,7 @@ public class ALUreporteasignaturas extends javax.swing.JFrame {
         initComponents();
         mostrar();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\libros.png");
     }
     

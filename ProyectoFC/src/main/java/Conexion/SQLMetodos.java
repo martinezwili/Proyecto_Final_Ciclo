@@ -144,12 +144,12 @@ public class SQLMetodos {
     
     
     public  ResultSet mjtableadministrador(){
-        ResultSet rs = conexion.query("SELECT adm_cedula, per_nombre, per_apellido, adm_correo FROM persona INNER JOIN administrador ON persona.per_cedula = administrador.per_cedula");
+        ResultSet rs = conexion.query("SELECT adm_cedula, per_nombre, per_apellido, adm_correo FROM persona INNER JOIN administrador ON persona.per_cedula = administrador.adm_cedula");
         return rs;
     }
     
     public  ResultSet mjtabledocente(){
-        ResultSet rs = conexion.query("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.per_cedula INNER JOIN rango ON rango.ran_codigo = docente.ran_codigo");
+        ResultSet rs = conexion.query("SELECT doc_cedula, per_nombre, per_apellido, ran_rango FROM docente INNER JOIN persona ON persona.per_cedula = docente.doc_cedula INNER JOIN rango ON rango.ran_codigo = docente.ran_codigo");
         return rs;
     }
     
@@ -443,7 +443,7 @@ public class SQLMetodos {
     }
     
     public  ResultSet DOCasislistadoestudiantes(String c){
-        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN matricula ON  matricula.alu_cedula = alumno.alu_cedula AND matricula.cur_codigo = '"+ c +"' ORDER BY persona.per_apellido");
+        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido FROM alumno INNER JOIN persona ON persona.per_cedula = alumno.alu_cedula INNER JOIN matricula ON  matricula.alu_cedula = alumno.alu_cedula AND matricula.mat_estado = 'ACTIVO' AND matricula.cur_codigo = '"+ c +"' ORDER BY persona.per_apellido");
         return rs;
     }
     
@@ -533,7 +533,7 @@ public class SQLMetodos {
     }  
     
     public  ResultSet mReporteAsigAlumno(String cedula){
-        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN matricula ON matricula.cur_codigo= curso.cur_codigo WHERE alu_cedula = '"+ cedula +"'");
+        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN matricula ON matricula.cur_codigo= curso.cur_codigo AND matricula.mat_estado = 'ACTIVO' WHERE alu_cedula = '"+ cedula +"'");
         return rs;
     } 
     
@@ -548,7 +548,7 @@ public class SQLMetodos {
     } 
     
     public  ResultSet CoboAsigAlumno(String cedula){
-        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN matricula ON matricula.cur_codigo= curso.cur_codigo WHERE alu_cedula = '"+ cedula +"'");
+        ResultSet rs = conexion.query("SELECT asig_nombre FROM asignatura INNER JOIN relacionasignaturas ON asignatura.asig_codigo=relacionasignaturas.asig_codigo INNER JOIN curso  ON curso.cur_codigo=relacionasignaturas.cur_codigo INNER JOIN matricula ON matricula.cur_codigo= curso.cur_codigo AND matricula.mat_estado = 'ACTIVO' WHERE alu_cedula = '"+ cedula +"'");
         return rs;
     }
     
@@ -570,13 +570,8 @@ public class SQLMetodos {
         return rs;
     }
     
-    public ResultSet reporteNotas(String curso){
-        ResultSet rs = conexion.query("select asig_nombre, avg(not_nota) from notas INNER JOIN asignatura on notas.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=notas.cur_codigo  WHERE notas.cur_codigo='"+ curso +"'");
-        return rs;
-    }
-    
-    public ResultSet reporteAsistenciabuscar(String curso, String asignatura, String b){
-        ResultSet rs = conexion.query("select asistencia.alu_cedula,per_nombre,per_apellido,asi_faltas FROM alumno inner join persona on persona.per_cedula=alumno.alu_cedula inner join asistencia on alumno.alu_cedula = asistencia.alu_cedula inner join asignatura on asignatura.asig_codigo=asistencia.asig_codigo where asistencia.cur_codigo='"+curso+"' and asignatura.asig_codigo='"+asignatura+"'AND alumno.alu_cedula LIKE '"+ b +"_%' OR persona.per_nombre LIKE '"+ b +"_%' OR persona.per_apellido LIKE '"+ b +"_%'");
+    public ResultSet reporteNotas(String docente, String curso){
+        ResultSet rs = conexion.query("select asig_nombre, avg(not_nota) from notas INNER JOIN asignatura on notas.asig_codigo=asignatura.asig_codigo INNER JOIN curso ON curso.cur_codigo=notas.cur_codigo INNER JOIN relacionasignaturas ON relacionasignaturas.cur_codigo = curso.cur_codigo WHERE relacionasignaturas.doc_cedula = '"+ docente +"' AND relacionasignaturas.cur_codigo = '"+ curso +"'");
         return rs;
     }
     
@@ -600,7 +595,7 @@ public class SQLMetodos {
     
    //Matricula
     public  ResultSet matriculaAlumno(){
-        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido, per_estado FROM persona INNER JOIN alumno ON alumno.alu_cedula = persona.per_cedula");
+        ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido, per_estado FROM persona INNER JOIN alumno ON alumno.alu_cedula = persona.per_cedula ORDER BY persona.per_cedula");
         return rs;
     }
    
@@ -617,5 +612,16 @@ public class SQLMetodos {
     public  ResultSet historialmatriculaAlumnobuscar(String a){
         ResultSet rs = conexion.query("SELECT alumno.alu_cedula, per_nombre, per_apellido, per_estado, cur_nombre, mat_fecha  FROM persona INNER JOIN alumno ON persona.per_cedula = alumno.alu_cedula INNER JOIN matricula ON matricula.alu_cedula = alumno.alu_cedula INNER JOIN curso ON matricula.cur_codigo = curso.cur_codigo WHERE alumno.alu_cedula LIKE '"+ a +"_%' OR persona.per_nombre LIKE '"+ a +"_%' OR persona.per_apellido LIKE '"+ a +"_%'");
         return rs;
+    }
+    
+    public  void matriculainactivar(String a) throws SQLException{
+        String codigo = null; 
+        ResultSet rs = conexion.query("SELECT mat_codigo FROM matricula WHERE mat_estado = 'ACTIVO' AND alu_cedula = '"+ a +"'");
+            while(rs.next()){
+                codigo = rs.getString("mat_codigo");
+            }
+        if(codigo != null ){
+            conexion.noQuery("UPDATE matricula SET mat_estado = 'INACTIVO' WHERE mat_codigo = '"+ codigo +"'");
+        }
     }
 }

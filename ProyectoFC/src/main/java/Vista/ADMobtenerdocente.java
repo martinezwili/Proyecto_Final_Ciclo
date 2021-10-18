@@ -11,9 +11,12 @@ public class ADMobtenerdocente extends javax.swing.JFrame {
     
     public ADMobtenerdocente() throws SQLException {
         initComponents();
+        setLocationRelativeTo(null);
+        this.setResizable(false);
         mostrar();
         limpiarCampos();
     }
+    
      public void mostrar() throws SQLException{
         //metodo para mostar los datos en la tabla
         DefaultTableModel modelo = new DefaultTableModel();

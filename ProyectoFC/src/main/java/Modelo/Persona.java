@@ -84,14 +84,6 @@ public class Persona {
         this.per_nacimiento = per_nacimiento;
     }
 
-    public Conexionbd getConexion() {
-        return conexion;
-    }
-
-    public void setConexion(Conexionbd conexion) {
-        this.conexion = conexion;
-    }
-
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){

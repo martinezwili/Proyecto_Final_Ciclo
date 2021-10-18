@@ -21,6 +21,7 @@ public class ALUreportenotas extends javax.swing.JFrame {
         initComponents();
         mosasignatura();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlbcargar, "src\\main\\java\\Imagenes\\cargando.png");
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\examen.png");
     }

@@ -22,6 +22,7 @@ public class ADMcrearcurso extends javax.swing.JFrame {
     public ADMcrearcurso() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\cursos.png");
@@ -394,20 +395,20 @@ public class ADMcrearcurso extends javax.swing.JFrame {
             Curso curso = new Curso(textcodigoc.getText(), null);
             //comprobacion de campos vacios
             if(textcodigoc.getText().length() != 0 && textnCurso.getText().length() != 0){
-                //comprobar relaciones
-                if(curso.compparaeliminar() == false){
-                    //comprobar codigo de curso
-                    if(curso.comp()){
+                //comprobar codigo de curso
+                if(curso.comp()){
+                    //comprobar relaciones
+                   if(curso.compparaeliminar() == 0){
                         //eliminar curso
                         if(curso.eliminar()){
                             JOptionPane.showMessageDialog(rootPane, " Se eliminaron correctamente los datos");
                             todo();
                         //mensaje de error de datos no eliminados
                         } else { JOptionPane.showMessageDialog(rootPane, "No se eliminaron correctamente los datos"); }
-                    //mensaje de codigo incorrecto
-                    } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo del curso"); }
-                //mensaje de que el curso tiene relacion
-                } else { JOptionPane.showMessageDialog(rootPane, " No se puede eliminar este curso por que esta en uso"); }
+                    //mensaje de que el curso tiene relacion
+                    } else { JOptionPane.showMessageDialog(rootPane, " No se puede eliminar este curso por que esta en uso"); }
+                //mensaje de codigo incorrecto
+                } else { JOptionPane.showMessageDialog(rootPane, "Verifique el codigo del curso"); }
             }
         //mensaje de error producido
         } catch (SQLException ex) { System.out.println("error al comprobar codigo de curso 1"); }

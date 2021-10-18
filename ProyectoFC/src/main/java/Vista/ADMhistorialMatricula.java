@@ -12,6 +12,7 @@ public class ADMhistorialMatricula extends javax.swing.JFrame {
     public ADMhistorialMatricula() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         mos();
     }
     

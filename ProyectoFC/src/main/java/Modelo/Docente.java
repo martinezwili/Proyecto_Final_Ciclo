@@ -1,18 +1,23 @@
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Docente {
-    private String doc_cedula,for_codigo,ran_codigo,jor_codigo,per_cedula;
+public class Docente extends Persona{
+    private String doc_cedula,for_codigo,ran_codigo,jor_codigo;
 
-    public Docente(String doc_cedula, String for_codigo, String ran_codigo, String jor_codigo, String per_cedula) {
+    public Docente(String per_cedula, String per_nombre, String per_apellido, String per_telefono, String per_contraseña, String per_estado, String rel_cedula, Date per_nacimiento) {
+        super(per_cedula, per_nombre, per_apellido, per_telefono, per_contraseña, per_estado, rel_cedula, per_nacimiento);
+    }
+
+    public Docente(String doc_cedula, String for_codigo, String ran_codigo, String jor_codigo, String per_cedula, String per_nombre, String per_apellido, String per_telefono, String per_contraseña, String per_estado, String rel_cedula, Date per_nacimiento) {
+        super(per_cedula, per_nombre, per_apellido, per_telefono, per_contraseña, per_estado, rel_cedula, per_nacimiento);
         this.doc_cedula = doc_cedula;
         this.for_codigo = for_codigo;
         this.ran_codigo = ran_codigo;
         this.jor_codigo = jor_codigo;
-        this.per_cedula = per_cedula;
     }
 
     public String getDoc_cedula() {
@@ -47,26 +52,18 @@ public class Docente {
         this.jor_codigo = jor_codigo;
     }
 
-    public String getPer_cedula() {
-        return per_cedula;
-    }
-
-    public void setPer_cedula(String per_cedula) {
-        this.per_cedula = per_cedula;
-    }
-
     public Conexionbd getConexion() {
         return conexion;
     }
 
     public void setConexion(Conexionbd conexion) {
         this.conexion = conexion;
-    }    
-
+    }
+    
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        if(conexion.noQuery("INSERT INTO docente (doc_cedula, for_codigo, ran_codigo, jor_codigo, per_cedula) VALUES ('" + getDoc_cedula()+ "','" + getFor_codigo()+ "','" + getRan_codigo()+ "','" +getJor_codigo()+ "','" +getPer_cedula() + "');") == null){
+        if(conexion.noQuery("INSERT INTO docente (doc_cedula, for_codigo, ran_codigo, jor_codigo) VALUES ('" + getDoc_cedula()+ "','" + getFor_codigo()+ "','" + getRan_codigo()+ "','" +getJor_codigo()+"');") == null){
             return true;
         }
         else

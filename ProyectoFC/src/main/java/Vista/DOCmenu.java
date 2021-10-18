@@ -15,6 +15,7 @@ public class DOCmenu extends javax.swing.JFrame {
     public DOCmenu() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.lblImagen, "src\\main\\java\\Imagenes\\menu profesor.png");
     }
 
@@ -182,7 +183,7 @@ public class DOCmenu extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("REPORTE GENERAL");
+        jButton7.setText("REPORTE ");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);

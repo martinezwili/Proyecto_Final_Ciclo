@@ -97,31 +97,4 @@ public class relacionasignaturas {
             return false;
         }
     }
-    
-    /*public boolean compparaeliminar() throws SQLException{
-        boolean as = false;
-        ResultSet rs1 = conexion.query("SELECT relaasig_codigo FROM relacionasignaturas WHERE asig_codigo = '" + getCur_codigo()+ "'");
-        if(rs1.next()){
-            as = true;
-        }
-        else
-        {
-            ResultSet rs2 = conexion.query("SELECT not_codigo FROM relacionasignaturas WHERE cur_codigo = '" + getCur_codigo()+ "'");
-            if(rs2.next()){
-                as = true;
-            }
-            else
-            {
-                ResultSet rs3 = conexion.query("SELECT alu_cedula FROM relacionasignaturas WHERE cur_codigo = '" + getCur_codigo()+ "'");
-                if(rs3.next()){
-                    as = true;
-                }
-                else
-                {
-                    as = false;
-                }
-            }
-        }
-        return as;
-    }*/
 }

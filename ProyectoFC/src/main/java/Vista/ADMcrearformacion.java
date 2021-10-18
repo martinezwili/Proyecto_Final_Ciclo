@@ -21,6 +21,7 @@ public class ADMcrearformacion extends javax.swing.JFrame {
     public ADMcrearformacion() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo1, "src\\main\\java\\Imagenes\\formacion.png");

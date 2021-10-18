@@ -1,18 +1,19 @@
 package Modelo;
 
 import Conexion.Conexionbd;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Alumno {
-    private String alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo, per_cedula;
+public class Alumno extends Persona{
+    private String alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo;
 
-    public Alumno(String alu_cedula, String alu_telrepresentante, String jor_codigo, String mod_codigo, String per_cedula) {
+    public Alumno(String alu_cedula, String alu_telrepresentante, String jor_codigo, String mod_codigo, String per_cedula, String per_nombre, String per_apellido, String per_telefono, String per_contraseña, String per_estado, String rel_cedula, Date per_nacimiento) {
+        super(per_cedula, per_nombre, per_apellido, per_telefono, per_contraseña, per_estado, rel_cedula, per_nacimiento);
         this.alu_cedula = alu_cedula;
         this.alu_telrepresentante = alu_telrepresentante;
         this.jor_codigo = jor_codigo;
         this.mod_codigo = mod_codigo;
-        this.per_cedula = per_cedula;
     }
 
     public String getAlu_cedula() {
@@ -47,26 +48,18 @@ public class Alumno {
         this.mod_codigo = mod_codigo;
     }
 
-    public String getPer_cedula() {
-        return per_cedula;
-    }
-
-    public void setPer_cedula(String per_cedula) {
-        this.per_cedula = per_cedula;
-    }
-
     public Conexionbd getConexion() {
         return conexion;
     }
 
     public void setConexion(Conexionbd conexion) {
         this.conexion = conexion;
-    }    
+    }
     
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        if(conexion.noQuery("INSERT INTO alumno (alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo, per_cedula) VALUES ('" + getAlu_cedula() + "','" + getAlu_telrepresentante() + "','" +getJor_codigo()+ "','" + getMod_codigo()+ "','" + getPer_cedula()+ "');") == null){
+        if(conexion.noQuery("INSERT INTO alumno (alu_cedula, alu_telrepresentante, jor_codigo, mod_codigo) VALUES ('" + getAlu_cedula() + "','" + getAlu_telrepresentante() + "','" +getJor_codigo()+ "','" + getMod_codigo()+ "');") == null){
             return true;
         }
         else
@@ -129,14 +122,4 @@ public class Alumno {
         }
         return as;
     }
-    
-    /*public boolean matricula(){
-        if(conexion.noQuery("UPDATE alumno SET cur_codigo = '"+ getCur_codigo() +"' WHERE alu_cedula = '"+ getAlu_cedula()+"'") == null){
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }*/
 }

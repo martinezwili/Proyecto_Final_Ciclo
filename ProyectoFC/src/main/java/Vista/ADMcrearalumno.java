@@ -24,6 +24,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     public ADMcrearalumno() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\alumno.png");
@@ -745,7 +746,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             // instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar alumno
-            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, jtfcedula.getText());
+            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtftelefonorepresentante.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -807,7 +808,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
             //instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), estado, jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar alumno
-            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, jtfcedula.getText());
+            Alumno al = new Alumno(jtfcedula.getText(), jtftelefonorepresentante.getText(), rs4, rs5, jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtftelefonorepresentante.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -896,9 +897,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfcomunaKeyReleased
 
     private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
-        try {
-            cedulaingresada(jtfcedula.getText());
-        } catch (SQLException ex) {System.out.println("error mostrar cedula validacion alumno"); }
+        try { cedulaingresada(jtfcedula.getText()); } catch (SQLException ex) {System.out.println("error mostrar cedula validacion alumno"); }
     }//GEN-LAST:event_jtfcedulaFocusLost
     
     public void mostrarseleccionado(String a) throws SQLException{
@@ -968,7 +967,7 @@ public class ADMcrearalumno extends javax.swing.JFrame {
                                             } else { as = "Verifique la calle"; }
                                         } else { as = "Verifique el codigo de la casa"; }
                                     } else { as = "Verifique el estado"; }
-                                } else { as = "Verifique la contraseña"; }
+                                } else { as = "Verifique la contraseña debe tener numeros Mayusculas y Minusculas"; }
                             } else { as = "Verifique el el telefono del representante "; }
                         } else { as = "Verifique el apellido";  }
                     } else { as = "Verifique el nombre";  }

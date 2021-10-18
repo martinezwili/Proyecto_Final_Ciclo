@@ -21,6 +21,7 @@ public class ADMcrearmodalidad extends javax.swing.JFrame {
     public ADMcrearmodalidad() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\modalidad.png");

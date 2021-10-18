@@ -21,6 +21,7 @@ public class ADMcrearjornada extends javax.swing.JFrame {
     public ADMcrearjornada() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         mostrar();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\education.png");

@@ -13,7 +13,8 @@ public class ALUmenu extends javax.swing.JFrame {
     
     public ALUmenu() {
         initComponents();
-        setLocationRelativeTo(null);
+       setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\graduates.png");
     }
     

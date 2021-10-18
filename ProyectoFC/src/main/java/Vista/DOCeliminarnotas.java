@@ -22,6 +22,7 @@ public class DOCeliminarnotas extends javax.swing.JFrame {
         initComponents();
         todo();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogoel, "src\\main\\java\\Imagenes\\notlogoeli.png");
     }

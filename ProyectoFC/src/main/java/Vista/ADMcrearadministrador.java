@@ -23,6 +23,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
     public ADMcrearadministrador() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\apoyo.png");
@@ -34,6 +35,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
         mossexo();
         mosformacion();
         mosadministrador();
+        limpiar();
     }
     
     public void mosnacionalidad() throws SQLException{
@@ -718,7 +720,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
             // instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar administrador
-            Administrador ad = new Administrador(jtfcedula.getText(), jtfcorreo.getText(), rs4.toString(), jtfcedula.getText());
+            Administrador ad = new Administrador(jtfcedula.getText(), jtfcorreo.getText(), rs4.toString(),jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtfcorreo.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -737,7 +739,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
                                         if(ad.insertar()){
                                             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
                                             //exepcion para limpiar y mostrar datos del administrador
-                                            try { limpiar(); mosadministrador(); } catch (SQLException ex) { System.out.println("Error mosadministrador"); }
+                                            todo(); 
                                             //se elimina los datos registrados de direccion relacion y persona
                                         } else { per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
                                         //se elimina los datos registrados de direccion relacion
@@ -788,7 +790,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
             //instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), estado, jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar docente
-            Administrador adm = new Administrador(jtfcedula.getText(), jtfcorreo.getText(), rs4, jtfcedula.getText());
+            Administrador adm = new Administrador(jtfcedula.getText(), jtfcorreo.getText(), rs4.toString(),jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtfcorreo.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -809,7 +811,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
                                             if(adm.actualizar()){
                                                 JOptionPane.showMessageDialog(rootPane, "Los datos se actualizaron correctamente");
                                                 //llamar a los metodos impiar y todo
-                                                limpiar(); todo();
+                                                todo();
                                             //mensaje de datos no actualizados crrectamente de docente
                                             } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
                                         //mensaje de datos no actualizados crrectamente de persona
@@ -928,7 +930,6 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
         cbsexo.setSelectedItem("");
         rbtnactivo.setSelected(false);
         rdbtninactivo.setSelected(false);
-        todo();   
     }
        
     public boolean cumplirvalidaciones(String cedula, String nombre, String apellido, String telefono, String correo, String contra, String estado){
@@ -949,7 +950,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
                                             } else { as = "Verifique la calle"; }
                                         } else { as = "Verifique el codigo de la casa"; }
                                     } else { as = "Verifique el estado"; }
-                                } else { as = "Verifique la contraseña"; }
+                                } else { as = "Verifique la contraseña debe tener numeros Mayusculas y Minusculas"; }
                             } else { as = "Verifique el correo"; }
                         } else { as = "Verifique el apellido";  }
                     } else { as = "Verifique el nombre";  }
@@ -977,6 +978,7 @@ public class ADMcrearadministrador extends javax.swing.JFrame {
         );lbl.setIcon(this.icono);
         this.repaint();
     }
+    
     
     public void cedulaingresada(String cedula) throws SQLException{
         String tipo = sqlm.ADMcomcedula(cedula);

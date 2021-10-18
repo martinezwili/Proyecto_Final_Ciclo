@@ -6,13 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Matricula {
-    private String mat_codigo, cur_codigo, alu_cedula;
+    private String mat_codigo, cur_codigo, alu_cedula, mat_estado;
     private Date mat_fecha;
 
-    public Matricula(String mat_codigo, String cur_codigo, String alu_cedula, Date mat_fecha) {
+    public Matricula(String mat_codigo, String cur_codigo, String alu_cedula, String mat_estado, Date mat_fecha) {
         this.mat_codigo = mat_codigo;
         this.cur_codigo = cur_codigo;
         this.alu_cedula = alu_cedula;
+        this.mat_estado = mat_estado;
         this.mat_fecha = mat_fecha;
     }
 
@@ -40,6 +41,14 @@ public class Matricula {
         this.alu_cedula = alu_cedula;
     }
 
+    public String getMat_estado() {
+        return mat_estado;
+    }
+
+    public void setMat_estado(String mat_estado) {
+        this.mat_estado = mat_estado;
+    }
+
     public Date getMat_fecha() {
         return mat_fecha;
     }
@@ -47,31 +56,19 @@ public class Matricula {
     public void setMat_fecha(Date mat_fecha) {
         this.mat_fecha = mat_fecha;
     }
+
+    public Conexionbd getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Conexionbd conexion) {
+        this.conexion = conexion;
+    }
     
     Conexionbd conexion = new Conexionbd();
     
     public boolean insertar(){
-        if(conexion.noQuery("INSERT INTO matricula (mat_codigo, mat_fecha, cur_codigo, alu_cedula) VALUES ('" + getMat_codigo()+ "','" + getMat_fecha()+ "','" + getCur_codigo()+ "','" + getAlu_cedula()+ "');") == null){
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    /*
-    public boolean actualizar(){
-        if(conexion.noQuery("UPDATE matricula SET mat_fecha = '"+ getMat_fecha()+ "' cur_codigo = '"+ getCur_codigo() +"' WHERE not_nombre = '"+ getNot_nombre() +"' AND cur_codigo = '"+ getCur_codigo() +"' AND asig_codigo = '"+ getAsig_codigo() +"' AND alu_cedula = '"+ getAlu_cedula()+"'") == null){
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    
-    public boolean eliminar(){
-        if(conexion.noQuery("DELETE FROM notas WHERE not_nombre = '"+ getNot_nombre() +"' AND cur_codigo = '"+ getCur_codigo() +"' AND asig_codigo = '"+ getAsig_codigo() +"'") == null){
+        if(conexion.noQuery("INSERT INTO matricula (mat_codigo, mat_fecha, cur_codigo, alu_cedula, mat_estado) VALUES ('" + getMat_codigo()+ "','" + getMat_fecha()+ "','" + getCur_codigo()+ "','" + getAlu_cedula()+ "', '"+ getMat_estado() +"');") == null){
             return true;
         }
         else
@@ -82,20 +79,7 @@ public class Matricula {
     
     public static boolean comcodigo(String codigo) throws SQLException{
         Conexionbd conexion = new Conexionbd();
-        ResultSet rs = conexion.query("SELECT not_codigo FROM notas WHERE not_codigo = '" + codigo + "'");
+        ResultSet rs = conexion.query("SELECT mat_codigo FROM matricula WHERE mat_codigo = '" + codigo + "'");
         if(rs.next()){ return true; }else { return false; }
     }
-    
-    public static boolean comactividad(String a) throws SQLException{
-        Conexionbd conexion = new Conexionbd();
-        ResultSet rs = conexion.query("SELECT not_codigo FROM notas WHERE not_nombre = '" + a + "'");
-        if(rs.next()){ return true; }else { return false; }
-    }
-    
-    public static boolean comnotaalumno(String c, String cu, String as, String no) throws SQLException{
-        Conexionbd conexion = new Conexionbd();
-        ResultSet rs = conexion.query("SELECT not_codigo FROM notas WHERE alu_cedula = '" + c + "' AND asig_codigo = '" + as + "' AND cur_codigo = '" + cu + "' AND not_nombre = '" + no + "'");
-        if(rs.next()){ return true; }else { return false; }
-        
-    }*/
 }

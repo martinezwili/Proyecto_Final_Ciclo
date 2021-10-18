@@ -88,27 +88,27 @@ public class Asignatura {
         }
     }
     
-    public boolean compparaeliminar() throws SQLException{
-        boolean as = false;
-        ResultSet rs1 = conexion.query("SELECT asis_cedula FROM asistencia WHERE asig_codigo = '" + getAsig_codigo()+ "'");
+    public int compparaeliminar() throws SQLException{
+        int as = 0;
+        ResultSet rs1 = conexion.query("SELECT asis_codigo FROM asistencia WHERE asig_codigo = '" + getAsig_codigo()+ "'");
         if(rs1.next()){
-            as = true;
+            as++;
         }
         else
         {
             ResultSet rs2 = conexion.query("SELECT not_codigo FROM notas WHERE asig_codigo = '" + getAsig_codigo()+ "'");
             if(rs2.next()){
-                return true;
+                as++;
             }
             else
             {
                 ResultSet rs3 = conexion.query("SELECT relaasig_codigo FROM relacionasignaturas WHERE asig_codigo = '" + getAsig_codigo()+ "'");
                 if(rs3.next()){
-                    return true;
+                    as++;
                 }
                 else
                 {
-                    return false;
+                    
                 }
             }
         }

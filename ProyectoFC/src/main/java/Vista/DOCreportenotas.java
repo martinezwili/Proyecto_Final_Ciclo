@@ -19,6 +19,7 @@ public class DOCreportenotas extends javax.swing.JFrame {
         initComponents();
         moscursos();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlbcargar, "src\\main\\java\\Imagenes\\cargando.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\notlogorg.png");
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
@@ -323,7 +324,7 @@ public class DOCreportenotas extends javax.swing.JFrame {
             String curso = sqlm.obtenerCurso(cbcurso.getSelectedItem().toString());
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{"ASIGNATURA","PROMEDIO"});
-            ResultSet rs = sqlm.reporteNotas(curso);
+            ResultSet rs = sqlm.reporteNotas(Login.docente, curso);
             while(rs.next()){
                 modelo.addRow(new Object[]{rs.getString("asig_nombre"),rs.getString("avg(not_nota)")});
             }

@@ -23,6 +23,7 @@ public class LGregistraradministrador extends javax.swing.JFrame {
     public LGregistraradministrador() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\ADM1.png");
     }
@@ -33,6 +34,7 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         mossexo();
         mosformacion();
         mosadministrador();
+        limpiar();
     }
     
     public void mosnacionalidad() throws SQLException{
@@ -135,8 +137,6 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         jlbcomuna = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jlblogo2 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
 
@@ -288,8 +288,8 @@ public class LGregistraradministrador extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel8.setBackground(new java.awt.Color(153, 255, 255));
@@ -557,12 +557,11 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -576,8 +575,9 @@ public class LGregistraradministrador extends javax.swing.JFrame {
                                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(58, 58, 58)
-                                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -598,9 +598,9 @@ public class LGregistraradministrador extends javax.swing.JFrame {
                         .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -611,7 +611,7 @@ public class LGregistraradministrador extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -631,7 +631,7 @@ public class LGregistraradministrador extends javax.swing.JFrame {
             // instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar administrador
-            Administrador ad = new Administrador(jtfcedula.getText(), jtfcorreo.getText(), rs4.toString(), jtfcedula.getText());
+            Administrador ad = new Administrador(jtfcedula.getText(), jtfcorreo.getText(), rs4.toString(), jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontras.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontras.getText().length() != 0 && jtfcorreo.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -650,7 +650,7 @@ public class LGregistraradministrador extends javax.swing.JFrame {
                                         if(ad.insertar()){
                                             JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");
                                             //exepcion para limpiar y mostrar datos del administrador
-                                            try { limpiar(); mosadministrador(); } catch (SQLException ex) { System.out.println("Error mosadministrador"); }
+                                            todo();
                                             //se elimina los datos registrados de direccion relacion y persona
                                         } else { per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
                                         //se elimina los datos registrados de direccion relacion
@@ -717,23 +717,20 @@ public class LGregistraradministrador extends javax.swing.JFrame {
 
     //limpiar los jtext file cuando se guarde la informacion
     public void limpiar(){
-        try {
-            jtfapellido.setText("");
-            jtftelefono.setText("");
-            jtfnombre.setText("");
-            jtfcalle.setText("");
-            jtfcorreo.setText("");
-            jtfcontras.setText("");
-            jtfcedula.setText("");
-            jtfcodigo.setText("");
-            jtfcomuna.setText("");
-            jcanacimiento.setDate(null);
-            cbformacion.setSelectedItem("");
-            cbnacionalidad.setSelectedItem("");
-            cbpoliglota.setSelectedItem("");
-            cbsexo.setSelectedItem("");
-            todo();
-        } catch (SQLException ex) { System.out.println("Error limpiesa de datos"); }
+        jtfapellido.setText("");
+        jtftelefono.setText("");
+        jtfnombre.setText("");
+        jtfcalle.setText("");
+        jtfcorreo.setText("");
+        jtfcontras.setText("");
+        jtfcedula.setText("");
+        jtfcodigo.setText("");
+        jtfcomuna.setText("");
+        jcanacimiento.setDate(null);
+        cbformacion.setSelectedItem("");
+        cbnacionalidad.setSelectedItem("");
+        cbpoliglota.setSelectedItem("");
+        cbsexo.setSelectedItem("");
     }
     
     public boolean cumplirvalidaciones(String cedula, String nombre, String apellido, String telefono, String correo, String contra, String estado){
@@ -754,7 +751,7 @@ public class LGregistraradministrador extends javax.swing.JFrame {
                                             } else { as = "Verifique la calle"; }
                                         } else { as = "Verifique el codigo de la casa"; }
                                     } else { as = "Verifique el estado"; }
-                                } else { as = "Verifique la contraseña"; }
+                                } else { as = "Verifique la contraseña debe tener numeros Mayusculas y Minusculas"; }
                             } else { as = "Verifique el correo"; }
                         } else { as = "Verifique el apellido";  }
                     } else { as = "Verifique el nombre";  }

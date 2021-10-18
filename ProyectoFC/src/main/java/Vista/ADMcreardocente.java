@@ -25,6 +25,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
     public ADMcreardocente() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscadocentes, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\profesor.png");
@@ -38,6 +39,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
         mosrango();
         mosjornada();
         mosdocente();
+        limpiar();
     }
     
     public void mosnacionalidad() throws SQLException{
@@ -750,7 +752,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
             //instanciar persona con datos
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar docente con datos
-            Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs6, jtfcedula.getText());
+            Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs6, jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -771,7 +773,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
                                             if(doc.insertar()){
                                                 JOptionPane.showMessageDialog(rootPane, "Guardado exitosamente");  
                                                 //excepcion llama metodo de limpiar y todo
-                                                try {limpiar(); todo(); } catch (SQLException ex) { System.out.println("Error limpiar y mostrar docente");}
+                                                todo();
                                             //elimina datos ingresados por que hay un error
                                             }else { doc.eliminar(); per.eliminar(); rel.eliminar(); dir.eliminar(); JOptionPane.showMessageDialog(rootPane, "No se guaro exitosamente"); }
                                         //elimina datos ingresados por que hay un error
@@ -817,7 +819,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
             //instanciar persona
             Persona per = new Persona(jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText(), estado, jtfcedula.getText(), Date.valueOf(nacimiento));
             //instanciar docente
-            Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs6, jtfcedula.getText());
+            Docente doc = new Docente(jtfcedula.getText(), rs4, rs5, rs6, jtfcedula.getText(), jtfnombre.getText(), jtfapellido.getText(), jtftelefono.getText(), jtfcontra.getText(), "ACTIVO", jtfcedula.getText(), Date.valueOf(nacimiento));
             //verificacion de campos vacios
             if(jtfapellido.getText().length() != 0 && jtfcalle.getText().length() != 0 && jtfcodigo.getText().length() != 0 && jtfcomuna.getText().length() != 0 && jtfcontra.getText().length() != 0 && jtfnombre.getText().length() != 0 && jtftelefono.getText().length() != 0 && nacimiento.length() != 0 && jtfcedula.getText().length() != 0){
                 //verificar que se cumplan las validaciones
@@ -838,7 +840,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
                                             if(doc.actualizar()){
                                                 JOptionPane.showMessageDialog(rootPane, "Los datos se actualizaron correctamente");
                                                 //llamar a los metodos impiar y todo
-                                                limpiar(); todo();
+                                                todo();
                                             //mensaje de datos no actualizados crrectamente de docente
                                             } else { JOptionPane.showMessageDialog(rootPane, "No se actualizaron los datos correctamente intente nuevamente"); }
                                         //mensaje de datos no actualizados crrectamente de persona
@@ -909,9 +911,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnsalirActionPerformed
 
     private void jtfcedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfcedulaFocusLost
-        try {
-            cedulaingresada(jtfcedula.getText());
-        } catch (SQLException ex) {System.out.println("error mostrar cedula validacion docente"); }
+        try { cedulaingresada(jtfcedula.getText()); } catch (SQLException ex) {System.out.println("error mostrar cedula validacion docente"); }
     }//GEN-LAST:event_jtfcedulaFocusLost
 
     public void mostrarseleccionado(String a) throws SQLException{
@@ -960,7 +960,6 @@ public class ADMcreardocente extends javax.swing.JFrame {
         cbjornada.setSelectedItem("");  
         rbtnactivo.setSelected(false);
         rdbtninactivo.setSelected(false);   
-        todo();   
     }
     
     public boolean cumplirvalidaciones(String cedula, String nombre, String apellido, String telefono, String contra, String estado){
@@ -980,7 +979,7 @@ public class ADMcreardocente extends javax.swing.JFrame {
                                         } else { as = "Verifique la calle"; }
                                     } else { as = "Verifique el codigo de la casa"; }
                                 } else { as = "Verifique el estado"; }
-                            } else { as = "Verifique la contraseña"; }
+                            } else { as = "Verifique la contraseña debe tener numeros Mayusculas y Minusculas"; }
                         } else { as = "Verifique el apellido";  }
                     } else { as = "Verifique el nombre";  }
                 } else { this.colocarImagen(this.nacimientolbl, "src\\main\\java\\Imagenes\\V2.png"); as = "Verifique la fecha de nacimiento";  }

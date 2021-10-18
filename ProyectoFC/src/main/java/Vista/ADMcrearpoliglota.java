@@ -21,6 +21,7 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
     public ADMcrearpoliglota() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\poliglota.png");
@@ -483,7 +484,7 @@ public class ADMcrearpoliglota extends javax.swing.JFrame {
         String as = null;
         boolean ab = false;
         if(vali.validardijitos8(codigo) == true){
-            if(vali.validardijitos10(poliglota) == true){
+            if(vali.validardijitos15(poliglota) == true){
                 as = null;
             } else { as = "Verifique el poliglota";  }
         } else { as = "Verifique el codigo";  }

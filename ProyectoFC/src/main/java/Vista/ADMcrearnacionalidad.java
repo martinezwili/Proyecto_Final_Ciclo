@@ -21,6 +21,7 @@ public class ADMcrearnacionalidad extends javax.swing.JFrame {
     public ADMcrearnacionalidad() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\nacionalidades.png");
@@ -492,7 +493,7 @@ public class ADMcrearnacionalidad extends javax.swing.JFrame {
         String as = null;
         boolean ab = false;
         if(vali.validardijitos8(codigo) == true){
-            if(vali.validardijitos10(nacionalidad) == true){
+            if(vali.validardijitos20(nacionalidad) == true){
                 as = null;
             } else { as = "Verifique la nacionalidad";  }
         } else { as = "Verifique el codigo";  }

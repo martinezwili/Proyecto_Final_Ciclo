@@ -3,10 +3,14 @@ package Vista;
 import Conexion.SQLMetodos;
 import Modelo.Matricula;
 import Modelo.Validaciones;
+import java.awt.Image;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -15,14 +19,18 @@ public class ADMatricula extends javax.swing.JFrame {
 
     SQLMetodos sqlm = new SQLMetodos();   
     Validaciones vali = new Validaciones();
+    private ImageIcon imagen;
+    private Icon icono;
     
     public ADMatricula() throws SQLException {
         initComponents();
         moscurso();  
         mosalumnos();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         jtffecha.setText(vali.obtenerfecha());
         jtffecha.setEditable(false);
+         this.colocarImagen(this.jlbbuscar, "src\\main\\java\\Imagenes\\buscar.png");
     }
 
     public void moscurso() throws SQLException{
@@ -382,7 +390,6 @@ public class ADMatricula extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfbuscarKeyReleased
 
     private void jtablebuscaralumnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtablebuscaralumnoMouseClicked
-        DefaultTableModel a = (DefaultTableModel)jtablealumno.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }
         TableModel modelo = jtablebuscaralumno.getModel();
         int[] filas = jtablebuscaralumno.getSelectedRows();
         Object[] row = new Object[4];
@@ -398,7 +405,6 @@ public class ADMatricula extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel a = (DefaultTableModel)jtablealumno.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }
-        DefaultTableModel b = (DefaultTableModel)jtablebuscaralumno.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }
         mosalumnos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -408,17 +414,18 @@ public class ADMatricula extends javax.swing.JFrame {
             String codigo = null; int c = 0;
             for(int i = 0 ; i < jtablealumno.getRowCount(); i++){
                 String cedula = jtablealumno.getValueAt(i, 0).toString(); 
-                //do{
+                do{
                     for(int e = 0 ; e < jtablealumno.getRowCount() ; e ++ ){
                         Random ra = new Random();
                         Random rss = new Random(123);
                         codigo = String.valueOf(ra.nextInt(99999999-1+1) + 25);
                     }
-                //}while(Notass.comcodigo(codigo) == true);
-                Matricula ma = new Matricula(codigo, curso, cedula, Date.valueOf(vali.obtenerfecha()));
-                ma.insertar(); c++;
+                }while(Matricula.comcodigo(codigo) == true);
+                Matricula ma = new Matricula(codigo, curso, cedula, "ACTIVO", Date.valueOf(vali.obtenerfecha()));
+                sqlm.matriculainactivar(cedula); ma.insertar(); c++;
             }
             if(jtablealumno.getRowCount() == c){ JOptionPane.showMessageDialog(rootPane, "Las matriculas se guardaron corretamente");} else { JOptionPane.showMessageDialog(rootPane, "Las matriculas no se guardaron corretamente"); }
+            DefaultTableModel a = (DefaultTableModel)jtablealumno.getModel(); while(a.getRowCount() > 0){ a.removeRow(0); }
         } catch (SQLException ex) { System.out.println("error generar codigo matricula"); }
     }//GEN-LAST:event_MATRICULARActionPerformed
 
@@ -433,6 +440,17 @@ public class ADMatricula extends javax.swing.JFrame {
         this.dispose(); ADMmenu madm = new ADMmenu(); madm.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void colocarImagen(JLabel lbl, String ruta){
+        this.imagen = new ImageIcon(ruta);
+        this.icono = new ImageIcon(
+                this.imagen.getImage().getScaledInstance(
+                        lbl.getWidth(), 
+                        lbl.getHeight(), 
+                        Image.SCALE_SMOOTH)
+        );lbl.setIcon(this.icono);
+        this.repaint();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MATRICULAR;
     private javax.swing.JComboBox<String> cbcursos;

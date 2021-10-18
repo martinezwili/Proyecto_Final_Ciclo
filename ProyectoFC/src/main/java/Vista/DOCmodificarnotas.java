@@ -20,6 +20,8 @@ public class DOCmodificarnotas extends javax.swing.JFrame {
     public DOCmodificarnotas() throws SQLException {
         initComponents();
         todo();
+        setLocationRelativeTo(null);
+        this.setResizable(false);
         this.colocarImagen(this.jlbbuscar4, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\notlogomd.png");
     }

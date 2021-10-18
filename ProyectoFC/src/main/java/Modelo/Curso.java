@@ -71,33 +71,33 @@ public class Curso {
         }
     }
     
-    public boolean compparaeliminar() throws SQLException{
-        boolean as = false;
-        ResultSet rs1 = conexion.query("SELECT relasig_codigo FROM relacionasignaturas WHERE cur_codigo = '" + getCur_codigo()+ "'");
+    public int compparaeliminar() throws SQLException{
+        int as = 0;
+        ResultSet rs1 = conexion.query("SELECT relaasig_codigo FROM relacionasignaturas WHERE cur_codigo = '" + getCur_codigo()+ "'");
         if(rs1.next()){
-            as = true;
+            as++;
         }
         else
         {
             ResultSet rs2 = conexion.query("SELECT not_codigo FROM notas WHERE cur_codigo = '" + getCur_codigo()+ "'");
             if(rs2.next()){
-                as = true;
+                as++;;
             }
             else
             {
                 ResultSet rs3 = conexion.query("SELECT asis_codigo FROM asistencia WHERE cur_codigo = '" + getCur_codigo()+ "'");
                 if(rs3.next()){
-                    as = true;
+                    as++;
                 }
                 else
                 {
-                    ResultSet rs4 = conexion.query("SELECT alu_cedula FROM alumno WHERE cur_codigo = '" + getCur_codigo()+ "'");
+                    ResultSet rs4 = conexion.query("SELECT mat_codigo FROM matricula WHERE cur_codigo = '" + getCur_codigo()+ "'");
                     if(rs4.next()){
-                        as = true;
+                        as++;
                     }
                     else
                     {
-                        as = false;
+                       
                     }
                 }
             }

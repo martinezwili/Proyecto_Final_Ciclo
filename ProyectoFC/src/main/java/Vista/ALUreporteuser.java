@@ -17,8 +17,20 @@ public class ALUreporteuser extends javax.swing.JFrame {
     public ALUreporteuser() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
+        noeditable();
         this.colocarImagen(this.jlblogo2, "src\\main\\java\\Imagenes\\alumno2.png");
         mostrarDatos();
+    }
+    
+    public void noeditable(){
+        jtfapellido.setEditable(false);
+        jtfcedula.setEditable(false);
+        jtfdireccion.setEditable(false);
+        jtfnacimiento.setEditable(false);
+        jtfnombres.setEditable(false);
+        jtftelR.setEditable(false);
+        jtftelefono.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")

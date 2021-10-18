@@ -21,6 +21,7 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
     public ADMcrearasignatura() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         todo();
         this.colocarImagen(this.jlbbuscar, "src\\main\\java\\Imagenes\\buscar.png");
         this.colocarImagen(this.jlblogo, "src\\main\\java\\Imagenes\\libro.png");
@@ -432,12 +433,16 @@ public class ADMcrearasignatura extends javax.swing.JFrame {
             Asignatura asig = new Asignatura(jtcodigo.getText(),null,null);
             //comprobacion de asignatura
             if(asig.comp()){
-                //eliminar asignatura
-                if(asig.eliminar()){
-                    JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
-                    try { todo(); } catch (SQLException ex) { System.out.println("error al mostrar y eliminar asignatura"); }
-                //mensaje error al eliminar asignatura
-                } else { JOptionPane.showMessageDialog(rootPane, "Error al eliminar"); }
+                //comprobar relacion para eliminar
+                if(asig.compparaeliminar() == 0){
+                    //eliminar asignatura
+                    if(asig.eliminar()){
+                        JOptionPane.showMessageDialog(rootPane, "Eliminado exitosamente");
+                        try { todo(); } catch (SQLException ex) { System.out.println("error al mostrar y eliminar asignatura"); }
+                    //mensaje error al eliminar asignatura
+                    } else { JOptionPane.showMessageDialog(rootPane, "Error al eliminar"); }
+                //mensaje de comprobacion de relacion
+                } else { JOptionPane.showMessageDialog(rootPane, "No se puede eliminar por que se esta usando"); }
             //mensaje no existe esa asignatura
             } else { JOptionPane.showMessageDialog(rootPane, "Asignatura no encontrada verifique el codigo"); }
         //mensaje de excepcion de comprobar asignatura
